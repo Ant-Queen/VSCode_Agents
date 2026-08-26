@@ -1,0 +1,521 @@
+Visual Studio Code
+Features
+Agents
+Agent Customization
+Models & Agent Harnesses
+Enterprise
+Extensibility
+Docs
+Documentation
+API
+FAQ
+Release Notes
+Blog
+Learn
+Events
+Resources
+Extensions
+MCP
+Download
+Search
+Download
+📼 Rewatch VS Code Live at MS Build 2026
+Dismiss this update
+Documentation
+Overview
+Get Started
+Overview
+Agents Quickstart
+Editor Tutorial
+Intro Videos
+Agents
+Overview
+Get started
+Agents Quickstart
+Agents Tutorial
+Best Practices
+Concepts
+Agents
+Agent Harnesses
+Language Models
+Context
+Tools
+Sessions & Handoff
+Agent Host Architecture
+Customization
+Workspace Context
+Trust & Safety
+Run agents
+Agents Window
+Chat View
+Choose an Agent Harness
+Use Tools
+Browser Tools
+Approvals & Permissions
+Review & Revert Changes
+Artifacts
+Remote Agent Sessions
+Plan Work
+Memory
+Subagents
+Sessions
+Manage Sessions
+Session History
+AI Security
+Customize agents
+Create and Manage
+Instructions
+Agent Skills
+Custom Agents
+Language Models
+MCP
+Hooks
+Plugins
+Tools
+Prompt Files
+Use chat
+Chat Basics
+Inline & Quick Chat
+Add Prompt Context
+Tutorials & guides
+Customize AI
+Context Engineering
+Test-Driven Development
+Test with AI
+Test Web Apps with Browser Tools
+Debug with AI
+Edit Notebooks with AI
+Optimize AI Credit Usage
+MCP Dev Guide
+Prompt Examples
+Reference
+Cheat Sheet
+Settings Reference
+MCP Configuration
+Hooks Reference
+OpenTelemetry Monitoring
+Troubleshooting
+Troubleshooting
+Debug Chat Interactions
+Diagnose Prompt Caching
+FAQ
+Editor
+Source Control
+Overview
+Quickstart
+Repositories & Remotes
+Staging & Committing
+Source Control History
+Branches & Worktrees
+Merge Conflicts
+Collaborate on GitHub
+Troubleshooting
+FAQ
+Terminal
+Get Started
+Terminal Basics
+Terminal Profiles
+Shell Integration
+Appearance
+Advanced
+Debugging & Testing
+Debugging
+Debug Configuration
+Tasks
+Testing
+Integrated Browser
+Port Forwarding
+Guides & Tutorials
+Test-Driven Development
+Test Web Apps with Browser Tools
+Enterprise
+Overview
+Enterprise Policies
+AI Settings
+Extensions
+Telemetry
+Updates
+Remote
+Overview
+VS Code for the Web
+SSH
+SSH Tutorial
+Tunnels
+Dev Containers
+WSL
+WSL Tutorial
+GitHub Codespaces
+VS Code Server
+Linux Prerequisites
+Tips and Tricks
+FAQ
+Advanced Setup
+GitHub Copilot Setup
+Linux
+macOS
+Windows
+Raspberry Pi
+Network
+Portable Mode
+Additional Components
+Uninstall
+Languages & Runtimes
+Extension Docs
+Topics
+Overview
+Overview
+Agents Quickstart
+Editor Tutorial
+Intro Videos
+Overview
+Get started
+Agents Quickstart
+Agents Tutorial
+Best Practices
+Concepts
+Agents
+Agent Harnesses
+Language Models
+Context
+Tools
+Sessions & Handoff
+Agent Host Architecture
+Customization
+Workspace Context
+Trust & Safety
+Run agents
+Agents Window
+Chat View
+Choose an Agent Harness
+Use Tools
+Browser Tools
+Approvals & Permissions
+Review & Revert Changes
+Artifacts
+Remote Agent Sessions
+Plan Work
+Memory
+Subagents
+Sessions
+Manage Sessions
+Session History
+AI Security
+Customize agents
+Create and Manage
+Instructions
+Agent Skills
+Custom Agents
+Language Models
+MCP
+Hooks
+Plugins
+Tools
+Prompt Files
+Use chat
+Chat Basics
+Inline & Quick Chat
+Add Prompt Context
+Tutorials & guides
+Customize AI
+Context Engineering
+Test-Driven Development
+Test with AI
+Test Web Apps with Browser Tools
+Debug with AI
+Edit Notebooks with AI
+Optimize AI Credit Usage
+MCP Dev Guide
+Prompt Examples
+Reference
+Cheat Sheet
+Settings Reference
+MCP Configuration
+Hooks Reference
+OpenTelemetry Monitoring
+Troubleshooting
+Troubleshooting
+Debug Chat Interactions
+Diagnose Prompt Caching
+FAQ
+Editor
+Overview
+Quickstart
+Repositories & Remotes
+Staging & Committing
+Source Control History
+Branches & Worktrees
+Merge Conflicts
+Collaborate on GitHub
+Troubleshooting
+FAQ
+Get Started
+Terminal Basics
+Terminal Profiles
+Shell Integration
+Appearance
+Advanced
+Debugging
+Debug Configuration
+Tasks
+Testing
+Integrated Browser
+Port Forwarding
+Guides & Tutorials
+Test-Driven Development
+Test Web Apps with Browser Tools
+Overview
+Enterprise Policies
+AI Settings
+Extensions
+Telemetry
+Updates
+Overview
+VS Code for the Web
+SSH
+SSH Tutorial
+Tunnels
+Dev Containers
+WSL
+WSL Tutorial
+GitHub Codespaces
+VS Code Server
+Linux Prerequisites
+Tips and Tricks
+FAQ
+GitHub Copilot Setup
+Linux
+macOS
+Windows
+Raspberry Pi
+Network
+Portable Mode
+Additional Components
+Uninstall
+Languages & Runtimes
+Extension Docs
+Copy as Markdown
+Copy as Markdown
+View as Markdown
+On this page there are 13 sectionsOn this page
+Start an agent session
+Manage session context
+Run multiple chats in a session
+Ask side questions
+Sessions list
+Archive sessions
+Delete sessions
+Fork a chat session
+Orchestrate sessions from agent host sessions
+Save and export chat sessions
+Session status indicator (Experimental)
+View sessions on the VS Code welcome page
+Related resources
+Related
+Get started with agents
+Follow a hands-on tutorial to build an app with AI agents in VS Code.
+Start agentic coding tutorial
+Manage agent sessions in VS Code
+A session is the unit of work with an agent in Visual Studio Code. It includes the sequence of prompts and responses, relevant context, and any files or resources associated with the task. This article describes how to create, organize, and manage sessions in both the Chat view and the Agents window.
+Start an agent session
+When you start an agent session, you begin a new conversation with the AI. Each session has its own context window and can run with a different agent harness. You can run multiple sessions in parallel, each focused on a different task or topic. Use the sessions list to monitor and switch between sessions.
+Tip
+Start a new session when you change topics to help the AI provide more relevant responses.
+Depending on how you prefer to work or the task you want to accomplish, you can choose between different chat experiences in VS Code. Each experience is optimized for different workflows, but they share the same underlying sessions to enable you to switch between them at any time.
+Agents windowChat view
+The Agents window is a dedicated window for orchestrating agents across multiple projects from a single place. Chat is your primary interface where you assign high-level tasks to agents. The Agents window is optimized for agents-first workflows.
+To start a new chat session in the Agents window:
+Open the Agents window by selecting the Open in Agents button in the VS Code title bar.
+Select New in the sidebar to create a new session.
+Choose the workspace or repository for the session, as the Agents window can target any of your projects.
+Choose an agent harness from the Session Target control to indicate where the agent session runs and how it operates.
+The available harnesses depend on the workspace location. Learn how to choose an agent harness.
+Optionally, select additional configuration options for the session:
+Agent: determines the role or persona of the AI, such as Agent, Plan, or Ask. Learn more about choosing an agent role.
+Permission level: controls how much autonomy the agent has over tool approvals. Learn more about permission levels.
+Language model: determines which AI model powers the conversation. Learn more about language models in VS Code.
+In the Agents window, when you create another new session, the picker remembers the last Agent and Permission level values you selected and uses them as defaults.
+Type your prompt and press Enter to submit it. The agent's response appears in the chat area, and the agent may take actions such as editing files, running commands, or asking follow-up questions.
+The Chat view is a chat panel that sits in the sidebar alongside your workspace editor tabs. Agents assist you with coding tasks, while you have full access to VS Code's rich coding experience. The Chat view is optimized for code-first workflows.
+To start a new chat session in the Chat view:
+Open the Chat view by selecting the Chat icon in the VS Code title bar.
+Create an empty session by selecting the New Chat (+) button.
+The session is scoped to the current workspace, so if you have a workspace open, the session is automatically linked to that workspace.
+Choose an agent harness from the Session Target control to determine where the agent session runs and what capabilities it can access.
+Choose Local, Copilot, Claude, Codex, or Cloud. Learn how to choose an agent harness.
+Optionally, select additional configuration options for the session:
+Agent: determines the role or persona of the AI, such as Agent, Plan, or Ask. Learn more about choosing an agent role.
+Permission level: controls how much autonomy the agent has over tool approvals. Learn more about permission levels.
+Language model: determines which AI model powers the conversation. Learn more about language models in VS Code.
+Type your prompt and press Enter to submit it. The agent's response appears in the chat area, and the agent may take actions such as editing files, running commands, or asking follow-up questions.
+Manage session context
+The context window control in the chat input shows how much of the model's context window the session is using. Hover over the control to see the token count, a usage breakdown by category, and the total AI credits consumed by the session.
+As the conversation grows, the control updates to reflect increasing context usage. The available context depends on the selected model.
+How context changes across turns also affects prompt caching. Stable context lets the model provider reuse tokens from earlier requests, which lowers cost and latency. Use the Cache Explorer to check your cache hit rate.
+Compact conversation context
+Context compaction summarizes earlier conversation history to free space in the context window. Compaction lets you continue the same session with less irrelevant history and reduces the tokens sent with subsequent requests.
+VS Code automatically compacts the conversation when the context window fills. To turn off automatic compaction, set
+github.copilot.chat.summarizeAgentConversationHistory.enabled
+Open in VS Code
+Open in VS Code Insiders
+to false.
+To compact the conversation manually:
+Type /compact in the chat input. Optionally, add instructions for what the summary should retain, for example /compact focus on the database schema decisions.
+Select the context window control, and then select Compact Conversation.
+Manual compaction is available for local, background, and Claude agent sessions. To reset the context entirely, start a new session.
+Learn more about AI credit consumption.
+Run multiple chats in a session
+In an agent host session, you can run multiple chats in the chat area. Each chat has its own conversation, title, status, and agent or language model selection, but all chats share the session's workspace and worktree. By default, chats open as tabs in one group. Arrange chats in multiple groups to view them side by side or stacked vertically.
+A new chat starts blank and doesn't inherit the history of the other chats. This is useful when you want to work on independent tasks in the same project without interrupting an ongoing chat or creating another session.
+If you want to move context from the main chat to a new chat, you might opt to fork the session instead. Forking preserves the conversation history.
+To create and manage chats in a session:
+In an active session, select + New Chat in the session header, or press ⌘T (Windows, Linux Ctrl+T).
+A blank chat opens. When the session has more than one chat, a tab strip appears in the chat area. Chats don't appear as separate items in the sessions list.
+To add more chats, select the trailing + in the tab strip.
+Type a prompt and press Enter to start the chat.
+Use the chat tabs and their context menus to:
+Switch chats: select a tab to show its conversation. Progress and unread indicators apply to that chat.
+Choose an agent or model: use the controls in each chat. Sibling chats can use different agents or models.
+Track changes: the session remains in progress while any chat is working. The session header Changes pill combines edits from all chats.
+Rename a chat: select Rename from the tab's context menu. Chat titles are independent of the session title.
+Close or reopen a chat: close a tab to hide it without deleting it. Use the Chats dropdown to show or hide chats, or press  to reopen the most recently closed chat.
+Delete a chat: select Delete Chat from the tab's context menu, or press ⌘Backspace (Windows, Linux Delete) while the chat has focus. Deletion is permanent.
+To arrange chats in multiple groups:
+Drag a chat tab to the center of another group to move it into that group.
+Drag a chat tab to the left, right, top, or bottom edge of a group to create a group in that direction.
+Run Sessions: Split Chat Group Right, Sessions: Split Chat Group Down, Sessions: Move Chat to Previous Group, or Sessions: Move Chat to Next Group from the Command Palette (⇧⌘P (Windows, Linux Ctrl+Shift+P)) to arrange chats with the keyboard.
+Press ⌘K ⌘← (Windows, Linux Ctrl+K Ctrl+Left) or ⌘K ⌘→ (Windows, Linux Ctrl+K Ctrl+Right) to move keyboard focus between groups.
+When you close or move the last chat in a group, the empty group closes and the remaining groups expand to fill the available space.
+Visible and hidden chats, including their conversation history, are restored when you reload the window and reopen the session. Chat group assignments, active chats, and split sizes are also restored when you switch sessions or reload the window.
+Note
+Changes from all chats in a session go to the same folder or worktree and appear together in the session changes. Start separate worktree-isolated sessions when tasks must not modify the same files.
+Ask side questions
+Use a side chat to ask a question about the current conversation without adding the question or response to the main chat. A side chat opens in a group beside the source chat, so both conversations remain visible. It privately inherits the source conversation as context. Side chats favor explanation over action unless you ask the agent to make changes or perform a task.
+Start a side chat in one of these ways:
+Type /btw <question> in the chat input. The side chat branches from the latest turn, including a response that is still in progress.
+Select text in a chat response, enter a question in the Ask Question input, and press Enter. The selected text and its response become context for the side chat.
+Each question creates a new side chat. The side chat inherits the agent and language model from the source chat, but inherited messages remain hidden from its transcript.
+Note
+Side chats are available only in the Agents window for Copilot and Claude sessions. They aren't available for Codex sessions or in the Chat view.
+Sessions list
+The sessions list is your central hub for managing all your chat sessions, regardless of where you started them or where they are running. The sessions list shows your sessions with information about their status, type, and file changes.
+Hover over a session to see actions for pinning or archiving it. Right-click a session in the list to see additional actions like deleting or changing the session's state. Some actions are specific to the session's harness and state. For example, you can check out a pull request for a cloud session.
+Use the pinning action to keep important sessions easily accessible at the top of your list. Pinned sessions stay at the top of the list regardless of their activity or state, so you can quickly find and return to them.
+Agents windowChat view
+In the Agents window, the sessions list is located in the left sidebar. It shows sessions from all your workspaces, so you can monitor work across projects from a single place. Each session item surfaces key information such as session name, workspace, harness, and file change stats.
+By default, the list is filtered to only show active sessions. You can change the filter to show sessions of different states, such as completed or archived.
+Sessions are grouped by workspace by default, and you can switch the grouping to organize by timeframe instead. In the Agents window, you can also create custom groups to keep related sessions together. Collapse a group header when you want to reduce the sessions list.
+To organize the sessions list in the Agents window:
+Create a custom group from the sessions list controls.
+Drag one or more sessions onto the group. An insertion line shows where the sessions land.
+Hover over a group header to start a new session in that group, or mark all sessions in the group as done.
+You can also drag sessions up or down to reorder them, drag group and workspace headers to rearrange sections, or drop a session on the Pinned section to pin it. Select multiple sessions to move them together.
+You can hide the left sidebar by selecting the Toggle Sidebar button in the top-left corner of the Agents window or by using the ⌘B (Windows, Linux Ctrl+B) keyboard shortcut.
+In the Chat view, the sessions list is scoped to your current workspace and groups sessions by time period, such as Today or Last Week. If you don't have a workspace open, the list shows all sessions across your workspaces.
+By default, the list is filtered to only show active sessions. You can change the filter to show sessions of different states, such as completed or archived.
+To hide the session list from the Chat view, right-click in an empty chat and unselect Show Sessions or use the
+chat.viewSessions.enabled
+Open in VS Code
+Open in VS Code Insiders
+setting.
+The Chat view operates in two modes: compact and side-by-side. You can manually switch between compact and side-by-side mode by using the toggle control in the top-right corner of the Chat view.
+Compact: The list of sessions is embedded in the Chat view. When you select a session from the list, the Chat view switches to that session. Use the back button to return to the sessions list.
+Side-by-side: The list of sessions is shown side-by-side with the Chat view. Select a session from the list to view its details in the Chat view. You can further configure the orientations with the
+chat.viewSessions.orientation
+Open in VS Code
+Open in VS Code Insiders
+setting.
+Note
+Extension developers can learn how to integrate with the sessions view by using the proposed API chatSessionsProvider. The API is currently in a proposed state and subject to change.
+View sessions from other applications
+VS Code can discover local agent sessions created by supported applications outside VS Code. You can open and continue sessions from Copilot CLI, the GitHub Copilot app, Claude Code, and Codex in the Chat view or Agents window.
+For Copilot sessions, discovery includes sessions that are associated with a repository and were updated within the last seven days.
+By default, sessions created in other applications are hidden. To control which sessions appear, open the sessions list filter, select External, and choose one of these options:
+None: hide all external sessions.
+Recent: show the two most recently updated external sessions from the last seven days.
+Last 24 Hours: show external sessions updated within the last 24 hours.
+Last 7 Days: show external sessions updated within the last seven days.
+All: show all discovered external sessions.
+The filter applies to the sessions lists in both the Chat view and Agents window. You can also configure it with the
+chat.agentSessions.showExternal
+Open in VS Code
+Open in VS Code Insiders
+setting.
+When you open an external session in the Agents window, a one-time banner indicates that the session was created in another application. You can choose which external sessions to show from the banner. If your choice hides the open session, VS Code asks you to confirm the change.
+When you send a message in an external session, the Agent Host adopts it. The session is no longer external, so the External filter no longer affects its visibility.
+Archive sessions
+To keep the sessions list organized, archive or mark sessions as done when they're completed or you no longer need them. Archiving a session does not delete it. At any time, you can unarchive a session to restore it to the active sessions list.
+When you archive (or mark as done) a session, its status changes so it moves out of the active sessions list. For a worktree session, VS Code commits uncommitted changes to the session branch before it removes the worktree folder. If VS Code can't preserve the changes or remove the worktree, the worktree remains. The branch and its commits are preserved, so restoring the session re-creates the worktree from that branch.
+To archive a session, hover over the session in the sessions list and select the Archive (Chat view) or Mark as Done (Agents Window) option.
+To view your archived sessions, use the filter options in the sessions list and select the Archived (Chat view) or Done (Agents Window) filter.
+Delete sessions
+To permanently delete a session, right-click the session in the sessions list and select Delete. Deleting a session removes it permanently and can't be undone. For Copilot sessions, deleting the session also removes any associated worktrees created for that session.
+If multiple Copilot sessions share the same worktree, such as after you fork a session, deleting one session does not remove the shared worktree while another session still uses it. The worktree is removed only after the last linked session is deleted or archived.
+Caution
+Deleting a session is irreversible. Integrate or commit worktree changes before you delete the session because uncommitted files that exist only in a removed worktree can be lost. If you only want to hide a session, archive it instead.
+Fork a chat session
+Forking a chat session branches off the conversation and inherits the conversation history from the original session. In single-chat sessions and sessions that don't use an agent host, the fork opens as a new independent session. The conversation is separate, but its code changes are isolated only if the fork uses a different folder or worktree. The new session title is prefixed with "Forked:" to help you identify it.
+For multi-chat Copilot sessions in the Agents window, the fork opens as a peer chat in the same session. The peer chat gets an automatically generated title and runs independently from sibling chats.
+For Copilot sessions that use worktree isolation, the fork continues to use the same worktree as the original session.
+Forking is useful when you want to explore an alternative approach, ask a side question, or branch a long conversation in a different direction without losing the original context.
+There are two ways to fork a chat session:
+Fork the entire session: type /fork in the chat input box and press Enter. The fork opens with the full conversation history copied from the current session.
+Fork from a checkpoint: hover over a chat request in the conversation and select the Fork Conversation button. The fork includes only the requests up to and including that checkpoint.
+Tip
+A forked session inherits the conversation history of the original, which preserves the prompt cache and reduces cost on the next request. Use the Cache Explorer to compare cache hit rates across sessions.
+Orchestrate sessions from agent host sessions
+In agent host sessions, such as Copilot and Claude, agents can use built-in session-management tools to coordinate work across multiple sessions and chats. These tools are also available for Codex sessions when Codex runs on the Agent Host.
+With these tools, an agent can:
+List your sessions and inspect metadata like status, workspace, and file changes.
+Create a new session for a sub-task, or create a new chat in an existing session.
+Read recent conversation context from another session before continuing work.
+Send a message to another session or chat to start or steer a follow-up task.
+When a tool creates or targets a session, VS Code shows an Open Session pill in chat so you can jump directly to it.
+To keep this workflow safe and predictable:
+Sending a message to another session always requires your confirmation.
+Agents cannot send messages to the same chat they are currently running in.
+Burst sends are capped to avoid unbounded fan-out.
+Archived sessions are excluded from listings unless explicitly requested.
+Save and export chat sessions
+You can save chat sessions to preserve important conversations or reuse them later for similar tasks.
+Export a chat session as a JSON file
+You can export a chat session to save it for later reference or share it with others. Exporting a chat session creates a JSON file that contains all prompts and responses from the session.
+To export a chat session:
+Open the chat session you want to export in the Chat view.
+Run the Chat: Export Chat... command from the Command Palette (⇧⌘P (Windows, Linux Ctrl+Shift+P)).
+Choose a location to save the JSON file.
+Copy chat messages as Markdown
+The Chat view supports different options for copying chat messages as Markdown to the clipboard, available through the context menu when you right-click a message or the chat background.
+Copy: Copy an individual prompt or response to the clipboard - the Markdown contains the response text, thinking steps, and tool calls.
+Copy All: Copy the entire chat session in Markdown format, including all prompts, responses, thinking steps, and tool calls.
+Copy Final Response: Copy just the final Markdown section of the agent's response, after the last tool call. This is useful for sharing or reusing the final output without the intermediate steps.
+Session status indicator (Experimental)
+The session status indicator provides quick access to your sessions directly from the command center in the title bar. The indicator displays visual badges for unread messages and in-progress sessions, so you can stay informed about AI activity without switching views.
+The indicator shows:
+Unread sessions badge: shows the count of chat sessions with new messages. Select the badge to filter the sessions list to show only unread sessions.
+In-progress sessions badge: shows the count of sessions with running agents. Select the badge to filter the sessions list to show only in-progress sessions.
+Sparkle icon: provides quick access to chat and session management options.
+You can configure the status indicator's visibility by using the
+chat.agentsControl.enabled
+Open in VS Code
+Open in VS Code Insiders
+setting.
+View sessions on the VS Code welcome page
+The VS Code welcome page can act as your startup experience for working with chat sessions. It provides quick access to your recent chat sessions, an embedded chat widget for starting new tasks, and quick actions for common tasks.
+To configure the VS Code welcome page as your startup experience, set
+workbench.startupEditor
+Open in VS Code
+Open in VS Code Insiders
+to agentSessionsWelcomePage.
+Related resources
+Use chat in VS Code
+Agents overview
+Add context to chat
+Best practices for using AI
+8/19/2026
+Support
+Privacy
+Manage Cookies
+Terms of Use
+License
+Your Privacy Choices
+Consumer Health Privacy
