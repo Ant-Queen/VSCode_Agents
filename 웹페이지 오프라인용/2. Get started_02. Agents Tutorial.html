@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)https://code.visualstudio.com/docs/agents/agents-tutorial -->
+<html lang="en" style="--docs-sticky-top: 109px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta name="awa-expId" content="cv-downloadv2:1227264;">
+	<meta name="awa-env" content="prod">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="google-site-verification" content="hNs7DXrTySP_X-0P_AC0WulAXvUwgSXEmgfcO2r79dw">
+
+	<!-- Twitter and Facebook OpenGraph Metadata-->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@code">
+
+	<meta name="description" content="Get started with agentic coding in Visual Studio Code. Build an app from a prompt with the Agents window and the Chat view, and learn the VS Code basics.">
+<meta name="keywords" content="">
+<meta name="ms.prod" content="vs-code">
+<meta name="ms.TOCTitle" content="">
+<meta name="ms.ContentId" content="72ad9b70-5227-4032-81d7-6aec00a1e8f8">
+<meta name="ms.date" content="8/26/2026">
+<meta name="ms.topic" content="conceptual">
+<!-- Twitter and Facebook OpenGraph Metadata-->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:url" content="https://code.visualstudio.com/docs/agents/agents-tutorial">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tutorial: Agentic coding in VS Code">
+<meta property="og:description" content="Get started with agentic coding in Visual Studio Code. Build an app from a prompt with the Agents window and the Chat view, and learn the VS Code basics.">
+
+<meta property="og:image" content="https://code.visualstudio.com/opengraphimg/generated/docs/agents/agents-tutorial.webp">
+
+
+
+	<link rel="shortcut icon" href="https://code.visualstudio.com/assets/favicon.ico" sizes="128x128">
+	<link rel="apple-touch-icon" href="https://code.visualstudio.com/assets/apple-touch-icon.png">
+
+	<title>Tutorial: Agentic coding in VS Code</title>
+
+	<link rel="stylesheet" href="./2. Get started_02. Agents Tutorial_files/style.css">
+
+	<script src="./2. Get started_02. Agents Tutorial_files/wcp-consent.js.다운로드"></script>
+	<script type="text/javascript" src="./2. Get started_02. Agents Tutorial_files/ms.analytics-web-4.min.js.다운로드"></script>
+	
+	<script type="text/javascript">
+	// Leave as var; siteConsent is initialized and referenced elsewhere.
+	var siteConsent = null;
+	
+	const GPC_DataSharingOptIn = false;
+	WcpConsent.onInitCallback(function () {
+		window.appInsights = new oneDS.ApplicationInsights();
+		window.appInsights.initialize({
+			instrumentationKey: "1a3eb3104447440391ad5f2a6ee06a0a-62879566-bc58-4741-9650-302bf2af703f-7103",
+			propertyConfiguration: {
+				userConsented: false,
+				gpcDataSharingOptIn: false,
+				callback: {
+					// Stable closure: the SDK calls this per-event, so it picks up the
+					// real consent state once WcpConsent.init() resolves (siteConsent
+					// is still null when this callback is registered).
+					userConsentDetails: function () {
+						return siteConsent ? siteConsent.getConsent() : undefined;
+					}
+				},
+			},
+			cookieCfg: {
+				ignoreCookies: ["MSCC"]
+			},
+			webAnalyticsConfiguration:{ // Web Analytics Plugin configuration
+				urlCollectQuery: true,
+				urlCollectHash: true,
+				autoCapture: {
+					scroll: true,
+					pageView: true,
+					onLoad: true,
+					onUnload: true,
+					click: true,
+					resize: true,
+					jsError: true
+				}
+			}
+		}, []);
+	
+		window.appInsights.getPropertyManager().getPropertiesContext().web.gpcDataSharingOptIn = GPC_DataSharingOptIn;
+	});
+	</script>
+	<link rel="alternate" type="application/atom+xml" title="RSS Feed for code.visualstudio.com" href="https://code.visualstudio.com/feed.xml">
+</head>
+
+<body class="win">
+	<!-- Setting theme here to avoid FOUC -->
+	<script>
+		function setTheme(themeName) {
+			if (themeName === 'dark') {
+				document.documentElement.removeAttribute('data-theme'); // dark is default, so no data-theme attribute needed
+			}
+
+			if (themeName === 'light') {
+				document.documentElement.setAttribute('data-theme', themeName);
+			}
+			return;
+		}
+
+		// Determine initial theme: user preference or system preference
+		let theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+		setTheme(theme); // Apply the initial theme
+
+		// Listen for changes in the system theme preference
+		window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+			if (!localStorage.getItem('theme')) { // Only if no user preference is saved
+				setTheme(e.matches ? 'dark' : 'light');
+			}
+		});
+	</script>
+
+	<div id="main">
+		<div class="navbar-fixed-container">
+			<div class="navbar navbar-inverse navbar-fixed-top ">
+				<div id="cookie-banner"></div>		<nav role="navigation" aria-label="Top Level">
+					<div class="container">
+						<div class="nav navbar-header">
+							<a class="navbar-brand" href="https://code.visualstudio.com/"><span>Visual Studio Code</span></a>
+						</div>
+						<div class="navbar-collapse collapse" style="max-height: min(60vh, 450px);">
+							<ul class="nav navbar-nav navbar-left" data-m="{&quot;cN&quot;:&quot;top-navbar&quot;,&quot;aN&quot;:&quot;navigation&quot;}">
+								<li class="nav-dropdown" aria-expanded="false">
+									<a id="nav-features" href="https://code.visualstudio.com/docs/agents/agents-tutorial#" class="nav-dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false" data-m="{&quot;cN&quot;:&quot;Features&quot;,&quot;aN&quot;:&quot;navigation&quot;,&quot;cT&quot;:&quot;toggle&quot;}">
+										Features <span class="nav-dropdown-caret" aria-hidden="true"></span>
+									</a>
+									<ul class="nav-dropdown-menu" role="menu">
+										<li role="none"><a role="menuitem" href="https://code.visualstudio.com/features/agents" data-m="{&quot;cN&quot;:&quot;Agents&quot;,&quot;aN&quot;:&quot;navigation - Features&quot;}">Agents</a></li>
+										<li role="none"><a role="menuitem" href="https://code.visualstudio.com/features/customizations" data-m="{&quot;cN&quot;:&quot;Agent Customization&quot;,&quot;aN&quot;:&quot;navigation - Features&quot;}">Agent Customization</a></li>
+										<li role="none"><a role="menuitem" href="https://code.visualstudio.com/features/models" data-m="{&quot;cN&quot;:&quot;Models &amp; Agent Harnesses&quot;,&quot;aN&quot;:&quot;navigation - Features&quot;}">Models &amp; Agent Harnesses</a></li>
+										<li role="none"><a role="menuitem" href="https://code.visualstudio.com/features/enterprise" data-m="{&quot;cN&quot;:&quot;Enterprise&quot;,&quot;aN&quot;:&quot;navigation - Features&quot;}">Enterprise</a></li>
+										<li role="none"><a role="menuitem" href="https://code.visualstudio.com/features/extensibility" data-m="{&quot;cN&quot;:&quot;Extensibility&quot;,&quot;aN&quot;:&quot;navigation - Features&quot;}">Extensibility</a></li>
+									</ul>
+								</li>
+								<li class="nav-dropdown active" aria-expanded="false">
+									<a id="nav-docs" href="https://code.visualstudio.com/docs/agents/agents-tutorial#" class="nav-dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false" data-m="{&quot;cN&quot;:&quot;Docs&quot;,&quot;aN&quot;:&quot;navigation&quot;,&quot;cT&quot;:&quot;toggle&quot;}">
+										Docs <span class="nav-dropdown-caret" aria-hidden="true"></span>
+									</a>
+									<ul class="nav-dropdown-menu" role="menu">
+										<li role="none"><a role="menuitem" href="https://code.visualstudio.com/docs" data-m="{&quot;cN&quot;:&quot;Documentation&quot;,&quot;aN&quot;:&quot;navigation - Docs&quot;}">Documentation</a></li>
+										<li role="none"><a role="menuitem" href="https://code.visualstudio.com/api" data-m="{&quot;cN&quot;:&quot;API&quot;,&quot;aN&quot;:&quot;navigation - Docs&quot;}">API</a></li>
+										<li role="none"><a role="menuitem" id="nav-faqs" href="https://code.visualstudio.com/docs/supporting/faq" data-m="{&quot;cN&quot;:&quot;FAQ&quot;,&quot;aN&quot;:&quot;navigation - Docs&quot;}">FAQ</a></li>
+									</ul>
+								</li>
+								<li><a id="nav-updates" href="https://code.visualstudio.com/updates" data-m="{&quot;cN&quot;:&quot;Release Notes&quot;}">Release Notes</a>
+								</li>
+								<li><a id="nav-blogs" href="https://code.visualstudio.com/blogs" data-m="{&quot;cN&quot;:&quot;Blog&quot;}">Blog</a></li>
+								<li><a id="nav-learn" href="https://code.visualstudio.com/learn" data-m="{&quot;cN&quot;:&quot;Learn&quot;}">Learn</a></li>
+								<li><a id="nav-events" href="https://aka.ms/vscode/live" target="_blank" rel="noopener" data-m="{&quot;cN&quot;:&quot;Events&quot;}">Events<span class="codicon codicon-link-external nav-external-icon" aria-hidden="true"></span></a></li>
+								<li class="nav-dropdown" aria-expanded="false">
+									<a id="nav-resources" href="https://code.visualstudio.com/docs/agents/agents-tutorial#" class="nav-dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false" data-m="{&quot;cN&quot;:&quot;Resources&quot;,&quot;aN&quot;:&quot;navigation&quot;,&quot;cT&quot;:&quot;toggle&quot;}">
+										Resources <span class="nav-dropdown-caret" aria-hidden="true"></span>
+									</a>
+									<ul class="nav-dropdown-menu" role="menu">
+										<li role="none"><a role="menuitem" href="https://marketplace.visualstudio.com/VSCode" target="_blank" rel="noopener" id="nav-extensions" data-m="{&quot;cN&quot;:&quot;Extensions&quot;,&quot;aN&quot;:&quot;navigation - Resources&quot;}">Extensions<span class="codicon codicon-link-external nav-external-icon" aria-hidden="true"></span></a></li>
+										<li role="none"><a role="menuitem" id="nav-mcp" href="https://code.visualstudio.com/mcp" target="_blank" rel="noopener" data-m="{&quot;cN&quot;:&quot;MCP&quot;,&quot;aN&quot;:&quot;navigation - Resources&quot;}">MCP<span class="codicon codicon-link-external nav-external-icon" aria-hidden="true"></span></a></li>
+									</ul>
+								</li>
+							</ul>
+							<ul class="nav navbar-nav navbar-right" role="presentation">
+								<li>
+									<a class="link-button" href="https://code.visualstudio.com/download" id="nav-download">
+										<span>Download</span>
+									</a><div class="tabloopElement" tabindex="0" style="display: none;"></div>
+								</li>
+							</ul>
+						</div>
+						<div class="navbar-actions">
+							<div class="search" role="presentation">
+								<div class="nav-search search-control" role="button" tabindex="0" aria-label="Open search dialog">
+									<div class="input-group" role="presentation">
+										<span class="input-group-btn">
+											<span class="btn search-icon-container" aria-hidden="true">
+												<img class="search-icon-dark" src="./2. Get started_02. Agents Tutorial_files/search-dark.svg" alt="">
+												<img class="search-icon-light" src="./2. Get started_02. Agents Tutorial_files/search.svg" alt="">
+											</span>
+										</span>
+										<span class="search-box form-control" aria-hidden="true" role="presentation"></span>
+										<span class="search-shortcut-placeholder">Search</span>
+										<span class="search-shortcut-overlay" style="opacity: 0.7;">Ctrl+Shift+P</span>
+									</div>
+								</div>					</div>
+							<button type="button" class="theme-switch" id="theme-toggle">
+								<img class="theme-icon-light" src="./2. Get started_02. Agents Tutorial_files/theme-light.svg" alt="Switch to the dark theme">
+								<img class="theme-icon-dark" src="./2. Get started_02. Agents Tutorial_files/theme-dark.svg" alt="Switch to the light theme">
+							</button>
+							<a class="link-button navbar-actions-download" href="https://code.visualstudio.com/Download">
+								<span>Download</span>
+							</a>
+						</div>
+						<div class="tabloopElement" tabindex="0" style="display: none;"></div><button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" aria-label="Expand and Collapse Menu">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+				</nav>
+			</div>
+		</div>		<div data-announcement-version="2026-08-21-vscode-gpt-model-promo" class="updates-banner">
+			<div class="container">
+				<p class="message"><a href="https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing?source=vsc-website-banner#openai" target="_blank" rel="noopener">🤖 GPT-5.6 Sol has a new lower price, plus 50% off through Sept. 3. Try it in VS Code!</a></p>
+			</div>
+			<div tabindex="0" role="button" title="Dismiss this update" class="dismiss-btn" id="banner-dismiss-btn"><span class="sr-only">Dismiss this update</span><span aria-hidden="true" class="glyph-icon"></span></div>
+		</div>
+		<script>
+			// Hide the banner synchronously (before first paint) if this version was
+			// already dismissed, to avoid a flicker/layout shift once the main bundle loads.
+			(function () {
+				try {
+					var banner = document.currentScript.previousElementSibling;
+					if (banner && localStorage.getItem('dismissedAnnouncementVersion') === banner.getAttribute('data-announcement-version')) {
+						banner.classList.add('js-hidden');
+					}
+				} catch (e) { /* ignore */ }
+			})();
+		</script>
+		<!-- This div wraps around the entire site -->
+		<!-- The body itself should already have a main tag -->
+		<main id="main-content">
+			<script>
+    function closeReportIssue() {
+        var element = document.getElementById('surveypopup');
+        element.parentElement.removeChild(element);
+    }
+
+    function reportIssue(tutorial, page) {
+        var div = document.createElement('div');
+        div.innerHTML = '<div id="surveypopup" class="overlay visible"><div class="surveypopup"><div id="surveytitle">Tell us more<a href="javascript:void(0)" onclick="closeReportIssue()">X</a></div><div id="surveydiv"><iframe frameBorder="0" scrolling="0" src="https://www.research.net/r/PWZWZ52?tutorial=' + tutorial + '&step=' + page + '"></iframe></div></div></div>';
+        document.body.appendChild(div.children[0]);
+    }
+</script>
+
+<div class="body-content docs docs-github-layout">
+    <div class="docs-layout-wrapper">
+        <!-- Left sidebar - Table of Contents -->
+        <aside class="docs-left-sidebar">
+            <nav id="docs-navbar" aria-label="Topics" class="docs-nav visible-md visible-lg" data-m="{&quot;cN&quot;:&quot;docs-left-nav&quot;,&quot;aN&quot;:&quot;navigation&quot;}">
+              <h4>Documentation</h4>
+              <ul class="nav" id="main-nav">
+              <li>
+                <a href="https://code.visualstudio.com/docs" data-m="{&quot;cN&quot;:&quot;Overview&quot;}">Overview</a>
+              </li>
+              
+            <li class="panel collapsed">
+              <a class="area" role="button" href="https://code.visualstudio.com/docs/agents/agents-tutorial#getstarted-articles" data-parent="#main-nav" data-toggle="collapse" data-m="{&quot;cN&quot;:&quot;Get Started&quot;,&quot;cT&quot;:&quot;toggle&quot;}" aria-expanded="false">Get Started</a>
+              <ul id="getstarted-articles" class="collapse " aria-expanded="false">
+            
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/getstarted/overview" data-m="{&quot;cN&quot;:&quot;Overview&quot;,&quot;aN&quot;:&quot;Get Started&quot;}">Overview</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/quickstart" data-m="{&quot;cN&quot;:&quot;Agents Quickstart&quot;,&quot;aN&quot;:&quot;Get Started&quot;}">Agents Quickstart</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/editing/getting-started" data-m="{&quot;cN&quot;:&quot;Editor Tutorial&quot;,&quot;aN&quot;:&quot;Get Started&quot;}">Editor Tutorial</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/getstarted/introvideos" data-m="{&quot;cN&quot;:&quot;Intro Videos&quot;,&quot;aN&quot;:&quot;Get Started&quot;}">Intro Videos</a>
+                    </li>
+                      
+              </ul>
+            </li>
+                
+            <li class="panel active expanded">
+              <a class="area" role="button" href="https://code.visualstudio.com/docs/agents/agents-tutorial#agentic-articles" data-parent="#main-nav" data-toggle="collapse" data-m="{&quot;cN&quot;:&quot;Agents&quot;,&quot;cT&quot;:&quot;toggle&quot;}" aria-expanded="true">Agents</a>
+              <ul id="agentic-articles" class="collapse in" aria-expanded="true">
+            
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/overview" data-m="{&quot;cN&quot;:&quot;Overview&quot;,&quot;aN&quot;:&quot;Agents&quot;}">Overview</a>
+                    </li>
+                      
+            <li class="panel active expanded">
+              <a class="area" role="button" href="https://code.visualstudio.com/docs/agents/agents-tutorial#agents-articles" data-toggle="collapse" data-m="{&quot;cN&quot;:&quot;Get started&quot;,&quot;aN&quot;:&quot;Agents&quot;,&quot;cT&quot;:&quot;toggle&quot;}" aria-expanded="true">Get started</a>
+              <ul id="agents-articles" class="collapse in" aria-expanded="true">
+            
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/quickstart" data-m="{&quot;cN&quot;:&quot;Agents Quickstart&quot;,&quot;aN&quot;:&quot;Agents - Get started&quot;}">Agents Quickstart</a>
+                    </li>
+                      
+                    <li class="active">
+                      <a href="https://code.visualstudio.com/docs/agents/agents-tutorial" data-m="{&quot;cN&quot;:&quot;Agents Tutorial&quot;,&quot;aN&quot;:&quot;Agents - Get started&quot;}" aria-label="Current Page: Agents Tutorial">Agents Tutorial</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/best-practices" data-m="{&quot;cN&quot;:&quot;Best Practices&quot;,&quot;aN&quot;:&quot;Agents - Get started&quot;}">Best Practices</a>
+                    </li>
+                      
+              </ul>
+            </li>
+                    
+            <li class="panel collapsed">
+              <a class="area" role="button" href="https://code.visualstudio.com/docs/agents/agents-tutorial#agents-concepts-articles" data-toggle="collapse" data-m="{&quot;cN&quot;:&quot;Concepts&quot;,&quot;aN&quot;:&quot;Agents&quot;,&quot;cT&quot;:&quot;toggle&quot;}" aria-expanded="false">Concepts</a>
+              <ul id="agents-concepts-articles" class="collapse " aria-expanded="false">
+            
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/concepts/agents" data-m="{&quot;cN&quot;:&quot;Agents&quot;,&quot;aN&quot;:&quot;Agents - Concepts&quot;}">Agents</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/concepts/agent-harnesses" data-m="{&quot;cN&quot;:&quot;Agent Harnesses&quot;,&quot;aN&quot;:&quot;Agents - Concepts&quot;}">Agent Harnesses</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/concepts/language-models" data-m="{&quot;cN&quot;:&quot;Language Models&quot;,&quot;aN&quot;:&quot;Agents - Concepts&quot;}">Language Models</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/concepts/context" data-m="{&quot;cN&quot;:&quot;Context&quot;,&quot;aN&quot;:&quot;Agents - Concepts&quot;}">Context</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/concepts/tools" data-m="{&quot;cN&quot;:&quot;Tools&quot;,&quot;aN&quot;:&quot;Agents - Concepts&quot;}">Tools</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/concepts/sessions" data-m="{&quot;cN&quot;:&quot;Sessions &amp; Handoff&quot;,&quot;aN&quot;:&quot;Agents - Concepts&quot;}">Sessions &amp; Handoff</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/concepts/agent-host" data-m="{&quot;cN&quot;:&quot;Agent Host Architecture&quot;,&quot;aN&quot;:&quot;Agents - Concepts&quot;}">Agent Host Architecture</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/concepts/customization" data-m="{&quot;cN&quot;:&quot;Customization&quot;,&quot;aN&quot;:&quot;Agents - Concepts&quot;}">Customization</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/reference/workspace-context" data-m="{&quot;cN&quot;:&quot;Workspace Context&quot;,&quot;aN&quot;:&quot;Agents - Concepts&quot;}">Workspace Context</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/concepts/trust-and-safety" data-m="{&quot;cN&quot;:&quot;Trust &amp; Safety&quot;,&quot;aN&quot;:&quot;Agents - Concepts&quot;}">Trust &amp; Safety</a>
+                    </li>
+                      
+              </ul>
+            </li>
+                    
+            <li class="panel collapsed">
+              <a class="area" role="button" href="https://code.visualstudio.com/docs/agents/agents-tutorial#agents-run-articles" data-toggle="collapse" data-m="{&quot;cN&quot;:&quot;Run agents&quot;,&quot;aN&quot;:&quot;Agents&quot;,&quot;cT&quot;:&quot;toggle&quot;}" aria-expanded="false">Run agents</a>
+              <ul id="agents-run-articles" class="collapse " aria-expanded="false">
+            
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/run/agents-window" data-m="{&quot;cN&quot;:&quot;Agents Window&quot;,&quot;aN&quot;:&quot;Agents - Run agents&quot;}">Agents Window</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/run/chat-view" data-m="{&quot;cN&quot;:&quot;Chat View&quot;,&quot;aN&quot;:&quot;Agents - Run agents&quot;}">Chat View</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/run/agent-harnesses" data-m="{&quot;cN&quot;:&quot;Choose an Agent Harness&quot;,&quot;aN&quot;:&quot;Agents - Run agents&quot;}">Choose an Agent Harness</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/run/tools" data-m="{&quot;cN&quot;:&quot;Use Tools&quot;,&quot;aN&quot;:&quot;Agents - Run agents&quot;}">Use Tools</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/run/browser-tools" data-m="{&quot;cN&quot;:&quot;Browser Tools&quot;,&quot;aN&quot;:&quot;Agents - Run agents&quot;}">Browser Tools</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/run/approvals" data-m="{&quot;cN&quot;:&quot;Approvals &amp; Permissions&quot;,&quot;aN&quot;:&quot;Agents - Run agents&quot;}">Approvals &amp; Permissions</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/run/review-code-edits" data-m="{&quot;cN&quot;:&quot;Review &amp; Revert Changes&quot;,&quot;aN&quot;:&quot;Agents - Run agents&quot;}">Review &amp; Revert Changes</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/run/artifacts" data-m="{&quot;cN&quot;:&quot;Artifacts&quot;,&quot;aN&quot;:&quot;Agents - Run agents&quot;}">Artifacts</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/run/remote-agent-sessions" data-m="{&quot;cN&quot;:&quot;Remote Agent Sessions&quot;,&quot;aN&quot;:&quot;Agents - Run agents&quot;}">Remote Agent Sessions</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/run/planning" data-m="{&quot;cN&quot;:&quot;Plan Work&quot;,&quot;aN&quot;:&quot;Agents - Run agents&quot;}">Plan Work</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/run/memory" data-m="{&quot;cN&quot;:&quot;Memory&quot;,&quot;aN&quot;:&quot;Agents - Run agents&quot;}">Memory</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/run/subagents" data-m="{&quot;cN&quot;:&quot;Subagents&quot;,&quot;aN&quot;:&quot;Agents - Run agents&quot;}">Subagents</a>
+                    </li>
+                      
+            <li class="panel collapsed">
+              <a class="area" role="button" href="https://code.visualstudio.com/docs/agents/agents-tutorial#agents-run-sessions-articles" data-toggle="collapse" data-m="{&quot;cN&quot;:&quot;Sessions&quot;,&quot;aN&quot;:&quot;Agents - Run agents&quot;,&quot;cT&quot;:&quot;toggle&quot;}" aria-expanded="false">Sessions</a>
+              <ul id="agents-run-sessions-articles" class="collapse " aria-expanded="false">
+            
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/run/sessions/manage-sessions" data-m="{&quot;cN&quot;:&quot;Manage Sessions&quot;,&quot;aN&quot;:&quot;Agents - Run agents - Sessions&quot;}">Manage Sessions</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/run/sessions/session-history" data-m="{&quot;cN&quot;:&quot;Session History&quot;,&quot;aN&quot;:&quot;Agents - Run agents - Sessions&quot;}">Session History</a>
+                    </li>
+                      
+              </ul>
+            </li>
+                    
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/run/security" data-m="{&quot;cN&quot;:&quot;AI Security&quot;,&quot;aN&quot;:&quot;Agents - Run agents&quot;}">AI Security</a>
+                    </li>
+                      
+              </ul>
+            </li>
+                    
+            <li class="panel collapsed">
+              <a class="area" role="button" href="https://code.visualstudio.com/docs/agents/agents-tutorial#agent-customization-articles" data-toggle="collapse" data-m="{&quot;cN&quot;:&quot;Customize agents&quot;,&quot;aN&quot;:&quot;Agents&quot;,&quot;cT&quot;:&quot;toggle&quot;}" aria-expanded="false">Customize agents</a>
+              <ul id="agent-customization-articles" class="collapse " aria-expanded="false">
+            
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agent-customization/overview" data-m="{&quot;cN&quot;:&quot;Create and Manage&quot;,&quot;aN&quot;:&quot;Agents - Customize agents&quot;}">Create and Manage</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agent-customization/custom-instructions" data-m="{&quot;cN&quot;:&quot;Instructions&quot;,&quot;aN&quot;:&quot;Agents - Customize agents&quot;}">Instructions</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agent-customization/agent-skills" data-m="{&quot;cN&quot;:&quot;Agent Skills&quot;,&quot;aN&quot;:&quot;Agents - Customize agents&quot;}">Agent Skills</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agent-customization/custom-agents" data-m="{&quot;cN&quot;:&quot;Custom Agents&quot;,&quot;aN&quot;:&quot;Agents - Customize agents&quot;}">Custom Agents</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agent-customization/language-models" data-m="{&quot;cN&quot;:&quot;Language Models&quot;,&quot;aN&quot;:&quot;Agents - Customize agents&quot;}">Language Models</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agent-customization/mcp-servers" data-m="{&quot;cN&quot;:&quot;MCP&quot;,&quot;aN&quot;:&quot;Agents - Customize agents&quot;}">MCP</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agent-customization/hooks" data-m="{&quot;cN&quot;:&quot;Hooks&quot;,&quot;aN&quot;:&quot;Agents - Customize agents&quot;}">Hooks</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agent-customization/agent-plugins" data-m="{&quot;cN&quot;:&quot;Plugins&quot;,&quot;aN&quot;:&quot;Agents - Customize agents&quot;}">Plugins</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agent-customization/tools" data-m="{&quot;cN&quot;:&quot;Tools&quot;,&quot;aN&quot;:&quot;Agents - Customize agents&quot;}">Tools</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agent-customization/prompt-files" data-m="{&quot;cN&quot;:&quot;Prompt Files&quot;,&quot;aN&quot;:&quot;Agents - Customize agents&quot;}">Prompt Files</a>
+                    </li>
+                      
+              </ul>
+            </li>
+                    
+            <li class="panel collapsed">
+              <a class="area" role="button" href="https://code.visualstudio.com/docs/agents/agents-tutorial#chat-articles" data-toggle="collapse" data-m="{&quot;cN&quot;:&quot;Use chat&quot;,&quot;aN&quot;:&quot;Agents&quot;,&quot;cT&quot;:&quot;toggle&quot;}" aria-expanded="false">Use chat</a>
+              <ul id="chat-articles" class="collapse " aria-expanded="false">
+            
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/chat/chat-overview" data-m="{&quot;cN&quot;:&quot;Chat Basics&quot;,&quot;aN&quot;:&quot;Agents - Use chat&quot;}">Chat Basics</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/chat/inline-chat" data-m="{&quot;cN&quot;:&quot;Inline &amp; Quick Chat&quot;,&quot;aN&quot;:&quot;Agents - Use chat&quot;}">Inline &amp; Quick Chat</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/chat/copilot-chat-context" data-m="{&quot;cN&quot;:&quot;Add Prompt Context&quot;,&quot;aN&quot;:&quot;Agents - Use chat&quot;}">Add Prompt Context</a>
+                    </li>
+                      
+              </ul>
+            </li>
+                    
+            <li class="panel collapsed">
+              <a class="area" role="button" href="https://code.visualstudio.com/docs/agents/agents-tutorial#agents-guides-articles" data-toggle="collapse" data-m="{&quot;cN&quot;:&quot;Tutorials &amp; guides&quot;,&quot;aN&quot;:&quot;Agents&quot;,&quot;cT&quot;:&quot;toggle&quot;}" aria-expanded="false">Tutorials &amp; guides</a>
+              <ul id="agents-guides-articles" class="collapse " aria-expanded="false">
+            
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/guides/customize-copilot-guide" data-m="{&quot;cN&quot;:&quot;Customize AI&quot;,&quot;aN&quot;:&quot;Agents - Tutorials &amp; guides&quot;}">Customize AI</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/guides/context-engineering-guide" data-m="{&quot;cN&quot;:&quot;Context Engineering&quot;,&quot;aN&quot;:&quot;Agents - Tutorials &amp; guides&quot;}">Context Engineering</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/guides/test-driven-development-guide" data-m="{&quot;cN&quot;:&quot;Test-Driven Development&quot;,&quot;aN&quot;:&quot;Agents - Tutorials &amp; guides&quot;}">Test-Driven Development</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/guides/test-with-copilot" data-m="{&quot;cN&quot;:&quot;Test with AI&quot;,&quot;aN&quot;:&quot;Agents - Tutorials &amp; guides&quot;}">Test with AI</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/guides/browser-agent-testing-guide" data-m="{&quot;cN&quot;:&quot;Test Web Apps with Browser Tools&quot;,&quot;aN&quot;:&quot;Agents - Tutorials &amp; guides&quot;}">Test Web Apps with Browser Tools</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/guides/debug-with-copilot" data-m="{&quot;cN&quot;:&quot;Debug with AI&quot;,&quot;aN&quot;:&quot;Agents - Tutorials &amp; guides&quot;}">Debug with AI</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/guides/notebooks-with-ai" data-m="{&quot;cN&quot;:&quot;Edit Notebooks with AI&quot;,&quot;aN&quot;:&quot;Agents - Tutorials &amp; guides&quot;}">Edit Notebooks with AI</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/guides/optimize-usage" data-m="{&quot;cN&quot;:&quot;Optimize AI Credit Usage&quot;,&quot;aN&quot;:&quot;Agents - Tutorials &amp; guides&quot;}">Optimize AI Credit Usage</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/guides/mcp-developer-guide" data-m="{&quot;cN&quot;:&quot;MCP Dev Guide&quot;,&quot;aN&quot;:&quot;Agents - Tutorials &amp; guides&quot;}">MCP Dev Guide</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/guides/prompt-examples" data-m="{&quot;cN&quot;:&quot;Prompt Examples&quot;,&quot;aN&quot;:&quot;Agents - Tutorials &amp; guides&quot;}">Prompt Examples</a>
+                    </li>
+                      
+              </ul>
+            </li>
+                    
+            <li class="panel collapsed">
+              <a class="area" role="button" href="https://code.visualstudio.com/docs/agents/agents-tutorial#agents-reference-articles" data-toggle="collapse" data-m="{&quot;cN&quot;:&quot;Reference&quot;,&quot;aN&quot;:&quot;Agents&quot;,&quot;cT&quot;:&quot;toggle&quot;}" aria-expanded="false">Reference</a>
+              <ul id="agents-reference-articles" class="collapse " aria-expanded="false">
+            
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/reference/ai-features-cheat-sheet" data-m="{&quot;cN&quot;:&quot;Cheat Sheet&quot;,&quot;aN&quot;:&quot;Agents - Reference&quot;}">Cheat Sheet</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/reference/ai-settings" data-m="{&quot;cN&quot;:&quot;Settings Reference&quot;,&quot;aN&quot;:&quot;Agents - Reference&quot;}">Settings Reference</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/reference/mcp-configuration" data-m="{&quot;cN&quot;:&quot;MCP Configuration&quot;,&quot;aN&quot;:&quot;Agents - Reference&quot;}">MCP Configuration</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/reference/hooks-reference" data-m="{&quot;cN&quot;:&quot;Hooks Reference&quot;,&quot;aN&quot;:&quot;Agents - Reference&quot;}">Hooks Reference</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/guides/monitoring-agents" data-m="{&quot;cN&quot;:&quot;OpenTelemetry Monitoring&quot;,&quot;aN&quot;:&quot;Agents - Reference&quot;}">OpenTelemetry Monitoring</a>
+                    </li>
+                      
+              </ul>
+            </li>
+                    
+            <li class="panel collapsed">
+              <a class="area" role="button" href="https://code.visualstudio.com/docs/agents/agents-tutorial#agents-agent-troubleshooting-articles" data-toggle="collapse" data-m="{&quot;cN&quot;:&quot;Troubleshooting&quot;,&quot;aN&quot;:&quot;Agents&quot;,&quot;cT&quot;:&quot;toggle&quot;}" aria-expanded="false">Troubleshooting</a>
+              <ul id="agents-agent-troubleshooting-articles" class="collapse " aria-expanded="false">
+            
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/agent-troubleshooting/troubleshooting" data-m="{&quot;cN&quot;:&quot;Troubleshooting&quot;,&quot;aN&quot;:&quot;Agents - Troubleshooting&quot;}">Troubleshooting</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/agent-troubleshooting/chat-debug-view" data-m="{&quot;cN&quot;:&quot;Debug Chat Interactions&quot;,&quot;aN&quot;:&quot;Agents - Troubleshooting&quot;}">Debug Chat Interactions</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/agent-troubleshooting/cache-explorer" data-m="{&quot;cN&quot;:&quot;Diagnose Prompt Caching&quot;,&quot;aN&quot;:&quot;Agents - Troubleshooting&quot;}">Diagnose Prompt Caching</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/agent-troubleshooting/faq" data-m="{&quot;cN&quot;:&quot;FAQ&quot;,&quot;aN&quot;:&quot;Agents - Troubleshooting&quot;}">FAQ</a>
+                    </li>
+                      
+              </ul>
+            </li>
+                    
+              </ul>
+            </li>
+                
+                    <li>
+                      <a class="area" href="https://code.visualstudio.com/docs/core-editor/overview" data-m="{&quot;cN&quot;:&quot;Editor&quot;}">Editor</a>
+                    </li>
+                  
+            <li class="panel collapsed">
+              <a class="area" role="button" href="https://code.visualstudio.com/docs/agents/agents-tutorial#sourcecontrol-articles" data-parent="#main-nav" data-toggle="collapse" data-m="{&quot;cN&quot;:&quot;Source Control&quot;,&quot;cT&quot;:&quot;toggle&quot;}" aria-expanded="false">Source Control</a>
+              <ul id="sourcecontrol-articles" class="collapse " aria-expanded="false">
+            
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/sourcecontrol/overview" data-m="{&quot;cN&quot;:&quot;Overview&quot;,&quot;aN&quot;:&quot;Source Control&quot;}">Overview</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/sourcecontrol/quickstart" data-m="{&quot;cN&quot;:&quot;Quickstart&quot;,&quot;aN&quot;:&quot;Source Control&quot;}">Quickstart</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/sourcecontrol/repos-remotes" data-m="{&quot;cN&quot;:&quot;Repositories &amp; Remotes&quot;,&quot;aN&quot;:&quot;Source Control&quot;}">Repositories &amp; Remotes</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/sourcecontrol/staging-commits" data-m="{&quot;cN&quot;:&quot;Staging &amp; Committing&quot;,&quot;aN&quot;:&quot;Source Control&quot;}">Staging &amp; Committing</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/sourcecontrol/history" data-m="{&quot;cN&quot;:&quot;Source Control History&quot;,&quot;aN&quot;:&quot;Source Control&quot;}">Source Control History</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/sourcecontrol/branches-worktrees" data-m="{&quot;cN&quot;:&quot;Branches &amp; Worktrees&quot;,&quot;aN&quot;:&quot;Source Control&quot;}">Branches &amp; Worktrees</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/sourcecontrol/merge-conflicts" data-m="{&quot;cN&quot;:&quot;Merge Conflicts&quot;,&quot;aN&quot;:&quot;Source Control&quot;}">Merge Conflicts</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/sourcecontrol/github" data-m="{&quot;cN&quot;:&quot;Collaborate on GitHub&quot;,&quot;aN&quot;:&quot;Source Control&quot;}">Collaborate on GitHub</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/sourcecontrol/troubleshooting" data-m="{&quot;cN&quot;:&quot;Troubleshooting&quot;,&quot;aN&quot;:&quot;Source Control&quot;}">Troubleshooting</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/sourcecontrol/faq" data-m="{&quot;cN&quot;:&quot;FAQ&quot;,&quot;aN&quot;:&quot;Source Control&quot;}">FAQ</a>
+                    </li>
+                      
+              </ul>
+            </li>
+                
+            <li class="panel collapsed">
+              <a class="area" role="button" href="https://code.visualstudio.com/docs/agents/agents-tutorial#terminal-articles" data-parent="#main-nav" data-toggle="collapse" data-m="{&quot;cN&quot;:&quot;Terminal&quot;,&quot;cT&quot;:&quot;toggle&quot;}" aria-expanded="false">Terminal</a>
+              <ul id="terminal-articles" class="collapse " aria-expanded="false">
+            
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/terminal/getting-started" data-m="{&quot;cN&quot;:&quot;Get Started&quot;,&quot;aN&quot;:&quot;Terminal&quot;}">Get Started</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/terminal/basics" data-m="{&quot;cN&quot;:&quot;Terminal Basics&quot;,&quot;aN&quot;:&quot;Terminal&quot;}">Terminal Basics</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/terminal/profiles" data-m="{&quot;cN&quot;:&quot;Terminal Profiles&quot;,&quot;aN&quot;:&quot;Terminal&quot;}">Terminal Profiles</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/terminal/shell-integration" data-m="{&quot;cN&quot;:&quot;Shell Integration&quot;,&quot;aN&quot;:&quot;Terminal&quot;}">Shell Integration</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/terminal/appearance" data-m="{&quot;cN&quot;:&quot;Appearance&quot;,&quot;aN&quot;:&quot;Terminal&quot;}">Appearance</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/terminal/advanced" data-m="{&quot;cN&quot;:&quot;Advanced&quot;,&quot;aN&quot;:&quot;Terminal&quot;}">Advanced</a>
+                    </li>
+                      
+              </ul>
+            </li>
+                
+            <li class="panel collapsed">
+              <a class="area" role="button" href="https://code.visualstudio.com/docs/agents/agents-tutorial#debugtest-articles" data-parent="#main-nav" data-toggle="collapse" data-m="{&quot;cN&quot;:&quot;Debugging &amp; Testing&quot;,&quot;cT&quot;:&quot;toggle&quot;}" aria-expanded="false">Debugging &amp; Testing</a>
+              <ul id="debugtest-articles" class="collapse " aria-expanded="false">
+            
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/debugtest/debugging" data-m="{&quot;cN&quot;:&quot;Debugging&quot;,&quot;aN&quot;:&quot;Debugging &amp; Testing&quot;}">Debugging</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/debugtest/debugging-configuration" data-m="{&quot;cN&quot;:&quot;Debug Configuration&quot;,&quot;aN&quot;:&quot;Debugging &amp; Testing&quot;}">Debug Configuration</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/debugtest/tasks" data-m="{&quot;cN&quot;:&quot;Tasks&quot;,&quot;aN&quot;:&quot;Debugging &amp; Testing&quot;}">Tasks</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/debugtest/testing" data-m="{&quot;cN&quot;:&quot;Testing&quot;,&quot;aN&quot;:&quot;Debugging &amp; Testing&quot;}">Testing</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/debugtest/integrated-browser" data-m="{&quot;cN&quot;:&quot;Integrated Browser&quot;,&quot;aN&quot;:&quot;Debugging &amp; Testing&quot;}">Integrated Browser</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/debugtest/port-forwarding" data-m="{&quot;cN&quot;:&quot;Port Forwarding&quot;,&quot;aN&quot;:&quot;Debugging &amp; Testing&quot;}">Port Forwarding</a>
+                    </li>
+                      
+            <li class="panel collapsed">
+              <a class="area" role="button" href="https://code.visualstudio.com/docs/agents/agents-tutorial#debugging-guides-articles" data-toggle="collapse" data-m="{&quot;cN&quot;:&quot;Guides &amp; Tutorials&quot;,&quot;aN&quot;:&quot;Debugging &amp; Testing&quot;,&quot;cT&quot;:&quot;toggle&quot;}" aria-expanded="false">Guides &amp; Tutorials</a>
+              <ul id="debugging-guides-articles" class="collapse " aria-expanded="false">
+            
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/guides/test-driven-development-guide" data-m="{&quot;cN&quot;:&quot;Test-Driven Development&quot;,&quot;aN&quot;:&quot;Debugging &amp; Testing - Guides &amp; Tutorials&quot;}">Test-Driven Development</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/guides/browser-agent-testing-guide" data-m="{&quot;cN&quot;:&quot;Test Web Apps with Browser Tools&quot;,&quot;aN&quot;:&quot;Debugging &amp; Testing - Guides &amp; Tutorials&quot;}">Test Web Apps with Browser Tools</a>
+                    </li>
+                      
+              </ul>
+            </li>
+                    
+              </ul>
+            </li>
+                
+            <li class="panel collapsed">
+              <a class="area" role="button" href="https://code.visualstudio.com/docs/agents/agents-tutorial#enterprise-articles" data-parent="#main-nav" data-toggle="collapse" data-m="{&quot;cN&quot;:&quot;Enterprise&quot;,&quot;cT&quot;:&quot;toggle&quot;}" aria-expanded="false">Enterprise</a>
+              <ul id="enterprise-articles" class="collapse " aria-expanded="false">
+            
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/enterprise/overview" data-m="{&quot;cN&quot;:&quot;Overview&quot;,&quot;aN&quot;:&quot;Enterprise&quot;}">Overview</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/enterprise/policies" data-m="{&quot;cN&quot;:&quot;Enterprise Policies&quot;,&quot;aN&quot;:&quot;Enterprise&quot;}">Enterprise Policies</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/enterprise/ai-settings" data-m="{&quot;cN&quot;:&quot;AI Settings&quot;,&quot;aN&quot;:&quot;Enterprise&quot;}">AI Settings</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/enterprise/extensions" data-m="{&quot;cN&quot;:&quot;Extensions&quot;,&quot;aN&quot;:&quot;Enterprise&quot;}">Extensions</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/enterprise/telemetry" data-m="{&quot;cN&quot;:&quot;Telemetry&quot;,&quot;aN&quot;:&quot;Enterprise&quot;}">Telemetry</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/enterprise/updates" data-m="{&quot;cN&quot;:&quot;Updates&quot;,&quot;aN&quot;:&quot;Enterprise&quot;}">Updates</a>
+                    </li>
+                      
+              </ul>
+            </li>
+                
+            <li class="panel collapsed">
+              <a class="area" role="button" href="https://code.visualstudio.com/docs/agents/agents-tutorial#remote-articles" data-parent="#main-nav" data-toggle="collapse" data-m="{&quot;cN&quot;:&quot;Remote&quot;,&quot;cT&quot;:&quot;toggle&quot;}" aria-expanded="false">Remote</a>
+              <ul id="remote-articles" class="collapse " aria-expanded="false">
+            
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/remote/remote-overview" data-m="{&quot;cN&quot;:&quot;Overview&quot;,&quot;aN&quot;:&quot;Remote&quot;}">Overview</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/remote/vscode-web" data-m="{&quot;cN&quot;:&quot;VS Code for the Web&quot;,&quot;aN&quot;:&quot;Remote&quot;}">VS Code for the Web</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/remote/ssh" data-m="{&quot;cN&quot;:&quot;SSH&quot;,&quot;aN&quot;:&quot;Remote&quot;}">SSH</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/remote/ssh-tutorial" data-m="{&quot;cN&quot;:&quot;SSH Tutorial&quot;,&quot;aN&quot;:&quot;Remote&quot;}">SSH Tutorial</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/remote/tunnels" data-m="{&quot;cN&quot;:&quot;Tunnels&quot;,&quot;aN&quot;:&quot;Remote&quot;}">Tunnels</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/remote/dev-containers" data-m="{&quot;cN&quot;:&quot;Dev Containers&quot;,&quot;aN&quot;:&quot;Remote&quot;}">Dev Containers</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/remote/wsl" data-m="{&quot;cN&quot;:&quot;WSL&quot;,&quot;aN&quot;:&quot;Remote&quot;}">WSL</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/remote/wsl-tutorial" data-m="{&quot;cN&quot;:&quot;WSL Tutorial&quot;,&quot;aN&quot;:&quot;Remote&quot;}">WSL Tutorial</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/remote/codespaces" data-m="{&quot;cN&quot;:&quot;GitHub Codespaces&quot;,&quot;aN&quot;:&quot;Remote&quot;}">GitHub Codespaces</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/remote/vscode-server" data-m="{&quot;cN&quot;:&quot;VS Code Server&quot;,&quot;aN&quot;:&quot;Remote&quot;}">VS Code Server</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/remote/linux" data-m="{&quot;cN&quot;:&quot;Linux Prerequisites&quot;,&quot;aN&quot;:&quot;Remote&quot;}">Linux Prerequisites</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/remote/troubleshooting" data-m="{&quot;cN&quot;:&quot;Tips and Tricks&quot;,&quot;aN&quot;:&quot;Remote&quot;}">Tips and Tricks</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/remote/faq" data-m="{&quot;cN&quot;:&quot;FAQ&quot;,&quot;aN&quot;:&quot;Remote&quot;}">FAQ</a>
+                    </li>
+                      
+              </ul>
+            </li>
+                
+            <li class="panel collapsed">
+              <a class="area" role="button" href="https://code.visualstudio.com/docs/agents/agents-tutorial#setup-articles" data-parent="#main-nav" data-toggle="collapse" data-m="{&quot;cN&quot;:&quot;Advanced Setup&quot;,&quot;cT&quot;:&quot;toggle&quot;}" aria-expanded="false">Advanced Setup</a>
+              <ul id="setup-articles" class="collapse " aria-expanded="false">
+            
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/setup/copilot" data-m="{&quot;cN&quot;:&quot;GitHub Copilot Setup&quot;,&quot;aN&quot;:&quot;Advanced Setup&quot;}">GitHub Copilot Setup</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/setup/linux" data-m="{&quot;cN&quot;:&quot;Linux&quot;,&quot;aN&quot;:&quot;Advanced Setup&quot;}">Linux</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/setup/mac" data-m="{&quot;cN&quot;:&quot;macOS&quot;,&quot;aN&quot;:&quot;Advanced Setup&quot;}">macOS</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/setup/windows" data-m="{&quot;cN&quot;:&quot;Windows&quot;,&quot;aN&quot;:&quot;Advanced Setup&quot;}">Windows</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/setup/raspberry-pi" data-m="{&quot;cN&quot;:&quot;Raspberry Pi&quot;,&quot;aN&quot;:&quot;Advanced Setup&quot;}">Raspberry Pi</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/setup/network" data-m="{&quot;cN&quot;:&quot;Network&quot;,&quot;aN&quot;:&quot;Advanced Setup&quot;}">Network</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/setup/portable" data-m="{&quot;cN&quot;:&quot;Portable Mode&quot;,&quot;aN&quot;:&quot;Advanced Setup&quot;}">Portable Mode</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/setup/additional-components" data-m="{&quot;cN&quot;:&quot;Additional Components&quot;,&quot;aN&quot;:&quot;Advanced Setup&quot;}">Additional Components</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/setup/uninstall" data-m="{&quot;cN&quot;:&quot;Uninstall&quot;,&quot;aN&quot;:&quot;Advanced Setup&quot;}">Uninstall</a>
+                    </li>
+                      
+              </ul>
+            </li>
+                
+                    <li>
+                      <a class="area" href="https://code.visualstudio.com/docs/languages/overview" data-m="{&quot;cN&quot;:&quot;Languages &amp; Runtimes&quot;}">Languages &amp; Runtimes</a>
+                    </li>
+                  
+                    <li>
+                      <a class="area" href="https://code.visualstudio.com/docs/extension-docs/overview" data-m="{&quot;cN&quot;:&quot;Extension Docs&quot;}">Extension Docs</a>
+                    </li>
+                  
+              </ul>
+            </nav>
+            
+            <nav id="small-nav" aria-label="Topics" class="docs-nav hidden-md hidden-lg">
+              <label class="faux-h4" for="small-nav-dropdown">Topics</label>
+              <select id="small-nav-dropdown" aria-label="topics">
+                <option value="/docs">Overview</option>
+            
+              <optgroup label="Get Started">
+            
+                    <option value="/docs/getstarted/overview">Overview</option>
+                    
+                    <option value="/docs/agents/quickstart">Agents Quickstart</option>
+                    
+                    <option value="/docs/editing/getting-started">Editor Tutorial</option>
+                    
+                    <option value="/docs/getstarted/introvideos">Intro Videos</option>
+                    
+              </optgroup>
+              
+              <optgroup label="Agents">
+            
+                    <option value="/docs/agents/overview">Overview</option>
+                    
+                    <option disabled="">Get started</option>
+            
+                    <option value="/docs/agents/quickstart">&nbsp;&nbsp;&nbsp;&nbsp;Agents Quickstart</option>
+                    
+                    <option value="/docs/agents/agents-tutorial" selected="">&nbsp;&nbsp;&nbsp;&nbsp;Agents Tutorial</option>
+                    
+                    <option value="/docs/agents/best-practices">&nbsp;&nbsp;&nbsp;&nbsp;Best Practices</option>
+                    
+                    <option disabled="">Concepts</option>
+            
+                    <option value="/docs/agents/concepts/agents">&nbsp;&nbsp;&nbsp;&nbsp;Agents</option>
+                    
+                    <option value="/docs/agents/concepts/agent-harnesses">&nbsp;&nbsp;&nbsp;&nbsp;Agent Harnesses</option>
+                    
+                    <option value="/docs/agents/concepts/language-models">&nbsp;&nbsp;&nbsp;&nbsp;Language Models</option>
+                    
+                    <option value="/docs/agents/concepts/context">&nbsp;&nbsp;&nbsp;&nbsp;Context</option>
+                    
+                    <option value="/docs/agents/concepts/tools">&nbsp;&nbsp;&nbsp;&nbsp;Tools</option>
+                    
+                    <option value="/docs/agents/concepts/sessions">&nbsp;&nbsp;&nbsp;&nbsp;Sessions &amp; Handoff</option>
+                    
+                    <option value="/docs/agents/concepts/agent-host">&nbsp;&nbsp;&nbsp;&nbsp;Agent Host Architecture</option>
+                    
+                    <option value="/docs/agents/concepts/customization">&nbsp;&nbsp;&nbsp;&nbsp;Customization</option>
+                    
+                    <option value="/docs/agents/reference/workspace-context">&nbsp;&nbsp;&nbsp;&nbsp;Workspace Context</option>
+                    
+                    <option value="/docs/agents/concepts/trust-and-safety">&nbsp;&nbsp;&nbsp;&nbsp;Trust &amp; Safety</option>
+                    
+                    <option disabled="">Run agents</option>
+            
+                    <option value="/docs/agents/run/agents-window">&nbsp;&nbsp;&nbsp;&nbsp;Agents Window</option>
+                    
+                    <option value="/docs/agents/run/chat-view">&nbsp;&nbsp;&nbsp;&nbsp;Chat View</option>
+                    
+                    <option value="/docs/agents/run/agent-harnesses">&nbsp;&nbsp;&nbsp;&nbsp;Choose an Agent Harness</option>
+                    
+                    <option value="/docs/agents/run/tools">&nbsp;&nbsp;&nbsp;&nbsp;Use Tools</option>
+                    
+                    <option value="/docs/agents/run/browser-tools">&nbsp;&nbsp;&nbsp;&nbsp;Browser Tools</option>
+                    
+                    <option value="/docs/agents/run/approvals">&nbsp;&nbsp;&nbsp;&nbsp;Approvals &amp; Permissions</option>
+                    
+                    <option value="/docs/agents/run/review-code-edits">&nbsp;&nbsp;&nbsp;&nbsp;Review &amp; Revert Changes</option>
+                    
+                    <option value="/docs/agents/run/artifacts">&nbsp;&nbsp;&nbsp;&nbsp;Artifacts</option>
+                    
+                    <option value="/docs/agents/run/remote-agent-sessions">&nbsp;&nbsp;&nbsp;&nbsp;Remote Agent Sessions</option>
+                    
+                    <option value="/docs/agents/run/planning">&nbsp;&nbsp;&nbsp;&nbsp;Plan Work</option>
+                    
+                    <option value="/docs/agents/run/memory">&nbsp;&nbsp;&nbsp;&nbsp;Memory</option>
+                    
+                    <option value="/docs/agents/run/subagents">&nbsp;&nbsp;&nbsp;&nbsp;Subagents</option>
+                    
+                    <option disabled="">&nbsp;&nbsp;&nbsp;&nbsp;Sessions</option>
+            
+                    <option value="/docs/agents/run/sessions/manage-sessions">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Manage Sessions</option>
+                    
+                    <option value="/docs/agents/run/sessions/session-history">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Session History</option>
+                    
+                    <option value="/docs/agents/run/security">&nbsp;&nbsp;&nbsp;&nbsp;AI Security</option>
+                    
+                    <option disabled="">Customize agents</option>
+            
+                    <option value="/docs/agent-customization/overview">&nbsp;&nbsp;&nbsp;&nbsp;Create and Manage</option>
+                    
+                    <option value="/docs/agent-customization/custom-instructions">&nbsp;&nbsp;&nbsp;&nbsp;Instructions</option>
+                    
+                    <option value="/docs/agent-customization/agent-skills">&nbsp;&nbsp;&nbsp;&nbsp;Agent Skills</option>
+                    
+                    <option value="/docs/agent-customization/custom-agents">&nbsp;&nbsp;&nbsp;&nbsp;Custom Agents</option>
+                    
+                    <option value="/docs/agent-customization/language-models">&nbsp;&nbsp;&nbsp;&nbsp;Language Models</option>
+                    
+                    <option value="/docs/agent-customization/mcp-servers">&nbsp;&nbsp;&nbsp;&nbsp;MCP</option>
+                    
+                    <option value="/docs/agent-customization/hooks">&nbsp;&nbsp;&nbsp;&nbsp;Hooks</option>
+                    
+                    <option value="/docs/agent-customization/agent-plugins">&nbsp;&nbsp;&nbsp;&nbsp;Plugins</option>
+                    
+                    <option value="/docs/agent-customization/tools">&nbsp;&nbsp;&nbsp;&nbsp;Tools</option>
+                    
+                    <option value="/docs/agent-customization/prompt-files">&nbsp;&nbsp;&nbsp;&nbsp;Prompt Files</option>
+                    
+                    <option disabled="">Use chat</option>
+            
+                    <option value="/docs/chat/chat-overview">&nbsp;&nbsp;&nbsp;&nbsp;Chat Basics</option>
+                    
+                    <option value="/docs/chat/inline-chat">&nbsp;&nbsp;&nbsp;&nbsp;Inline &amp; Quick Chat</option>
+                    
+                    <option value="/docs/chat/copilot-chat-context">&nbsp;&nbsp;&nbsp;&nbsp;Add Prompt Context</option>
+                    
+                    <option disabled="">Tutorials &amp; guides</option>
+            
+                    <option value="/docs/agents/guides/customize-copilot-guide">&nbsp;&nbsp;&nbsp;&nbsp;Customize AI</option>
+                    
+                    <option value="/docs/agents/guides/context-engineering-guide">&nbsp;&nbsp;&nbsp;&nbsp;Context Engineering</option>
+                    
+                    <option value="/docs/agents/guides/test-driven-development-guide">&nbsp;&nbsp;&nbsp;&nbsp;Test-Driven Development</option>
+                    
+                    <option value="/docs/agents/guides/test-with-copilot">&nbsp;&nbsp;&nbsp;&nbsp;Test with AI</option>
+                    
+                    <option value="/docs/agents/guides/browser-agent-testing-guide">&nbsp;&nbsp;&nbsp;&nbsp;Test Web Apps with Browser Tools</option>
+                    
+                    <option value="/docs/agents/guides/debug-with-copilot">&nbsp;&nbsp;&nbsp;&nbsp;Debug with AI</option>
+                    
+                    <option value="/docs/agents/guides/notebooks-with-ai">&nbsp;&nbsp;&nbsp;&nbsp;Edit Notebooks with AI</option>
+                    
+                    <option value="/docs/agents/guides/optimize-usage">&nbsp;&nbsp;&nbsp;&nbsp;Optimize AI Credit Usage</option>
+                    
+                    <option value="/docs/agents/guides/mcp-developer-guide">&nbsp;&nbsp;&nbsp;&nbsp;MCP Dev Guide</option>
+                    
+                    <option value="/docs/agents/guides/prompt-examples">&nbsp;&nbsp;&nbsp;&nbsp;Prompt Examples</option>
+                    
+                    <option disabled="">Reference</option>
+            
+                    <option value="/docs/agents/reference/ai-features-cheat-sheet">&nbsp;&nbsp;&nbsp;&nbsp;Cheat Sheet</option>
+                    
+                    <option value="/docs/agents/reference/ai-settings">&nbsp;&nbsp;&nbsp;&nbsp;Settings Reference</option>
+                    
+                    <option value="/docs/agents/reference/mcp-configuration">&nbsp;&nbsp;&nbsp;&nbsp;MCP Configuration</option>
+                    
+                    <option value="/docs/agents/reference/hooks-reference">&nbsp;&nbsp;&nbsp;&nbsp;Hooks Reference</option>
+                    
+                    <option value="/docs/agents/guides/monitoring-agents">&nbsp;&nbsp;&nbsp;&nbsp;OpenTelemetry Monitoring</option>
+                    
+                    <option disabled="">Troubleshooting</option>
+            
+                    <option value="/docs/agents/agent-troubleshooting/troubleshooting">&nbsp;&nbsp;&nbsp;&nbsp;Troubleshooting</option>
+                    
+                    <option value="/docs/agents/agent-troubleshooting/chat-debug-view">&nbsp;&nbsp;&nbsp;&nbsp;Debug Chat Interactions</option>
+                    
+                    <option value="/docs/agents/agent-troubleshooting/cache-explorer">&nbsp;&nbsp;&nbsp;&nbsp;Diagnose Prompt Caching</option>
+                    
+                    <option value="/docs/agents/agent-troubleshooting/faq">&nbsp;&nbsp;&nbsp;&nbsp;FAQ</option>
+                    
+              </optgroup>
+              
+                    <option value="/docs/core-editor/overview">Editor</option>
+                  
+              <optgroup label="Source Control">
+            
+                    <option value="/docs/sourcecontrol/overview">Overview</option>
+                    
+                    <option value="/docs/sourcecontrol/quickstart">Quickstart</option>
+                    
+                    <option value="/docs/sourcecontrol/repos-remotes">Repositories &amp; Remotes</option>
+                    
+                    <option value="/docs/sourcecontrol/staging-commits">Staging &amp; Committing</option>
+                    
+                    <option value="/docs/sourcecontrol/history">Source Control History</option>
+                    
+                    <option value="/docs/sourcecontrol/branches-worktrees">Branches &amp; Worktrees</option>
+                    
+                    <option value="/docs/sourcecontrol/merge-conflicts">Merge Conflicts</option>
+                    
+                    <option value="/docs/sourcecontrol/github">Collaborate on GitHub</option>
+                    
+                    <option value="/docs/sourcecontrol/troubleshooting">Troubleshooting</option>
+                    
+                    <option value="/docs/sourcecontrol/faq">FAQ</option>
+                    
+              </optgroup>
+              
+              <optgroup label="Terminal">
+            
+                    <option value="/docs/terminal/getting-started">Get Started</option>
+                    
+                    <option value="/docs/terminal/basics">Terminal Basics</option>
+                    
+                    <option value="/docs/terminal/profiles">Terminal Profiles</option>
+                    
+                    <option value="/docs/terminal/shell-integration">Shell Integration</option>
+                    
+                    <option value="/docs/terminal/appearance">Appearance</option>
+                    
+                    <option value="/docs/terminal/advanced">Advanced</option>
+                    
+              </optgroup>
+              
+              <optgroup label="Debugging &amp; Testing">
+            
+                    <option value="/docs/debugtest/debugging">Debugging</option>
+                    
+                    <option value="/docs/debugtest/debugging-configuration">Debug Configuration</option>
+                    
+                    <option value="/docs/debugtest/tasks">Tasks</option>
+                    
+                    <option value="/docs/debugtest/testing">Testing</option>
+                    
+                    <option value="/docs/debugtest/integrated-browser">Integrated Browser</option>
+                    
+                    <option value="/docs/debugtest/port-forwarding">Port Forwarding</option>
+                    
+                    <option disabled="">Guides &amp; Tutorials</option>
+            
+                    <option value="/docs/agents/guides/test-driven-development-guide">&nbsp;&nbsp;&nbsp;&nbsp;Test-Driven Development</option>
+                    
+                    <option value="/docs/agents/guides/browser-agent-testing-guide">&nbsp;&nbsp;&nbsp;&nbsp;Test Web Apps with Browser Tools</option>
+                    
+              </optgroup>
+              
+              <optgroup label="Enterprise">
+            
+                    <option value="/docs/enterprise/overview">Overview</option>
+                    
+                    <option value="/docs/enterprise/policies">Enterprise Policies</option>
+                    
+                    <option value="/docs/enterprise/ai-settings">AI Settings</option>
+                    
+                    <option value="/docs/enterprise/extensions">Extensions</option>
+                    
+                    <option value="/docs/enterprise/telemetry">Telemetry</option>
+                    
+                    <option value="/docs/enterprise/updates">Updates</option>
+                    
+              </optgroup>
+              
+              <optgroup label="Remote">
+            
+                    <option value="/docs/remote/remote-overview">Overview</option>
+                    
+                    <option value="/docs/remote/vscode-web">VS Code for the Web</option>
+                    
+                    <option value="/docs/remote/ssh">SSH</option>
+                    
+                    <option value="/docs/remote/ssh-tutorial">SSH Tutorial</option>
+                    
+                    <option value="/docs/remote/tunnels">Tunnels</option>
+                    
+                    <option value="/docs/remote/dev-containers">Dev Containers</option>
+                    
+                    <option value="/docs/remote/wsl">WSL</option>
+                    
+                    <option value="/docs/remote/wsl-tutorial">WSL Tutorial</option>
+                    
+                    <option value="/docs/remote/codespaces">GitHub Codespaces</option>
+                    
+                    <option value="/docs/remote/vscode-server">VS Code Server</option>
+                    
+                    <option value="/docs/remote/linux">Linux Prerequisites</option>
+                    
+                    <option value="/docs/remote/troubleshooting">Tips and Tricks</option>
+                    
+                    <option value="/docs/remote/faq">FAQ</option>
+                    
+              </optgroup>
+              
+              <optgroup label="Advanced Setup">
+            
+                    <option value="/docs/setup/copilot">GitHub Copilot Setup</option>
+                    
+                    <option value="/docs/setup/linux">Linux</option>
+                    
+                    <option value="/docs/setup/mac">macOS</option>
+                    
+                    <option value="/docs/setup/windows">Windows</option>
+                    
+                    <option value="/docs/setup/raspberry-pi">Raspberry Pi</option>
+                    
+                    <option value="/docs/setup/network">Network</option>
+                    
+                    <option value="/docs/setup/portable">Portable Mode</option>
+                    
+                    <option value="/docs/setup/additional-components">Additional Components</option>
+                    
+                    <option value="/docs/setup/uninstall">Uninstall</option>
+                    
+              </optgroup>
+              
+                    <option value="/docs/languages/overview">Languages &amp; Runtimes</option>
+                  
+                    <option value="/docs/extension-docs/overview">Extension Docs</option>
+                  
+              </select>
+            </nav>        </aside>
+        
+        <!-- Content wrapper contains main content + right sidebar -->
+        <div class="docs-content-wrapper">
+            <!-- Right sidebar - On This Page -->
+            <aside class="docs-right-sidebar hidden-xs">
+                <div class="docs-markdown-actions">
+                    <div class="docs-markdown-dropdown" data-raw-url="/raw/docs/agents/agents-tutorial.md">
+                        <button type="button" class="docs-markdown-btn-main" data-action="copy-markdown" aria-label="Copy as Markdown">
+                            <span class="codicon codicon-copy" aria-hidden="true"></span>
+                            <span>Copy as Markdown</span>
+                        </button>
+                        <button type="button" class="docs-markdown-btn-trigger" aria-haspopup="true" aria-expanded="false" aria-label="More Markdown options">
+                            <span class="codicon codicon-chevron-down docs-markdown-chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="docs-markdown-menu" role="menu" aria-label="Markdown options">
+                            <li role="menuitem" tabindex="0" data-action="copy-markdown">
+                                <span class="codicon codicon-copy" aria-hidden="true"></span>
+                                <span>Copy as Markdown</span>
+                            </li>
+                            <li role="menuitem" tabindex="0" data-action="view-markdown">
+                                <span class="codicon codicon-file" aria-hidden="true"></span>
+                                <span>View as Markdown</span>
+                                <span class="codicon codicon-link-external" aria-hidden="true"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <nav id="docs-subnavbar" aria-label="On Page">
+                    
+                    <h4><span class="sr-only">On this page there are 5 sections</span><span aria-hidden="true">On this page</span></h4>
+                    <ul class="nav">
+                        
+                        <li><a href="https://code.visualstudio.com/docs/agents/agents-tutorial#_prerequisites">Prerequisites</a></li>
+                        
+                        <li><a href="https://code.visualstudio.com/docs/agents/agents-tutorial#_create-a-project-folder">Create a project folder</a></li>
+                        
+                        <li><a href="https://code.visualstudio.com/docs/agents/agents-tutorial#_build-features-with-the-agents-window">Build features with the Agents window</a></li>
+                        
+                        <li><a href="https://code.visualstudio.com/docs/agents/agents-tutorial#_continue-working-with-agents-in-the-editor">Continue working with agents in the editor</a></li>
+                        
+                        <li><a href="https://code.visualstudio.com/docs/agents/agents-tutorial#_next-steps">Next steps</a></li>
+                        
+                    </ul>
+                    
+                </nav>
+                
+                <section class="sidebar-try-this" role="region" aria-labelledby="try-this-heading" data-m="{&quot;cN&quot;:&quot;sidebar-try-this&quot;,&quot;aN&quot;:&quot;sidebar&quot;}">
+                    <h4 id="try-this-heading">
+                        <span class="codicon codicon-play" aria-hidden="true"></span>
+                        <span>Related</span>
+                    </h4>
+                    
+                    
+                    <div class="sidebar-action-card" id="sidebar-action-explore-the-agents-window-0" data-section="_build-features-with-the-agents-window" hidden="">
+                        <span class="sidebar-action-title">Explore the Agents window</span>
+                        
+                        <p class="sidebar-action-desc">Use the Agents window to run and monitor agent sessions across your projects from a single place in VS Code.</p>
+                        
+                        <div class="sidebar-action-links">
+                            
+                            
+                            <a href="https://code.visualstudio.com/docs/agents/run/agents-window" class="sidebar-action-btn" aria-label="Learn about the Agents window">
+                                Learn about the Agents window
+                            </a>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-action-card" id="sidebar-action-explore-the-chat-view-1" data-section="_continue-working-with-agents-in-the-editor" hidden="">
+                        <span class="sidebar-action-title">Explore the Chat view</span>
+                        
+                        <p class="sidebar-action-desc">You can use the Chat view alongside your editor to let agents assist you with coding tasks in your active workspace.</p>
+                        
+                        <div class="sidebar-action-links">
+                            
+                            
+                            <a href="https://code.visualstudio.com/docs/agents/run/chat-view" class="sidebar-action-btn" aria-label="Learn about the Chat view">
+                                Learn about the Chat view
+                            </a>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-action-card" id="sidebar-action-tailor-the-agent-experience-2" data-section="_next-steps" hidden="">
+                        <span class="sidebar-action-title">Tailor the agent experience</span>
+                        
+                        <p class="sidebar-action-desc">Configure custom agents, skills, and instructions to tailor the agent experience to your coding standards and workflows.</p>
+                        
+                        <div class="sidebar-action-links">
+                            
+                            
+                            <a href="https://code.visualstudio.com/docs/agents/guides/customize-copilot-guide" class="sidebar-action-btn" aria-label="Start customization tutorial">
+                                Start customization tutorial
+                            </a>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                </section>
+                
+            </aside>
+            
+            <!-- Main article content -->
+            <main class="docs-main-content body">
+                <h1>Tutorial: Agentic coding in VS Code</h1>
+<p>In this tutorial, you learn how to build with AI agents in Visual Studio Code. Agents can plan a solution, create and edit multiple files, run commands, and fix their own errors, all from a single natural-language prompt. You describe what you want, and the agent does the work.</p>
+<p>You start in the <strong>Agents window</strong>, a dedicated surface for an agent-first workflow. Then you switch to the <strong>Chat view</strong>, where an agent assists you while you work in the editor. Along the way, you pick up the VS Code basics you need, like opening a workspace, using the integrated browser, and committing your changes with source control.</p>
+<p>You build a simple personal portfolio page with HTML, CSS, and JavaScript. The page is fully static, so you don't need to install any runtimes or build tools to follow along.</p>
+<div class="docs-callout" role="region" aria-labelledby="docs-callout-learn-vs-code-editor-features-0-title" data-m="{&quot;cN&quot;:&quot;docs-callout&quot;,&quot;aN&quot;:&quot;content&quot;}"><div class="docs-callout-header"><span class="codicon codicon-play" aria-hidden="true"></span><span class="docs-callout-title" id="docs-callout-learn-vs-code-editor-features-0-title">Learn VS Code editor features</span></div><p class="docs-callout-description">Get familiar with the VS Code user interface, editing features, and key productivity tools.</p><div class="docs-callout-actions" role="group" aria-label="Actions"><a href="https://code.visualstudio.com/docs/editing/getting-started" class="docs-callout-btn" aria-label="Start the VS Code editing tutorial">Start the VS Code editing tutorial</a></div></div>
+<h2 id="_prerequisites" data-needslink="_prerequisites"><a class="hash-link" href="https://code.visualstudio.com/docs/agents/agents-tutorial#_prerequisites">Prerequisites</a></h2>
+<ul>
+<li>
+<p><a href="https://code.visualstudio.com/download">Download and install Visual Studio Code</a></p>
+</li>
+<li>
+<p><a href="https://code.visualstudio.com/docs/getstarted/overview#_enable-ai-features">Enable AI features in VS Code</a></p>
+</li>
+<li>
+<p><a href="https://git-scm.com/" class="external-link" target="_blank">Install Git</a></p>
+</li>
+</ul>
+<div class="markdown-alert tip" dir="auto">
+      <span>
+        <svg class="markdown-alert-icon" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true">
+          <path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z">
+          </path>
+        </svg>
+        Tip
+      </span><p>If you don't have a Copilot subscription yet, you can use Copilot for free by signing up for the <a href="https://github.com/github-copilot/signup" class="external-link" target="_blank">Copilot Free plan</a> and get a monthly allowance of inline suggestions and AI credits.</p>
+</div><h2 id="_create-a-project-folder" data-needslink="_create-a-project-folder"><a class="hash-link" href="https://code.visualstudio.com/docs/agents/agents-tutorial#_create-a-project-folder">Create a project folder</a></h2>
+<p>Agents work in the context of a folder, also known as a <em>workspace</em>. You start by creating a folder for your project. You don't need to open the folder in VS Code yet. In the next step, you open it in the Agents window, which lets you work across multiple workspaces without opening a separate window for each one.</p>
+<ol>
+<li>
+<p>On your computer, create a new folder named <code>myportfolio</code>.</p>
+</li>
+<li>
+<p>Put the folder under Git version control to track changes. Open a terminal and run the following commands:</p>
+<div class="code-block-wrapper"><div class="code-block-header"><span class="code-block-language">Bash</span><div class="code-block-buttons"><button class="code-block-copy-btn" title="Copy code to clipboard" aria-label="Copy code to clipboard" type="button" tabindex="0"><span class="codicon codicon-copy"></span></button></div></div><pre class="shiki" data-lang="bash" shiki-themes="" dark-plus="" light-plus"="" style="--shiki-dark:#D4D4D4;--shiki-light:#000000;--shiki-dark-bg:#1E1E1E;--shiki-light-bg:#FFFFFF" tabindex="0" aria-label="Code block in Bash"><code><span class="line"><span style="--shiki-dark:#DCDCAA;--shiki-light:#795E26">cd</span><span style="--shiki-dark:#CE9178;--shiki-light:#A31515"> myportfolio</span></span>
+<span class="line"><span style="--shiki-dark:#DCDCAA;--shiki-light:#795E26">git</span><span style="--shiki-dark:#CE9178;--shiki-light:#A31515"> init</span></span>
+<span class="line"></span></code></pre></div>
+<div class="markdown-alert tip" dir="auto">
+      <span>
+        <svg class="markdown-alert-icon" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true">
+          <path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z">
+          </path>
+        </svg>
+        Tip
+      </span><p>You can also initialize a repository from the <strong>Source Control</strong> view in VS Code.</p>
+</div></li>
+</ol>
+<h2 id="_build-features-with-the-agents-window" data-needslink="_build-features-with-the-agents-window"><a class="hash-link" href="https://code.visualstudio.com/docs/agents/agents-tutorial#_build-features-with-the-agents-window">Build features with the Agents window</a></h2>
+
+<p>The Agents window (preview) is a dedicated window in VS Code that is optimized for working with agents across all your projects without needing to open a separate VS Code window for each one.</p>
+<p>In this part, you open your folder in the Agents window and task an agent to build your portfolio page.</p>
+<h3 id="_open-the-agents-window" data-needslink="_open-the-agents-window"><a class="hash-link" href="https://code.visualstudio.com/docs/agents/agents-tutorial#_open-the-agents-window">Open the Agents window</a></h3>
+<ol>
+<li>
+<p>In VS Code, select the <strong>Open in Agents</strong> button in the VS Code title bar.</p>
+<p>You can also open the Agents window from the VS Code welcome page, or run the <strong>Chat: Open Agents window</strong> command from the Command Palette (<span class="dynamic-keybinding keybinding win" data-commandid="workbench.action.showCommands" data-osx="⇧⌘P" data-win="Ctrl+Shift+P" data-linux="Ctrl+Shift+P" title="macOS: ⇧⌘P, Linux: Ctrl+Shift+P">Ctrl+Shift+P</span>).</p>
+<p><span class="expandable-image-wrapper" role="button" tabindex="0" aria-label="Screenshot of the Open in Agents button in the VS Code title bar.. Press Enter or Space to view larger."><img src="./2. Get started_02. Agents Tutorial_files/open-in-agents-button.png" alt="Screenshot of the Open in Agents button in the VS Code title bar." loading="lazy" class="expandable-image"></span></p>
+</li>
+<li>
+<p>If you're prompted to sign in, select a sign-in method and continue.</p>
+<p>The Agents window needs access to your GitHub Copilot subscription to run agent sessions. If you're already signed in to GitHub in VS Code, you're signed in here too.</p>
+</li>
+</ol>
+<h3 id="_start-an-agent-session" data-needslink="_start-an-agent-session"><a class="hash-link" href="https://code.visualstudio.com/docs/agents/agents-tutorial#_start-an-agent-session">Start an agent session</a></h3>
+<ol>
+<li>
+<p>Select <strong>New</strong> at the top of the left sidebar to start a new session.</p>
+<p><span class="expandable-image-wrapper" role="button" tabindex="0" aria-label="Screenshot of the New button in the Agents window sidebar.. Press Enter or Space to view larger."><img src="./2. Get started_02. Agents Tutorial_files/agents-new-session.png" alt="Screenshot of the New button in the Agents window sidebar." loading="lazy" class="expandable-image"></span></p>
+<p>The sidebar shows your list of active agent sessions, grouped by workspace. You can use the sessions list to switch between sessions. In the bottom left, you can configure customizations to modify the agent's behavior to match your coding practices.</p>
+</li>
+<li>
+<p>In the workspace dropdown, make sure the <code>myportfolio</code> folder on your machine is selected.</p>
+<p><span class="expandable-image-wrapper" role="button" tabindex="0" aria-label="Screenshot of the workspace dropdown and session configuration in the Agents window.. Press Enter or Space to view larger."><img src="./2. Get started_02. Agents Tutorial_files/workspace-dropdown.png" alt="Screenshot of the workspace dropdown and session configuration in the Agents window." loading="lazy" class="expandable-image"></span></p>
+<p>If you're prompted to trust the folder, select <strong>Yes, I trust the authors</strong>.</p>
+<div class="markdown-alert important" dir="auto">
+      <span>
+        <svg class="markdown-alert-icon" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true">
+          <path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z">
+          </path>
+        </svg>
+        Important
+      </span><p>Workspace Trust lets you decide whether code in your project folder can be executed. When you download code from the internet, you should first review it to make sure it's safe to run. Get more info about <a href="https://code.visualstudio.com/docs/editing/workspaces/workspace-trust">Workspace Trust</a>.</p>
+</div></li>
+<li>
+<p>Select the <strong>Copilot</strong> agent harness to run your agent session locally on your machine using the GitHub Copilot SDK.</p>
+<p>VS Code supports multiple agent harnesses, such as Claude and Codex. The agent harness is what connects the language model to the development environment.</p>
+</li>
+<li>
+<p>Review the other session configuration options:</p>
+<ul>
+<li><strong>Agent</strong>: the generic agent role for performing the task. For specialized tasks, you can create a custom agent, such as a code review or testing agent.</li>
+<li><strong>Language model</strong>: depending on your setup, you can choose from multiple language models and configure additional settings.</li>
+<li><strong>Default Approvals</strong>: the permission level that uses the default approval rules for tools, terminal commands, and more. VS Code prompts you when an action requires approval.</li>
+</ul>
+</li>
+<li>
+<p>Enter the following prompt in the chat input and press <span class="keybinding">Enter</span>:</p>
+<div class="code-block-wrapper"><div class="code-block-header"><span class="code-block-language">Prompt</span><div class="code-block-buttons"><div class="code-block-open-dropdown"><button class="code-block-open-btn-main" type="button" tabindex="0" id="prompt-open-1" title="Open in VS Code" aria-label="Open in VS Code">Open in VS Code</button><button class="code-block-open-dropdown-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Select VS Code version"><svg class="code-block-open-dropdown-chevron" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+      <path d="M7.976 10.072l4.357-4.357.62.618L8.284 11h-.618L3 6.333l.619-.618 4.357 4.357z"></path>
+    </svg></button><ul class="code-block-open-dropdown-menu" role="listbox" aria-label="VS Code version"><li role="option" data-version="stable" tabindex="0" aria-selected="true">Stable</li><li role="option" data-version="insiders" tabindex="0" aria-selected="false">Insiders</li></ul></div><button class="code-block-copy-btn" title="Copy code to clipboard" aria-label="Copy code to clipboard" type="button" tabindex="0"><span class="codicon codicon-copy"></span></button></div></div><pre class="shiki" data-lang="prompt" shiki-themes="" dark-plus="" light-plus"="" style="--shiki-dark:#D4D4D4;--shiki-light:#000000;--shiki-dark-bg:#1E1E1E;--shiki-light-bg:#FFFFFF" tabindex="0" aria-label="Code block in Prompt"><code><span class="line"><span>Create a personal portfolio page with HTML, CSS, and JavaScript in separate files. Include a header with my name and a short bio, a section for projects with cards, and a contact section. Use modern styling and add some sample content.</span></span>
+<span class="line"><span></span></span></code></pre></div>
+</li>
+<li>
+<p>The agent analyzes your request, plans the work, and then starts creating and editing files. If it encounters errors, it self-corrects or asks for clarification and approval.</p>
+<p><img src="./2. Get started_02. Agents Tutorial_files/agent-generating-files.png" alt="Screenshot of the agent generating the portfolio page files in the Agents window." loading="lazy"></p>
+</li>
+</ol>
+<h3 id="_preview-and-iterate-on-the-design" data-needslink="_preview-and-iterate-on-the-design"><a class="hash-link" href="https://code.visualstudio.com/docs/agents/agents-tutorial#_preview-and-iterate-on-the-design">Preview and iterate on the design</a></h3>
+<p>The Agents window is great for workflows where you hand off tasks to the agent and then validate the outcome, rather than the specific code changes. With the integrated browser, you can preview the agent's work without having to leave VS Code.</p>
+<p>To preview the generated portfolio in the integrated browser:</p>
+<ol>
+<li>
+<p>Select the <strong>Files</strong> tab in the left sidebar, right-click the <code>index.html</code> file and select <strong>Open in Integrated Browser</strong>.</p>
+<p>The <strong>Files</strong> tab shows all files in the workspace, similar to the <strong>Explorer</strong> view in the editor.</p>
+<p><img src="./2. Get started_02. Agents Tutorial_files/open-in-integrated-browser.png" alt="Screenshot of the Files tab in the Agents window, showing the portfolio files and the Open in Integrated Browser option." loading="lazy"></p>
+</li>
+<li>
+<p>The integrated browser opens in a new tab in the Agents window, and you can interact with the page as you would in a normal browser.</p>
+<p><img src="./2. Get started_02. Agents Tutorial_files/portfolio-integrated-browser.png" alt="Screenshot of the portfolio page open in the integrated browser in the Agents window." loading="lazy"></p>
+</li>
+<li>
+<p>Let's make a design change to the page. In the integrated browser, select the <strong>Add Element to Chat</strong> button to enter selection mode.</p>
+<p><img src="./2. Get started_02. Agents Tutorial_files/add-element-to-chat-button.png" alt="Screenshot of the integrated browser toolbar, highlighting the Add Element to Chat button." loading="lazy"></p>
+</li>
+<li>
+<p>Hover over the page and select an element you want to change, for example select the main title.</p>
+<p>The agent adds the selected element to your prompt as context, including its HTML, CSS, and a screenshot.</p>
+</li>
+<li>
+<p>In the chat input, enter a prompt that describes the change you want, and press <span class="keybinding">Enter</span>. For example:</p>
+<div class="code-block-wrapper"><div class="code-block-header"><span class="code-block-language">Prompt</span><div class="code-block-buttons"><div class="code-block-open-dropdown"><button class="code-block-open-btn-main" type="button" tabindex="0" id="prompt-open-2" title="Open in VS Code" aria-label="Open in VS Code">Open in VS Code</button><button class="code-block-open-dropdown-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Select VS Code version"><svg class="code-block-open-dropdown-chevron" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+      <path d="M7.976 10.072l4.357-4.357.62.618L8.284 11h-.618L3 6.333l.619-.618 4.357 4.357z"></path>
+    </svg></button><ul class="code-block-open-dropdown-menu" role="listbox" aria-label="VS Code version"><li role="option" data-version="stable" tabindex="0" aria-selected="true">Stable</li><li role="option" data-version="insiders" tabindex="0" aria-selected="false">Insiders</li></ul></div><button class="code-block-copy-btn" title="Copy code to clipboard" aria-label="Copy code to clipboard" type="button" tabindex="0"><span class="codicon codicon-copy"></span></button></div></div><pre class="shiki" data-lang="prompt" shiki-themes="" dark-plus="" light-plus"="" style="--shiki-dark:#D4D4D4;--shiki-light:#000000;--shiki-dark-bg:#1E1E1E;--shiki-light-bg:#FFFFFF" tabindex="0" aria-label="Code block in Prompt"><code><span class="line"><span>Use a gradient color for the text and use cursive.</span></span>
+<span class="line"><span></span></span></code></pre></div>
+</li>
+<li>
+<p>The agent applies the change to the element you selected. Refresh the page in the integrated browser to see the updates.</p>
+</li>
+</ol>
+<h3 id="_review-and-commit-the-changes" data-needslink="_review-and-commit-the-changes"><a class="hash-link" href="https://code.visualstudio.com/docs/agents/agents-tutorial#_review-and-commit-the-changes">Review and commit the changes</a></h3>
+<p>Before you commit the agent's work, you might want to review the code changes that the agent applied. The <strong>Changes</strong> panel shows diffs for every file the agent created or modified during its session. To review and commit the file changes:</p>
+<ol>
+<li>
+<p>Select the <strong>Changes</strong> panel to see the diffs of the files the agent added or modified. Each item also shows change stats and an add/delete/update indicator.</p>
+<p><img src="./2. Get started_02. Agents Tutorial_files/changes-panel.png" alt="Screenshot of the Changes panel in the Agents window, showing the list of files changed by the agent." loading="lazy"></p>
+</li>
+<li>
+<p>Open the diff from the <code>index.html</code> file and select a block of text to open the inline feedback flow. Enter your feedback and then select <strong>Submit</strong>.</p>
+<p><img src="./2. Get started_02. Agents Tutorial_files/inline-feedback.png" alt="Screenshot of the inline feedback flow in the diff view, showing a block of text selected for feedback." loading="lazy"></p>
+<p>Notice that your feedback is added to the chat conversation, and the agent processes it and applies the change to the file. You can continue to provide feedback on other changes in the diff view.</p>
+</li>
+<li>
+<p>From the changes dropdown, select <strong>Uncommitted Changes</strong> to see the changes that have not yet been committed to your Git repository.</p>
+<p>Use the changes dropdown to switch between branch changes, uncommitted changes, all changes from the session, and changes made during the last agent turn.</p>
+<p><img src="./2. Get started_02. Agents Tutorial_files/uncommitted-changes.png" alt="Screenshot of the Uncommitted Changes view in the Changes panel, showing the list of files with uncommitted changes." loading="lazy"></p>
+</li>
+<li>
+<p>Now select <strong>Commit Changes</strong> in the <strong>Changes</strong> panel to save the agent's changes to your Git repository.</p>
+<p>VS Code automatically creates a commit message based on the agent's prompt and the changes it made.</p>
+<p>After committing the changes, the branch changes and uncommitted changes are now empty because there are no pending changes. The change stats are also cleared from the session entry in the session list.</p>
+</li>
+</ol>
+<h2 id="_continue-working-with-agents-in-the-editor" data-needslink="_continue-working-with-agents-in-the-editor"><a class="hash-link" href="https://code.visualstudio.com/docs/agents/agents-tutorial#_continue-working-with-agents-in-the-editor">Continue working with agents in the editor</a></h2>
+
+<p>For some changes, you might prefer a code-first approach, where your focus is on writing code and Copilot assists you in the process. For example, you might want to add a theme switcher and fine-tune the styles as you go. For this approach, continue the same Copilot session in the Chat view.</p>
+<h3 id="_open-the-editor-for-your-workspace" data-needslink="_open-the-editor-for-your-workspace"><a class="hash-link" href="https://code.visualstudio.com/docs/agents/agents-tutorial#_open-the-editor-for-your-workspace">Open the editor for your workspace</a></h3>
+<ol>
+<li>
+<p>In the Agents window, select the <strong>Open in Editor</strong> button in the title bar to open the active workspace in the editor.</p>
+<p><img src="./2. Get started_02. Agents Tutorial_files/open-in-editor-button.png" alt="Screenshot of the Open in Editor button in the Agents window title bar." loading="lazy"></p>
+<p>This opens a new VS Code window with your workspace. The Chat view is still open in the right sidebar, so you can interact with agents while you work in the editor.</p>
+</li>
+<li>
+<p>Notice that the left sidebar shows the <strong>Explorer</strong> view, which displays the files in your workspace. Select a file to open it in an editor tab in the main area.</p>
+<p><img src="./2. Get started_02. Agents Tutorial_files/explorer-and-chat-view.png" alt="Screenshot of the editor showing the Explorer view with the portfolio files and the Chat view with the active agent session." loading="lazy"></p>
+<p>The Chat view in the right sidebar shows the ongoing agent session you created previously in the Agents window.</p>
+</li>
+</ol>
+<h3 id="_continue-the-session-from-the-chat-view" data-needslink="_continue-the-session-from-the-chat-view"><a class="hash-link" href="https://code.visualstudio.com/docs/agents/agents-tutorial#_continue-the-session-from-the-chat-view">Continue the session from the Chat view</a></h3>
+<p>The Chat view is located in the Secondary Side Bar, alongside your editor tabs. The same Copilot session remains active when you move between the Agents window and the editor.</p>
+<ol>
+<li>
+<p>Enter the following prompt in the chat input and press <span class="keybinding">Enter</span>:</p>
+<div class="code-block-wrapper"><div class="code-block-header"><span class="code-block-language">Prompt</span><div class="code-block-buttons"><div class="code-block-open-dropdown"><button class="code-block-open-btn-main" type="button" tabindex="0" id="prompt-open-3" title="Open in VS Code" aria-label="Open in VS Code">Open in VS Code</button><button class="code-block-open-dropdown-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Select VS Code version"><svg class="code-block-open-dropdown-chevron" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+      <path d="M7.976 10.072l4.357-4.357.62.618L8.284 11h-.618L3 6.333l.619-.618 4.357 4.357z"></path>
+    </svg></button><ul class="code-block-open-dropdown-menu" role="listbox" aria-label="VS Code version"><li role="option" data-version="stable" tabindex="0" aria-selected="true">Stable</li><li role="option" data-version="insiders" tabindex="0" aria-selected="false">Insiders</li></ul></div><button class="code-block-copy-btn" title="Copy code to clipboard" aria-label="Copy code to clipboard" type="button" tabindex="0"><span class="codicon codicon-copy"></span></button></div></div><pre class="shiki" data-lang="prompt" shiki-themes="" dark-plus="" light-plus"="" style="--shiki-dark:#D4D4D4;--shiki-light:#000000;--shiki-dark-bg:#1E1E1E;--shiki-light-bg:#FFFFFF" tabindex="0" aria-label="Code block in Prompt"><code><span class="line"><span>Add an accessible theme switcher button that toggles between light and dark color themes. Persist the selected theme across page reloads, update the button label to describe the theme it applies, and keep the layout responsive on narrow screens.</span></span>
+<span class="line"><span></span></span></code></pre></div>
+<p>Copilot applies and saves the changes directly to your project files.</p>
+</li>
+<li>
+<p>Open the <strong>Source Control</strong> view to review the files that Copilot changed. Select a file to inspect its diff.</p>
+<p>You can also select a changed file in the Chat view to open its diff.</p>
+</li>
+<li>
+<p>Select the <code>index.html</code> file and select the <strong>Open in Integrated Browser</strong> (globe) button in the title bar.</p>
+</li>
+<li>
+<p>In the integrated browser, validate the changes:</p>
+<ul>
+<li>Select the theme switcher and verify that the page colors and button label change.</li>
+<li>Resize the browser to a narrow width and verify that the content remains readable and the project cards adapt to the available space.</li>
+<li>Use <span class="keybinding">Tab</span> to focus the theme switcher, and then use <span class="keybinding">Enter</span> or <span class="keybinding">Space</span> to toggle the theme.</li>
+</ul>
+</li>
+<li>
+<p>If a check fails, describe what you observed to Copilot in the Chat view. For example:</p>
+<div class="code-block-wrapper"><div class="code-block-header"><span class="code-block-language">Prompt</span><div class="code-block-buttons"><div class="code-block-open-dropdown"><button class="code-block-open-btn-main" type="button" tabindex="0" id="prompt-open-4" title="Open in VS Code" aria-label="Open in VS Code">Open in VS Code</button><button class="code-block-open-dropdown-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Select VS Code version"><svg class="code-block-open-dropdown-chevron" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+      <path d="M7.976 10.072l4.357-4.357.62.618L8.284 11h-.618L3 6.333l.619-.618 4.357 4.357z"></path>
+    </svg></button><ul class="code-block-open-dropdown-menu" role="listbox" aria-label="VS Code version"><li role="option" data-version="stable" tabindex="0" aria-selected="true">Stable</li><li role="option" data-version="insiders" tabindex="0" aria-selected="false">Insiders</li></ul></div><button class="code-block-copy-btn" title="Copy code to clipboard" aria-label="Copy code to clipboard" type="button" tabindex="0"><span class="codicon codicon-copy"></span></button></div></div><pre class="shiki" data-lang="prompt" shiki-themes="" dark-plus="" light-plus"="" style="--shiki-dark:#D4D4D4;--shiki-light:#000000;--shiki-dark-bg:#1E1E1E;--shiki-light-bg:#FFFFFF" tabindex="0" aria-label="Code block in Prompt"><code><span class="line"><span>The selected theme resets after I refresh the page. Persist the theme selection and verify that it is restored when the page loads.</span></span>
+<span class="line"><span></span></span></code></pre></div>
+</li>
+<li>
+<p>Review the final changes in the <strong>Source Control</strong> view and commit them to your Git repository.</p>
+</li>
+</ol>
+<p>Congratulations! You built a portfolio page with Copilot by using both an agent-first and code-first approach. You continued the same session across the Agents window and the Chat view, and used the integrated browser to preview and validate the result.</p>
+<h2 id="_next-steps" data-needslink="_next-steps"><a class="hash-link" href="https://code.visualstudio.com/docs/agents/agents-tutorial#_next-steps">Next steps</a></h2>
+
+<p>To go deeper with agentic coding in Visual Studio Code, get more info about how to:</p>
+<ul>
+<li>
+<p><a href="https://code.visualstudio.com/docs/agents/concepts/agents">Learn more about agents in VS Code</a></p>
+</li>
+<li>
+<p><a href="https://code.visualstudio.com/docs/agents/run/agents-window">Learn more about the Agents window</a></p>
+</li>
+<li>
+<p><a href="https://code.visualstudio.com/docs/agents/run/chat-view">Learn more about the Chat view</a></p>
+</li>
+</ul>
+
+                <div class="feedback" data-edit-url="https://vscode.dev/github/microsoft/vscode-docs/blob/main/docs/agents/agents-tutorial.md"><section class="feedback-section" aria-labelledby="feedback-heading"><h2 id="feedback-heading" class="sr-only">Help and support</h2><div class="feedback-container"><div class="feedback-left"><div class="widget"><form aria-label="Feedback"><div class="buttons"><h3 class="feedback-header">Was this page helpful?</h3><br><button value="1">Yes<span class="sr-only"> , this page was helpful</span></button><button value="0">No<span class="sr-only"> , this page was not helpful</span></button></div></form></div></div><div class="feedback-middle"><h3>Still need help?</h3><ul class="support-links"><li><a href="https://stackoverflow.com/questions/tagged/vscode" target="_blank" rel="noopener noreferrer"><img alt="" src="./2. Get started_02. Agents Tutorial_files/stackoverflow.svg" aria-hidden="true">Ask the community</a></li><li><a href="https://github.com/microsoft/vscode/issues/new/choose" target="_blank" rel="noopener noreferrer"><img alt="" src="./2. Get started_02. Agents Tutorial_files/github.svg" aria-hidden="true">Request features</a></li><li><a href="https://www.github.com/Microsoft/vscode/issues" target="_blank" rel="noopener noreferrer"><img alt="" src="./2. Get started_02. Agents Tutorial_files/issue.svg" aria-hidden="true">Report issues</a></li></ul></div><div class="feedback-right"><h3>Help us improve</h3><div class="buttons"><button type="button">Edit this page</button></div></div></div></section></div>
+                
+                <div class="body-footer">8/26/2026</div>
+                
+            </main>
+        </div>
+        
+        <!-- Mobile connect widget -->
+        <div class="docs-mobile-widgets visible-xs">
+            <div class="connect-widget"><ul class="connect-links"><li><a href="https://code.visualstudio.com/feed.xml" target="_blank"><img alt="RSS" src="./2. Get started_02. Agents Tutorial_files/rss.svg">RSS Feed</a></li><li><a href="https://stackoverflow.com/questions/tagged/vscode" target="_blank" rel="noopener noreferrer"><img alt="Stackoverflow" src="./2. Get started_02. Agents Tutorial_files/stackoverflow.svg">Ask questions</a></li><li><a href="https://go.microsoft.com/fwlink/?LinkID=533687" target="_blank" rel="noopener noreferrer"><img alt="Twitter" src="./2. Get started_02. Agents Tutorial_files/twitter.svg">Follow @code</a></li><li id="connect-uservoice"><a href="https://github.com/microsoft/vscode/issues/new/choose" target="_blank" rel="noopener noreferrer"><img alt="GitHub" src="./2. Get started_02. Agents Tutorial_files/github.svg">Request features</a></li><li id="connect-github"><a href="https://www.github.com/microsoft/vscode/issues" target="_blank" rel="noopener noreferrer"><img alt="Issues" src="./2. Get started_02. Agents Tutorial_files/issue.svg">Report issues</a></li><li id="connect-youtube"><a href="https://www.youtube.com/channel/UCs5Y5_7XK8HLDX0SLNwkd3w" target="_blank" rel="noopener noreferrer"><img alt="YouTube" src="./2. Get started_02. Agents Tutorial_files/youtube.svg">Watch videos</a></li></ul></div>
+        </div>
+    </div>
+</div>
+		</main>
+	</div>
+
+	<div id="search-popup-overlay" class="search-popup-overlay" role="dialog" aria-modal="true" aria-label="Search">
+		<div class="search-popup-container">
+			<div class="search-popup-header">
+				<form class="search-popup-form">
+					<div class="input-group">
+						<input type="text" name="q" class="search-box form-control" placeholder="Search the website" aria-label="Search text" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="search-results-listbox" aria-activedescendant="">
+						<span class="input-group-btn">
+							<button tabindex="0" class="btn" type="submit" aria-label="Search">
+								<img class="search-icon-dark" src="./2. Get started_02. Agents Tutorial_files/search-dark.svg" alt="Search">
+								<img class="search-icon-light" src="./2. Get started_02. Agents Tutorial_files/search.svg" alt="Search">
+							</button>
+						</span>
+					</div>
+				</form>
+				<button class="search-popup-close" type="button" aria-label="Close search"><i class="codicon codicon-close" aria-hidden="true"></i></button>
+			</div>
+			<div class="search-popup-results">
+				<ul class="search-popup-results-list" id="search-results-listbox" role="listbox" aria-label="Search results"></ul>
+			</div>
+			<div class="sr-only" role="status" aria-live="polite" aria-atomic="true" id="search-popup-status"></div>
+		</div>
+	</div>
+
+
+	<footer role="contentinfo" class="container">
+		<div class="footer-container">
+			<div class="footer-row">
+				<div class="footer-social">
+					<ul class="links">
+						<li>
+							<a href="https://github.com/microsoft/vscode"><img src="./2. Get started_02. Agents Tutorial_files/github-icon.svg" alt="VS Code on Github"></a>
+						</li>
+						<li>
+							<a href="https://go.microsoft.com/fwlink/?LinkID=533687"><img src="./2. Get started_02. Agents Tutorial_files/x-icon.svg" class="x-icon" alt="Follow us on X"></a>
+						</li>
+						<li>
+							<a href="https://www.linkedin.com/showcase/vs-code"><img src="./2. Get started_02. Agents Tutorial_files/linkedin-icon.svg" alt="VS Code on LinkedIn"></a>
+						</li>
+						<li>
+							<a href="https://bsky.app/profile/vscode.dev"><img src="./2. Get started_02. Agents Tutorial_files/bluesky-icon.svg" alt="VS Code on Bluesky"></a>
+						</li>
+						<li>
+							<a href="https://www.reddit.com/r/vscode/"><img src="./2. Get started_02. Agents Tutorial_files/reddit-icon.svg" alt="Join the VS Code community on Reddit"></a>
+						</li>
+						<li>
+							<a href="https://www.vscodepodcast.com/"><img src="./2. Get started_02. Agents Tutorial_files/podcast-icon.svg" alt="The VS Code Insiders Podcast"></a>
+						</li>
+						<li>
+							<a href="https://www.tiktok.com/@vscode"><img src="./2. Get started_02. Agents Tutorial_files/tiktok-icon.svg" alt="VS Code on TikTok"></a>
+						</li>
+						<li>
+							<a href="https://www.youtube.com/@code"><img src="./2. Get started_02. Agents Tutorial_files/youtube-icon.svg" alt="VS Code on YouTube"></a>
+						</li>
+						<script>
+							function manageConsent() {
+								if (siteConsent && siteConsent.isConsentRequired) {
+									siteConsent.manageConsent();
+								}
+							}
+						</script>
+					</ul>
+					<a id="footer-microsoft-link" class="microsoft-logo" href="https://www.microsoft.com/">
+						<img src="./2. Get started_02. Agents Tutorial_files/microsoft.svg" alt="Microsoft homepage">
+					</a>
+				</div>
+			</div>
+			<div class="footer-row">
+				<ul class="links">
+					<li><a id="footer-support-link" href="https://support.serviceshub.microsoft.com/supportforbusiness/create?sapId=d66407ed-3967-b000-4cfb-2c318cad363d" target="_blank" rel="noopener" title="Get support for VS Code" aria-label="Get support for VS Code (opens in new tab)">Support</a></li>
+					<li><a id="footer-privacy-link" href="https://go.microsoft.com/fwlink/?LinkId=521839" target="_blank" rel="noopener" title="View the Microsoft privacy statement" aria-label="Microsoft privacy statement (opens in new tab)">Privacy</a></li>
+					<li style="display: none;"><a id="footer-cookie-link" style="cursor: pointer;" onclick="manageConsent()" target="_blank" rel="noopener">Manage Cookies</a></li>
+					<li><a id="footer-terms-link" href="https://www.microsoft.com/legal/terms-of-use" target="_blank" rel="noopener" title="View the Microsoft Terms of Use" aria-label="Microsoft Terms of Use (opens in new tab)">Terms of Use</a></li>
+					<li><a id="footer-license-link" href="https://code.visualstudio.com/License" target="_blank" rel="noopener" title="View the Visual Studio Code license" aria-label="Visual Studio Code license (opens in new tab)">License</a></li>
+				</ul>
+			</div>
+			<div class="footer-row">
+				<ul class="links">
+					<li>
+						<svg class="privacy-choices" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 14" xml:space="preserve" height="16" width="43">
+							<title>Your Privacy Choices Opt-Out Icon</title>
+							<path d="M7.4 12.8h6.8l3.1-11.6H7.4C4.2 1.2 1.6 3.8 1.6 7s2.6 5.8 5.8 5.8z" style="fill-rule:evenodd;clip-rule:evenodd;fill:#fff"></path>
+							<path d="M22.6 0H7.4c-3.9 0-7 3.1-7 7s3.1 7 7 7h15.2c3.9 0 7-3.1 7-7s-3.2-7-7-7zm-21 7c0-3.2 2.6-5.8 5.8-5.8h9.9l-3.1 11.6H7.4c-3.2 0-5.8-2.6-5.8-5.8z" style="fill-rule:evenodd;clip-rule:evenodd;fill:#06f"></path>
+							<path d="M24.6 4c.2.2.2.6 0 .8L22.5 7l2.2 2.2c.2.2.2.6 0 .8-.2.2-.6.2-.8 0l-2.2-2.2-2.2 2.2c-.2.2-.6.2-.8 0-.2-.2-.2-.6 0-.8L20.8 7l-2.2-2.2c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0l2.2 2.2L23.8 4c.2-.2.6-.2.8 0z" style="fill:#fff"></path>
+							<path d="M12.7 4.1c.2.2.3.6.1.8L8.6 9.8c-.1.1-.2.2-.3.2-.2.1-.5.1-.7-.1L5.4 7.7c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0L8 8.6l3.8-4.5c.2-.2.6-.2.9 0z" style="fill:#06f"></path>
+						</svg>
+						<a id="footer-privacy-choices-link" href="https://aka.ms/YourCaliforniaPrivacyChoices" target="_blank" rel="noopener" title="View Your Privacy Choices" aria-label="Your Privacy Choices (opens in new tab)">Your Privacy Choices</a></li>
+					<li><a id="footer-consumer-health-privacy-link" href="https://go.microsoft.com/fwlink/?linkid=2259814" target="_blank" rel="noopener" title="View the Microsoft Consumer Health Privacy policy" aria-label="Microsoft Consumer Health Privacy policy (opens in new tab)">Consumer Health Privacy</a></li>
+				</ul>
+			</div>
+		</div>
+	</footer>
+	<script type="module">
+		document.addEventListener('DOMContentLoaded', () => {
+			const copilotDeepLinks = document.querySelectorAll('.copilot-deep-link');
+			if (copilotDeepLinks.length === 0) {
+				return;
+			}
+			if (window.innerWidth < 992) {
+				for (const link of copilotDeepLinks) {
+					link.href = 'https://aka.ms/vscode-activatecopilotfree';
+				}
+			}
+		});
+	</script>
+
+	<script src="./2. Get started_02. Agents Tutorial_files/index.js.다운로드"></script>
+
+	
+
+	<script type="application/ld+json">
+		{
+			"@context" : "http://schema.org",
+			"@type" : "SoftwareApplication",
+			"name" : "Visual Studio Code",
+			"softwareVersion": "1.135",
+			"offers": {
+				"@type": "Offer",
+				"price": "0",
+				"priceCurrency": "USD"
+			},
+			"applicationCategory": "DeveloperApplication",
+			"applicationSubCategory": "AI Code Editor",
+			"description": "Visual Studio Code is a free, open source AI code editor for agent-first development. Build with AI agents, manage multi-agent workflows, and code across any environment.",
+			"alternateName": "VS Code",
+			"datePublished": "2021-11-03",
+			"operatingSystem": "Mac, Linux, Windows",
+			"logo": "https://code.visualstudio.com/assets/apple-touch-icon.png",
+			"screenshot": "https://code.visualstudio.com/assets/images/product-screenshot.png",
+			"releaseNotes": "https://code.visualstudio.com/updates",
+			"downloadUrl": "https://code.visualstudio.com/download",
+			"license": "https://code.visualstudio.com/license",
+			"softwareRequirements": "https://code.visualstudio.com/docs/supporting/requirements",
+			"url" : "https://code.visualstudio.com",
+			"author": {
+				"@type": "Organization",
+				"name": "Microsoft"
+			},
+			"publisher": {
+				"@type": "Organization",
+				"name": "Microsoft"
+			},
+			"maintainer": {
+				"@type": "Organization",
+				"name": "Microsoft"
+			},
+			"potentialAction": {
+				"@type": "SearchAction",
+				"target": "https://code.visualstudio.com/Search?q={search_term_string}",
+				"query-input": "required name=search_term_string"
+			},
+			"sameAs" : [
+				"https://en.wikipedia.org/wiki/Visual_Studio_Code",
+				"https://twitter.com/code",
+				"https://www.youtube.com/code",
+				"https://www.tiktok.com/@vscode",
+				"https://github.com/microsoft/vscode"
+			]
+		}
+	</script>
+
+
+</body></html>
