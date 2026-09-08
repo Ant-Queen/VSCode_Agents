@@ -15,25 +15,6 @@
 ## 3. Concepts (개념)
 - 01. Agents (에이전트)
 	- https://code.visualstudio.com/docs/agents/concepts/agents
-		- Agent loop (에이전트 루프)
-			- Prompt →
-			- `Understand(이해) → Act(설정) → Validate(검증)` 필요한 만큼 반복
-			- → Result			
-		- Customize the agent loop (에이전트 루프 맞춤화)
-			- Custom Agent
-			- Agent Skills
-			- Hooks
-		- Agent Harnesses (에이전트 하니스)
-		- Subagents (서브 에이전트)
-		- Sessions (세션)
-		- Memory (메모리)
-			- Memory tools (메모리 도구)
-				- User memory (사용자 메모리)
-				- Repository memory (저장소 메모리)
-				- Session memory (세션 메모리)
-			- Copilot memory(코파일럿 메모리)
-		- Planning (계획 에이전트)
-			Discover(발견) → Alignment(정렬) → Design(설계) → Refinement(개선)
 - 02. Agent Harnesses (에이전트 하니스)
 	- https://code.visualstudio.com/docs/agents/concepts/agent-harnesses
 - 03. Language Models (언어 모델)
@@ -55,21 +36,13 @@
 
 ## 4. Run agents (에이전트 실행)
 - 01. Agents Window (에이전트 창)
-    - Agents window
+	- https://code.visualstudio.com/docs/agents/run/agents-window
 - 02. Chat View (채팅 뷰)
-    - Chat view
+	- https://code.visualstudio.com/docs/agents/run/chat-view
 - 03. Choose an Agent Harness (에이전트 하니스 선택)
-	- Harness
-        - Local
-        - Copilot
-        - Claude
-        - Codex
-        - Cloud
+	- https://code.visualstudio.com/docs/agents/run/agent-harnesses
 - 04. Use Tools (도구 사용)
-	- 프롬프트에서 도구 사용
-    - 브라우저 도구
-    - 도구 매개변수 검토
-    -터미
+	- https://code.visualstudio.com/docs/agents/run/tools
 - 05. Browser Tools (브라우저 도구)
 	- https://code.visualstudio.com/docs/agents/run/browser-tools
 - 06. Approvals & Permissions (승인 및 권한)
