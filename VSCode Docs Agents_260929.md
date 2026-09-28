@@ -1,6 +1,6 @@
 # VS Code AGENTS 카테고리 목록
 
-## 1. Overview (개요)
+## 1. AI Overview (AI 개요)
 - 01. AI Overview (AI 개요)
 	- https://code.visualstudio.com/docs/agents/overview
 
