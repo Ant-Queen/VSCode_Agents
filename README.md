@@ -20,10 +20,20 @@ PowerShell에서 작업 공간 폴더로 이동한 뒤 실행합니다.
 .\scripts\save-snapshot.ps1 -IndexFile '.\VSCode Docs Agents_260826.md'
 ```
 
+VS Code 공식 페이지의 `Copy as Markdown` 원문을 저장하려면 다음처럼 실행합니다. 목록의 처음 4개 항목만 처리하는 예시입니다.
+
+```powershell
+.\scripts\save-snapshot.ps1 `
+  -IndexFile '.\VSCode Docs Agents_260922.md' `
+  -SnapshotDate '2026-09-22' `
+  -MarkdownOnly `
+  -MaxUrls 4
+```
+
 기본적으로 오늘 날짜(`yyyy-MM-dd`)의 폴더를 만들고 각 URL의 다음 파일을 저장합니다.
 
-- `*.html`: 서버에서 받은 원본 HTML
-- `*.md`: 비교하기 쉽도록 HTML에서 추출한 본문 텍스트
+- `*.html`: 서버에서 받은 원본 HTML (`-MarkdownOnly`를 사용하지 않은 경우)
+- `*.md`: 공식 `Copy as Markdown` 원문 또는 HTML에서 추출한 본문 텍스트
 - `manifest.json`: URL, 제목, 저장 시각, 파일명을 기록한 목록
 
 같은 날짜에 다시 실행하면 해당 날짜 폴더의 파일을 갱신합니다. `SnapshotDate`는 실제로 그 날짜에 저장한 스냅샷을 복구하거나, 웹 아카이브에서 받은 과거 응답을 정리할 때만 지정합니다. 오늘 받은 내용을 과거 날짜로 저장하면 안 됩니다.
