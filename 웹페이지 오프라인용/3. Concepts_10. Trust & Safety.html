@@ -11,19 +11,19 @@
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:site" content="@code">
 
-	<meta name="description" content="Learn about AI safety controls in VS Code, including agent sandboxing, tool approval, and security considerations for AI-assisted development.">
+	<meta name="description" content="Understand approvals, review, sandboxing, and security considerations for AI agents in VS Code.">
 <meta name="keywords" content="">
 <meta name="ms.prod" content="vs-code">
 <meta name="ms.TOCTitle" content="">
 <meta name="ms.ContentId" content="a7b8c9d0-1e2f-3a4b-5c6d-7e8f9a0b1c2d">
-<meta name="ms.date" content="8/26/2026">
+<meta name="ms.date" content="9/16/2026">
 <meta name="ms.topic" content="conceptual">
 <!-- Twitter and Facebook OpenGraph Metadata-->
 <meta name="twitter:card" content="summary_large_image">
 <meta property="og:url" content="https://code.visualstudio.com/docs/agents/concepts/trust-and-safety">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Trust and safety">
-<meta property="og:description" content="Learn about AI safety controls in VS Code, including agent sandboxing, tool approval, and security considerations for AI-assisted development.">
+<meta property="og:title" content="Understand trust and safety for AI agents">
+<meta property="og:description" content="Understand approvals, review, sandboxing, and security considerations for AI agents in VS Code.">
 
 <meta property="og:image" content="https://code.visualstudio.com/opengraphimg/generated/docs/agents/concepts/trust-and-safety.webp">
 
@@ -32,7 +32,7 @@
 	<link rel="shortcut icon" href="https://code.visualstudio.com/assets/favicon.ico" sizes="128x128">
 	<link rel="apple-touch-icon" href="https://code.visualstudio.com/assets/apple-touch-icon.png">
 
-	<title>Trust and safety</title>
+	<title>Understand trust and safety for AI agents</title>
 
 	<link rel="stylesheet" href="./3. Concepts_10. Trust &amp; Safety_files/style.css">
 
@@ -196,41 +196,67 @@
 					</div>
 				</nav>
 			</div>
-		</div>		<div data-announcement-version="2026-08-21-vscode-gpt-model-promo" class="updates-banner">
-			<div class="container">
-				<p class="message"><a href="https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing?source=vsc-website-banner#openai" target="_blank" rel="noopener">🤖 GPT-5.6 Sol has a new lower price, plus 50% off through Sept. 3. Try it in VS Code!</a></p>
+		</div>		<div data-announcement-version="2026-09-09-vscode-documentary-agent-host" data-rotation-interval-seconds="8" class="updates-banner" data-active-message-index="1">
+			<div class="container banner-messages">
+				<p class="message" data-banner-message="" aria-hidden="true"><a href="https://aka.ms/the-story-of-vs-code?source=vsc-website-banner" target="_blank" rel="noopener">🎬 Watch The Story of VS Code!<span class="codicon codicon-link-external external-link-icon" aria-hidden="true"></span></a></p>
+				<p class="message active" data-banner-message="" aria-hidden="false"><a href="https://code.visualstudio.com/blogs/2026/09/16/building-the-github-copilot-inline-suggestions-model-part-one?source=vsc-website-banner" target="_self" rel="noopener">Blog: Building the new GitHub Copilot inline suggestions model.</a></p>
+				<p class="message" data-banner-message="" aria-hidden="true"><a href="https://gh.io/githubcopilotday?source=vsc-website-banner" target="_blank" rel="noopener">Rewatch GitHub Copilot Day.<span class="codicon codicon-link-external external-link-icon" aria-hidden="true"></span></a></p>
 			</div>
-			<div tabindex="0" role="button" title="Dismiss this update" class="dismiss-btn" id="banner-dismiss-btn"><span class="sr-only">Dismiss this update</span><span aria-hidden="true" class="glyph-icon"></span></div>
+			<button type="button" title="Dismiss this update" class="dismiss-btn" id="banner-dismiss-btn"><span class="sr-only">Dismiss this update</span><span aria-hidden="true" class="glyph-icon"></span></button>
 		</div>
 		<script>
-			// Hide the banner synchronously (before first paint) if this version was
-			// already dismissed, to avoid a flicker/layout shift once the main bundle loads.
+			// Restore dismissal and the session's random starting message before first paint.
 			(function () {
+				var banner = document.currentScript.previousElementSibling;
+				if (!banner) {
+					return;
+				}
+		
+				var version = banner.getAttribute('data-announcement-version');
 				try {
-					var banner = document.currentScript.previousElementSibling;
-					if (banner && localStorage.getItem('dismissedAnnouncementVersion') === banner.getAttribute('data-announcement-version')) {
+					if (localStorage.getItem('dismissedAnnouncementVersion') === version) {
 						banner.classList.add('js-hidden');
 					}
-				} catch (e) { /* ignore */ }
+				} catch (error) {
+					console.warn('Unable to restore banner dismissal state.', error);
+				}
+		
+				var messages = banner.querySelectorAll('[data-banner-message]');
+				if (messages.length < 2) {
+					return;
+				}
+		
+				var storageKey = 'initialAnnouncementMessage:' + version;
+				var activeIndex;
+				try {
+					var storedIndex = sessionStorage.getItem(storageKey);
+					if (storedIndex !== null) {
+						activeIndex = Number(storedIndex);
+					}
+				} catch (error) {
+					console.warn('Unable to restore the initial banner message.', error);
+				}
+				if (!Number.isInteger(activeIndex) || activeIndex < 0 || activeIndex >= messages.length) {
+					activeIndex = Math.floor(Math.random() * messages.length);
+					try {
+						sessionStorage.setItem(storageKey, String(activeIndex));
+					} catch (error) {
+						console.warn('Unable to remember the initial banner message.', error);
+					}
+				}
+		
+				for (var index = 0; index < messages.length; index++) {
+					var isActive = index === activeIndex;
+					messages[index].classList.toggle('active', isActive);
+					messages[index].setAttribute('aria-hidden', String(!isActive));
+				}
+				banner.setAttribute('data-active-message-index', String(activeIndex));
 			})();
 		</script>
 		<!-- This div wraps around the entire site -->
 		<!-- The body itself should already have a main tag -->
 		<main id="main-content">
-			<script>
-    function closeReportIssue() {
-        var element = document.getElementById('surveypopup');
-        element.parentElement.removeChild(element);
-    }
-
-    function reportIssue(tutorial, page) {
-        var div = document.createElement('div');
-        div.innerHTML = '<div id="surveypopup" class="overlay visible"><div class="surveypopup"><div id="surveytitle">Tell us more<a href="javascript:void(0)" onclick="closeReportIssue()">X</a></div><div id="surveydiv"><iframe frameBorder="0" scrolling="0" src="https://www.research.net/r/PWZWZ52?tutorial=' + tutorial + '&step=' + page + '"></iframe></div></div></div>';
-        document.body.appendChild(div.children[0]);
-    }
-</script>
-
-<div class="body-content docs docs-github-layout">
+			<div class="body-content docs docs-github-layout">
     <div class="docs-layout-wrapper">
         <!-- Left sidebar - Table of Contents -->
         <aside class="docs-left-sidebar">
@@ -254,7 +280,7 @@
                     </li>
                       
                     <li>
-                      <a href="https://code.visualstudio.com/docs/editing/getting-started" data-m="{&quot;cN&quot;:&quot;Editor Tutorial&quot;,&quot;aN&quot;:&quot;Get Started&quot;}">Editor Tutorial</a>
+                      <a href="https://code.visualstudio.com/docs/editing/getting-started/editor-tutorial" data-m="{&quot;cN&quot;:&quot;Editor Tutorial&quot;,&quot;aN&quot;:&quot;Get Started&quot;}">Editor Tutorial</a>
                     </li>
                       
                     <li>
@@ -343,15 +369,35 @@
               <ul id="agents-run-articles" class="collapse " aria-expanded="false">
             
                     <li>
-                      <a href="https://code.visualstudio.com/docs/agents/run/agents-window" data-m="{&quot;cN&quot;:&quot;Agents Window&quot;,&quot;aN&quot;:&quot;Agents - Run agents&quot;}">Agents Window</a>
-                    </li>
-                      
-                    <li>
                       <a href="https://code.visualstudio.com/docs/agents/run/chat-view" data-m="{&quot;cN&quot;:&quot;Chat View&quot;,&quot;aN&quot;:&quot;Agents - Run agents&quot;}">Chat View</a>
                     </li>
                       
                     <li>
+                      <a href="https://code.visualstudio.com/docs/agents/run/agents-window" data-m="{&quot;cN&quot;:&quot;Agents Window&quot;,&quot;aN&quot;:&quot;Agents - Run agents&quot;}">Agents Window</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/run/automations" data-m="{&quot;cN&quot;:&quot;Automations&quot;,&quot;aN&quot;:&quot;Agents - Run agents&quot;}">Automations</a>
+                    </li>
+                      
+                    <li>
                       <a href="https://code.visualstudio.com/docs/agents/run/agent-harnesses" data-m="{&quot;cN&quot;:&quot;Choose an Agent Harness&quot;,&quot;aN&quot;:&quot;Agents - Run agents&quot;}">Choose an Agent Harness</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/run/approvals" data-m="{&quot;cN&quot;:&quot;Approvals &amp; Permissions&quot;,&quot;aN&quot;:&quot;Agents - Run agents&quot;}">Approvals &amp; Permissions</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/run/agent-sandboxing" data-m="{&quot;cN&quot;:&quot;Agent Sandboxing&quot;,&quot;aN&quot;:&quot;Agents - Run agents&quot;}">Agent Sandboxing</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/run/security" data-m="{&quot;cN&quot;:&quot;AI Security&quot;,&quot;aN&quot;:&quot;Agents - Run agents&quot;}">AI Security</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/run/review-code-edits" data-m="{&quot;cN&quot;:&quot;Review &amp; Revert Changes&quot;,&quot;aN&quot;:&quot;Agents - Run agents&quot;}">Review &amp; Revert Changes</a>
                     </li>
                       
                     <li>
@@ -363,11 +409,7 @@
                     </li>
                       
                     <li>
-                      <a href="https://code.visualstudio.com/docs/agents/run/approvals" data-m="{&quot;cN&quot;:&quot;Approvals &amp; Permissions&quot;,&quot;aN&quot;:&quot;Agents - Run agents&quot;}">Approvals &amp; Permissions</a>
-                    </li>
-                      
-                    <li>
-                      <a href="https://code.visualstudio.com/docs/agents/run/review-code-edits" data-m="{&quot;cN&quot;:&quot;Review &amp; Revert Changes&quot;,&quot;aN&quot;:&quot;Agents - Run agents&quot;}">Review &amp; Revert Changes</a>
+                      <a href="https://code.visualstudio.com/docs/agents/run/planning" data-m="{&quot;cN&quot;:&quot;Plan Work&quot;,&quot;aN&quot;:&quot;Agents - Run agents&quot;}">Plan Work</a>
                     </li>
                       
                     <li>
@@ -376,10 +418,6 @@
                       
                     <li>
                       <a href="https://code.visualstudio.com/docs/agents/run/remote-agent-sessions" data-m="{&quot;cN&quot;:&quot;Remote Agent Sessions&quot;,&quot;aN&quot;:&quot;Agents - Run agents&quot;}">Remote Agent Sessions</a>
-                    </li>
-                      
-                    <li>
-                      <a href="https://code.visualstudio.com/docs/agents/run/planning" data-m="{&quot;cN&quot;:&quot;Plan Work&quot;,&quot;aN&quot;:&quot;Agents - Run agents&quot;}">Plan Work</a>
                     </li>
                       
                     <li>
@@ -406,7 +444,7 @@
             </li>
                     
                     <li>
-                      <a href="https://code.visualstudio.com/docs/agents/run/security" data-m="{&quot;cN&quot;:&quot;AI Security&quot;,&quot;aN&quot;:&quot;Agents - Run agents&quot;}">AI Security</a>
+                      <a href="https://code.visualstudio.com/docs/agents/run/agents-window-configuration" data-m="{&quot;cN&quot;:&quot;Configure the Agents Window&quot;,&quot;aN&quot;:&quot;Agents - Run agents&quot;}">Configure the Agents Window</a>
                     </li>
                       
               </ul>
@@ -449,30 +487,7 @@
                     </li>
                       
                     <li>
-                      <a href="https://code.visualstudio.com/docs/agent-customization/tools" data-m="{&quot;cN&quot;:&quot;Tools&quot;,&quot;aN&quot;:&quot;Agents - Customize agents&quot;}">Tools</a>
-                    </li>
-                      
-                    <li>
                       <a href="https://code.visualstudio.com/docs/agent-customization/prompt-files" data-m="{&quot;cN&quot;:&quot;Prompt Files&quot;,&quot;aN&quot;:&quot;Agents - Customize agents&quot;}">Prompt Files</a>
-                    </li>
-                      
-              </ul>
-            </li>
-                    
-            <li class="panel collapsed">
-              <a class="area" role="button" href="https://code.visualstudio.com/docs/agents/concepts/trust-and-safety#chat-articles" data-toggle="collapse" data-m="{&quot;cN&quot;:&quot;Use chat&quot;,&quot;aN&quot;:&quot;Agents&quot;,&quot;cT&quot;:&quot;toggle&quot;}" aria-expanded="false">Use chat</a>
-              <ul id="chat-articles" class="collapse " aria-expanded="false">
-            
-                    <li>
-                      <a href="https://code.visualstudio.com/docs/chat/chat-overview" data-m="{&quot;cN&quot;:&quot;Chat Basics&quot;,&quot;aN&quot;:&quot;Agents - Use chat&quot;}">Chat Basics</a>
-                    </li>
-                      
-                    <li>
-                      <a href="https://code.visualstudio.com/docs/chat/inline-chat" data-m="{&quot;cN&quot;:&quot;Inline &amp; Quick Chat&quot;,&quot;aN&quot;:&quot;Agents - Use chat&quot;}">Inline &amp; Quick Chat</a>
-                    </li>
-                      
-                    <li>
-                      <a href="https://code.visualstudio.com/docs/chat/copilot-chat-context" data-m="{&quot;cN&quot;:&quot;Add Prompt Context&quot;,&quot;aN&quot;:&quot;Agents - Use chat&quot;}">Add Prompt Context</a>
                     </li>
                       
               </ul>
@@ -483,7 +498,27 @@
               <ul id="agents-guides-articles" class="collapse " aria-expanded="false">
             
                     <li>
-                      <a href="https://code.visualstudio.com/docs/agents/guides/customize-copilot-guide" data-m="{&quot;cN&quot;:&quot;Customize AI&quot;,&quot;aN&quot;:&quot;Agents - Tutorials &amp; guides&quot;}">Customize AI</a>
+                      <a href="https://code.visualstudio.com/docs/agents/guides/customize-copilot-guide" data-m="{&quot;cN&quot;:&quot;Configure AI for your project&quot;,&quot;aN&quot;:&quot;Agents - Tutorials &amp; guides&quot;}">Configure AI for your project</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/guides/fix-a-bug-with-agents" data-m="{&quot;cN&quot;:&quot;Fix an API Bug&quot;,&quot;aN&quot;:&quot;Agents - Tutorials &amp; guides&quot;}">Fix an API Bug</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/guides/delegate-two-tasks" data-m="{&quot;cN&quot;:&quot;Delegate Two Tasks Without Mixing Their Changes&quot;,&quot;aN&quot;:&quot;Agents - Tutorials &amp; guides&quot;}">Delegate Two Tasks Without Mixing Their Changes</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/guides/test-code-with-ai" data-m="{&quot;cN&quot;:&quot;Test Code with AI&quot;,&quot;aN&quot;:&quot;Agents - Tutorials &amp; guides&quot;}">Test Code with AI</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/guides/browser-agent-testing-guide" data-m="{&quot;cN&quot;:&quot;Test Web Apps with Browser Tools&quot;,&quot;aN&quot;:&quot;Agents - Tutorials &amp; guides&quot;}">Test Web Apps with Browser Tools</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/guides/get-agent-back-on-track" data-m="{&quot;cN&quot;:&quot;Get an Agent Back on Track&quot;,&quot;aN&quot;:&quot;Agents - Tutorials &amp; guides&quot;}">Get an Agent Back on Track</a>
                     </li>
                       
                     <li>
@@ -495,19 +530,7 @@
                     </li>
                       
                     <li>
-                      <a href="https://code.visualstudio.com/docs/agents/guides/test-with-copilot" data-m="{&quot;cN&quot;:&quot;Test with AI&quot;,&quot;aN&quot;:&quot;Agents - Tutorials &amp; guides&quot;}">Test with AI</a>
-                    </li>
-                      
-                    <li>
-                      <a href="https://code.visualstudio.com/docs/agents/guides/browser-agent-testing-guide" data-m="{&quot;cN&quot;:&quot;Test Web Apps with Browser Tools&quot;,&quot;aN&quot;:&quot;Agents - Tutorials &amp; guides&quot;}">Test Web Apps with Browser Tools</a>
-                    </li>
-                      
-                    <li>
-                      <a href="https://code.visualstudio.com/docs/agents/guides/debug-with-copilot" data-m="{&quot;cN&quot;:&quot;Debug with AI&quot;,&quot;aN&quot;:&quot;Agents - Tutorials &amp; guides&quot;}">Debug with AI</a>
-                    </li>
-                      
-                    <li>
-                      <a href="https://code.visualstudio.com/docs/agents/guides/notebooks-with-ai" data-m="{&quot;cN&quot;:&quot;Edit Notebooks with AI&quot;,&quot;aN&quot;:&quot;Agents - Tutorials &amp; guides&quot;}">Edit Notebooks with AI</a>
+                      <a href="https://code.visualstudio.com/docs/agents/guides/notebooks-with-ai" data-m="{&quot;cN&quot;:&quot;Work with Jupyter Notebooks using AI&quot;,&quot;aN&quot;:&quot;Agents - Tutorials &amp; guides&quot;}">Work with Jupyter Notebooks using AI</a>
                     </li>
                       
                     <li>
@@ -535,6 +558,10 @@
                       
                     <li>
                       <a href="https://code.visualstudio.com/docs/agents/reference/ai-settings" data-m="{&quot;cN&quot;:&quot;Settings Reference&quot;,&quot;aN&quot;:&quot;Agents - Reference&quot;}">Settings Reference</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/agents/reference/chat-pet" data-m="{&quot;cN&quot;:&quot;VS Code Pet&quot;,&quot;aN&quot;:&quot;Agents - Reference&quot;}">VS Code Pet</a>
                     </li>
                       
                     <li>
@@ -578,10 +605,209 @@
               </ul>
             </li>
                 
+            <li class="panel collapsed">
+              <a class="area" role="button" href="https://code.visualstudio.com/docs/agents/concepts/trust-and-safety#chat-articles" data-parent="#main-nav" data-toggle="collapse" data-m="{&quot;cN&quot;:&quot;Chat&quot;,&quot;cT&quot;:&quot;toggle&quot;}" aria-expanded="false">Chat</a>
+              <ul id="chat-articles" class="collapse " aria-expanded="false">
+            
                     <li>
-                      <a class="area" href="https://code.visualstudio.com/docs/core-editor/overview" data-m="{&quot;cN&quot;:&quot;Editor&quot;}">Editor</a>
+                      <a href="https://code.visualstudio.com/docs/chat/chat-overview" data-m="{&quot;cN&quot;:&quot;Chat Interactions&quot;,&quot;aN&quot;:&quot;Chat&quot;}">Chat Interactions</a>
                     </li>
-                  
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/chat/inline-chat" data-m="{&quot;cN&quot;:&quot;Inline &amp; Quick Chat&quot;,&quot;aN&quot;:&quot;Chat&quot;}">Inline &amp; Quick Chat</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/chat/copilot-chat-context" data-m="{&quot;cN&quot;:&quot;Add Prompt Context&quot;,&quot;aN&quot;:&quot;Chat&quot;}">Add Prompt Context</a>
+                    </li>
+                      
+              </ul>
+            </li>
+                
+            <li class="panel collapsed">
+              <a class="area" role="button" href="https://code.visualstudio.com/docs/agents/concepts/trust-and-safety#core-editor-articles" data-parent="#main-nav" data-toggle="collapse" data-m="{&quot;cN&quot;:&quot;Editor&quot;,&quot;cT&quot;:&quot;toggle&quot;}" aria-expanded="false">Editor</a>
+              <ul id="core-editor-articles" class="collapse " aria-expanded="false">
+            
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/editing/getting-started/overview" data-m="{&quot;cN&quot;:&quot;Overview&quot;,&quot;aN&quot;:&quot;Editor&quot;}">Overview</a>
+                    </li>
+                      
+            <li class="panel collapsed">
+              <a class="area" role="button" href="https://code.visualstudio.com/docs/agents/concepts/trust-and-safety#editing-getting-started-articles" data-toggle="collapse" data-m="{&quot;cN&quot;:&quot;Getting Started&quot;,&quot;aN&quot;:&quot;Editor&quot;,&quot;cT&quot;:&quot;toggle&quot;}" aria-expanded="false">Getting Started</a>
+              <ul id="editing-getting-started-articles" class="collapse " aria-expanded="false">
+            
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/editing/getting-started/editor-tutorial" data-m="{&quot;cN&quot;:&quot;Editor Tutorial&quot;,&quot;aN&quot;:&quot;Editor - Getting Started&quot;}">Editor Tutorial</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/editing/getting-started/userinterface" data-m="{&quot;cN&quot;:&quot;User Interface&quot;,&quot;aN&quot;:&quot;Editor - Getting Started&quot;}">User Interface</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/editing/getting-started/tips-and-tricks" data-m="{&quot;cN&quot;:&quot;Tips and Tricks&quot;,&quot;aN&quot;:&quot;Editor - Getting Started&quot;}">Tips and Tricks</a>
+                    </li>
+                      
+              </ul>
+            </li>
+                    
+            <li class="panel collapsed">
+              <a class="area" role="button" href="https://code.visualstudio.com/docs/agents/concepts/trust-and-safety#editing-articles" data-toggle="collapse" data-m="{&quot;cN&quot;:&quot;Write code&quot;,&quot;aN&quot;:&quot;Editor&quot;,&quot;cT&quot;:&quot;toggle&quot;}" aria-expanded="false">Write code</a>
+              <ul id="editing-articles" class="collapse " aria-expanded="false">
+            
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/editing/codebasics" data-m="{&quot;cN&quot;:&quot;Basic Editing&quot;,&quot;aN&quot;:&quot;Editor - Write code&quot;}">Basic Editing</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/editing/intellisense" data-m="{&quot;cN&quot;:&quot;IntelliSense&quot;,&quot;aN&quot;:&quot;Editor - Write code&quot;}">IntelliSense</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/editing/ai-powered-suggestions" data-m="{&quot;cN&quot;:&quot;Inline Suggestions&quot;,&quot;aN&quot;:&quot;Editor - Write code&quot;}">Inline Suggestions</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/editing/copilot-smart-actions" data-m="{&quot;cN&quot;:&quot;Smart Actions&quot;,&quot;aN&quot;:&quot;Editor - Write code&quot;}">Smart Actions</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/editing/editingevolved" data-m="{&quot;cN&quot;:&quot;Code Navigation&quot;,&quot;aN&quot;:&quot;Editor - Write code&quot;}">Code Navigation</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/editing/refactoring" data-m="{&quot;cN&quot;:&quot;Refactoring&quot;,&quot;aN&quot;:&quot;Editor - Write code&quot;}">Refactoring</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/editing/userdefinedsnippets" data-m="{&quot;cN&quot;:&quot;Snippets&quot;,&quot;aN&quot;:&quot;Editor - Write code&quot;}">Snippets</a>
+                    </li>
+                      
+            <li class="panel collapsed">
+              <a class="area" role="button" href="https://code.visualstudio.com/docs/agents/concepts/trust-and-safety#editing-workspaces-articles" data-toggle="collapse" data-m="{&quot;cN&quot;:&quot;Workspaces&quot;,&quot;aN&quot;:&quot;Editor - Write code&quot;,&quot;cT&quot;:&quot;toggle&quot;}" aria-expanded="false">Workspaces</a>
+              <ul id="editing-workspaces-articles" class="collapse " aria-expanded="false">
+            
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/editing/workspaces/workspaces" data-m="{&quot;cN&quot;:&quot;Overview&quot;,&quot;aN&quot;:&quot;Editor - Write code - Workspaces&quot;}">Overview</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/editing/workspaces/multi-root-workspaces" data-m="{&quot;cN&quot;:&quot;Multi-Root Workspaces&quot;,&quot;aN&quot;:&quot;Editor - Write code - Workspaces&quot;}">Multi-Root Workspaces</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/editing/workspaces/workspace-trust" data-m="{&quot;cN&quot;:&quot;Workspace Trust&quot;,&quot;aN&quot;:&quot;Editor - Write code - Workspaces&quot;}">Workspace Trust</a>
+                    </li>
+                      
+              </ul>
+            </li>
+                    
+              </ul>
+            </li>
+                    
+            <li class="panel collapsed">
+              <a class="area" role="button" href="https://code.visualstudio.com/docs/agents/concepts/trust-and-safety#configure-articles" data-toggle="collapse" data-m="{&quot;cN&quot;:&quot;Configure the editor&quot;,&quot;aN&quot;:&quot;Editor&quot;,&quot;cT&quot;:&quot;toggle&quot;}" aria-expanded="false">Configure the editor</a>
+              <ul id="configure-articles" class="collapse " aria-expanded="false">
+            
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/configure/locales" data-m="{&quot;cN&quot;:&quot;Display Language&quot;,&quot;aN&quot;:&quot;Editor - Configure the editor&quot;}">Display Language</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/configure/custom-layout" data-m="{&quot;cN&quot;:&quot;Layout&quot;,&quot;aN&quot;:&quot;Editor - Configure the editor&quot;}">Layout</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/configure/keybindings" data-m="{&quot;cN&quot;:&quot;Keyboard Shortcuts&quot;,&quot;aN&quot;:&quot;Editor - Configure the editor&quot;}">Keyboard Shortcuts</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/configure/settings" data-m="{&quot;cN&quot;:&quot;Settings&quot;,&quot;aN&quot;:&quot;Editor - Configure the editor&quot;}">Settings</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/configure/settings-sync" data-m="{&quot;cN&quot;:&quot;Settings Sync&quot;,&quot;aN&quot;:&quot;Editor - Configure the editor&quot;}">Settings Sync</a>
+                    </li>
+                      
+            <li class="panel collapsed">
+              <a class="area" role="button" href="https://code.visualstudio.com/docs/agents/concepts/trust-and-safety#configure-extensions-articles" data-toggle="collapse" data-m="{&quot;cN&quot;:&quot;Extensions&quot;,&quot;aN&quot;:&quot;Editor - Configure the editor&quot;,&quot;cT&quot;:&quot;toggle&quot;}" aria-expanded="false">Extensions</a>
+              <ul id="configure-extensions-articles" class="collapse " aria-expanded="false">
+            
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/configure/extensions/extensions" data-m="{&quot;cN&quot;:&quot;Overview&quot;,&quot;aN&quot;:&quot;Editor - Configure the editor - Extensions&quot;}">Overview</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/configure/extensions/extension-marketplace" data-m="{&quot;cN&quot;:&quot;Extension Marketplace&quot;,&quot;aN&quot;:&quot;Editor - Configure the editor - Extensions&quot;}">Extension Marketplace</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/configure/extensions/extension-runtime-security" data-m="{&quot;cN&quot;:&quot;Extension Runtime Security&quot;,&quot;aN&quot;:&quot;Editor - Configure the editor - Extensions&quot;}">Extension Runtime Security</a>
+                    </li>
+                      
+              </ul>
+            </li>
+                    
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/configure/themes" data-m="{&quot;cN&quot;:&quot;Themes&quot;,&quot;aN&quot;:&quot;Editor - Configure the editor&quot;}">Themes</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/configure/profiles" data-m="{&quot;cN&quot;:&quot;Profiles&quot;,&quot;aN&quot;:&quot;Editor - Configure the editor&quot;}">Profiles</a>
+                    </li>
+                      
+            <li class="panel collapsed">
+              <a class="area" role="button" href="https://code.visualstudio.com/docs/agents/concepts/trust-and-safety#configure-accessibility-articles" data-toggle="collapse" data-m="{&quot;cN&quot;:&quot;Accessibility&quot;,&quot;aN&quot;:&quot;Editor - Configure the editor&quot;,&quot;cT&quot;:&quot;toggle&quot;}" aria-expanded="false">Accessibility</a>
+              <ul id="configure-accessibility-articles" class="collapse " aria-expanded="false">
+            
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/configure/accessibility/accessibility" data-m="{&quot;cN&quot;:&quot;Overview&quot;,&quot;aN&quot;:&quot;Editor - Configure the editor - Accessibility&quot;}">Overview</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/configure/accessibility/voice" data-m="{&quot;cN&quot;:&quot;Voice Interactions&quot;,&quot;aN&quot;:&quot;Editor - Configure the editor - Accessibility&quot;}">Voice Interactions</a>
+                    </li>
+                      
+              </ul>
+            </li>
+                    
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/configure/command-line" data-m="{&quot;cN&quot;:&quot;Command Line Interface&quot;,&quot;aN&quot;:&quot;Editor - Configure the editor&quot;}">Command Line Interface</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/configure/telemetry" data-m="{&quot;cN&quot;:&quot;Telemetry&quot;,&quot;aN&quot;:&quot;Editor - Configure the editor&quot;}">Telemetry</a>
+                    </li>
+                      
+              </ul>
+            </li>
+                    
+            <li class="panel collapsed">
+              <a class="area" role="button" href="https://code.visualstudio.com/docs/agents/concepts/trust-and-safety#reference-articles" data-toggle="collapse" data-m="{&quot;cN&quot;:&quot;Reference&quot;,&quot;aN&quot;:&quot;Editor&quot;,&quot;cT&quot;:&quot;toggle&quot;}" aria-expanded="false">Reference</a>
+              <ul id="reference-articles" class="collapse " aria-expanded="false">
+            
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/reference/default-keybindings" data-m="{&quot;cN&quot;:&quot;Default Keyboard Shortcuts&quot;,&quot;aN&quot;:&quot;Editor - Reference&quot;}">Default Keyboard Shortcuts</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/reference/default-settings" data-m="{&quot;cN&quot;:&quot;Default Settings&quot;,&quot;aN&quot;:&quot;Editor - Reference&quot;}">Default Settings</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/reference/variables-reference" data-m="{&quot;cN&quot;:&quot;Substitution Variables&quot;,&quot;aN&quot;:&quot;Editor - Reference&quot;}">Substitution Variables</a>
+                    </li>
+                      
+                    <li>
+                      <a href="https://code.visualstudio.com/docs/reference/tasks-appendix" data-m="{&quot;cN&quot;:&quot;Tasks Schema&quot;,&quot;aN&quot;:&quot;Editor - Reference&quot;}">Tasks Schema</a>
+                    </li>
+                      
+              </ul>
+            </li>
+                    
+              </ul>
+            </li>
+                
             <li class="panel collapsed">
               <a class="area" role="button" href="https://code.visualstudio.com/docs/agents/concepts/trust-and-safety#sourcecontrol-articles" data-parent="#main-nav" data-toggle="collapse" data-m="{&quot;cN&quot;:&quot;Source Control&quot;,&quot;cT&quot;:&quot;toggle&quot;}" aria-expanded="false">Source Control</a>
               <ul id="sourcecontrol-articles" class="collapse " aria-expanded="false">
@@ -861,7 +1087,7 @@
                     
                     <option value="/docs/agents/quickstart">Agents Quickstart</option>
                     
-                    <option value="/docs/editing/getting-started">Editor Tutorial</option>
+                    <option value="/docs/editing/getting-started/editor-tutorial">Editor Tutorial</option>
                     
                     <option value="/docs/getstarted/introvideos">Intro Videos</option>
                     
@@ -903,25 +1129,31 @@
                     
                     <option disabled="">Run agents</option>
             
-                    <option value="/docs/agents/run/agents-window">&nbsp;&nbsp;&nbsp;&nbsp;Agents Window</option>
-                    
                     <option value="/docs/agents/run/chat-view">&nbsp;&nbsp;&nbsp;&nbsp;Chat View</option>
                     
+                    <option value="/docs/agents/run/agents-window">&nbsp;&nbsp;&nbsp;&nbsp;Agents Window</option>
+                    
+                    <option value="/docs/agents/run/automations">&nbsp;&nbsp;&nbsp;&nbsp;Automations</option>
+                    
                     <option value="/docs/agents/run/agent-harnesses">&nbsp;&nbsp;&nbsp;&nbsp;Choose an Agent Harness</option>
+                    
+                    <option value="/docs/agents/run/approvals">&nbsp;&nbsp;&nbsp;&nbsp;Approvals &amp; Permissions</option>
+                    
+                    <option value="/docs/agents/run/agent-sandboxing">&nbsp;&nbsp;&nbsp;&nbsp;Agent Sandboxing</option>
+                    
+                    <option value="/docs/agents/run/security">&nbsp;&nbsp;&nbsp;&nbsp;AI Security</option>
+                    
+                    <option value="/docs/agents/run/review-code-edits">&nbsp;&nbsp;&nbsp;&nbsp;Review &amp; Revert Changes</option>
                     
                     <option value="/docs/agents/run/tools">&nbsp;&nbsp;&nbsp;&nbsp;Use Tools</option>
                     
                     <option value="/docs/agents/run/browser-tools">&nbsp;&nbsp;&nbsp;&nbsp;Browser Tools</option>
                     
-                    <option value="/docs/agents/run/approvals">&nbsp;&nbsp;&nbsp;&nbsp;Approvals &amp; Permissions</option>
-                    
-                    <option value="/docs/agents/run/review-code-edits">&nbsp;&nbsp;&nbsp;&nbsp;Review &amp; Revert Changes</option>
+                    <option value="/docs/agents/run/planning">&nbsp;&nbsp;&nbsp;&nbsp;Plan Work</option>
                     
                     <option value="/docs/agents/run/artifacts">&nbsp;&nbsp;&nbsp;&nbsp;Artifacts</option>
                     
                     <option value="/docs/agents/run/remote-agent-sessions">&nbsp;&nbsp;&nbsp;&nbsp;Remote Agent Sessions</option>
-                    
-                    <option value="/docs/agents/run/planning">&nbsp;&nbsp;&nbsp;&nbsp;Plan Work</option>
                     
                     <option value="/docs/agents/run/memory">&nbsp;&nbsp;&nbsp;&nbsp;Memory</option>
                     
@@ -933,7 +1165,7 @@
                     
                     <option value="/docs/agents/run/sessions/session-history">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Session History</option>
                     
-                    <option value="/docs/agents/run/security">&nbsp;&nbsp;&nbsp;&nbsp;AI Security</option>
+                    <option value="/docs/agents/run/agents-window-configuration">&nbsp;&nbsp;&nbsp;&nbsp;Configure the Agents Window</option>
                     
                     <option disabled="">Customize agents</option>
             
@@ -953,33 +1185,27 @@
                     
                     <option value="/docs/agent-customization/agent-plugins">&nbsp;&nbsp;&nbsp;&nbsp;Plugins</option>
                     
-                    <option value="/docs/agent-customization/tools">&nbsp;&nbsp;&nbsp;&nbsp;Tools</option>
-                    
                     <option value="/docs/agent-customization/prompt-files">&nbsp;&nbsp;&nbsp;&nbsp;Prompt Files</option>
-                    
-                    <option disabled="">Use chat</option>
-            
-                    <option value="/docs/chat/chat-overview">&nbsp;&nbsp;&nbsp;&nbsp;Chat Basics</option>
-                    
-                    <option value="/docs/chat/inline-chat">&nbsp;&nbsp;&nbsp;&nbsp;Inline &amp; Quick Chat</option>
-                    
-                    <option value="/docs/chat/copilot-chat-context">&nbsp;&nbsp;&nbsp;&nbsp;Add Prompt Context</option>
                     
                     <option disabled="">Tutorials &amp; guides</option>
             
-                    <option value="/docs/agents/guides/customize-copilot-guide">&nbsp;&nbsp;&nbsp;&nbsp;Customize AI</option>
+                    <option value="/docs/agents/guides/customize-copilot-guide">&nbsp;&nbsp;&nbsp;&nbsp;Configure AI for your project</option>
+                    
+                    <option value="/docs/agents/guides/fix-a-bug-with-agents">&nbsp;&nbsp;&nbsp;&nbsp;Fix an API Bug</option>
+                    
+                    <option value="/docs/agents/guides/delegate-two-tasks">&nbsp;&nbsp;&nbsp;&nbsp;Delegate Two Tasks Without Mixing Their Changes</option>
+                    
+                    <option value="/docs/agents/guides/test-code-with-ai">&nbsp;&nbsp;&nbsp;&nbsp;Test Code with AI</option>
+                    
+                    <option value="/docs/agents/guides/browser-agent-testing-guide">&nbsp;&nbsp;&nbsp;&nbsp;Test Web Apps with Browser Tools</option>
+                    
+                    <option value="/docs/agents/guides/get-agent-back-on-track">&nbsp;&nbsp;&nbsp;&nbsp;Get an Agent Back on Track</option>
                     
                     <option value="/docs/agents/guides/context-engineering-guide">&nbsp;&nbsp;&nbsp;&nbsp;Context Engineering</option>
                     
                     <option value="/docs/agents/guides/test-driven-development-guide">&nbsp;&nbsp;&nbsp;&nbsp;Test-Driven Development</option>
                     
-                    <option value="/docs/agents/guides/test-with-copilot">&nbsp;&nbsp;&nbsp;&nbsp;Test with AI</option>
-                    
-                    <option value="/docs/agents/guides/browser-agent-testing-guide">&nbsp;&nbsp;&nbsp;&nbsp;Test Web Apps with Browser Tools</option>
-                    
-                    <option value="/docs/agents/guides/debug-with-copilot">&nbsp;&nbsp;&nbsp;&nbsp;Debug with AI</option>
-                    
-                    <option value="/docs/agents/guides/notebooks-with-ai">&nbsp;&nbsp;&nbsp;&nbsp;Edit Notebooks with AI</option>
+                    <option value="/docs/agents/guides/notebooks-with-ai">&nbsp;&nbsp;&nbsp;&nbsp;Work with Jupyter Notebooks using AI</option>
                     
                     <option value="/docs/agents/guides/optimize-usage">&nbsp;&nbsp;&nbsp;&nbsp;Optimize AI Credit Usage</option>
                     
@@ -992,6 +1218,8 @@
                     <option value="/docs/agents/reference/ai-features-cheat-sheet">&nbsp;&nbsp;&nbsp;&nbsp;Cheat Sheet</option>
                     
                     <option value="/docs/agents/reference/ai-settings">&nbsp;&nbsp;&nbsp;&nbsp;Settings Reference</option>
+                    
+                    <option value="/docs/agents/reference/chat-pet">&nbsp;&nbsp;&nbsp;&nbsp;VS Code Pet</option>
                     
                     <option value="/docs/agents/reference/mcp-configuration">&nbsp;&nbsp;&nbsp;&nbsp;MCP Configuration</option>
                     
@@ -1011,8 +1239,98 @@
                     
               </optgroup>
               
-                    <option value="/docs/core-editor/overview">Editor</option>
-                  
+              <optgroup label="Chat">
+            
+                    <option value="/docs/chat/chat-overview">Chat Interactions</option>
+                    
+                    <option value="/docs/chat/inline-chat">Inline &amp; Quick Chat</option>
+                    
+                    <option value="/docs/chat/copilot-chat-context">Add Prompt Context</option>
+                    
+              </optgroup>
+              
+              <optgroup label="Editor">
+            
+                    <option value="/docs/editing/getting-started/overview">Overview</option>
+                    
+                    <option disabled="">Getting Started</option>
+            
+                    <option value="/docs/editing/getting-started/editor-tutorial">&nbsp;&nbsp;&nbsp;&nbsp;Editor Tutorial</option>
+                    
+                    <option value="/docs/editing/getting-started/userinterface">&nbsp;&nbsp;&nbsp;&nbsp;User Interface</option>
+                    
+                    <option value="/docs/editing/getting-started/tips-and-tricks">&nbsp;&nbsp;&nbsp;&nbsp;Tips and Tricks</option>
+                    
+                    <option disabled="">Write code</option>
+            
+                    <option value="/docs/editing/codebasics">&nbsp;&nbsp;&nbsp;&nbsp;Basic Editing</option>
+                    
+                    <option value="/docs/editing/intellisense">&nbsp;&nbsp;&nbsp;&nbsp;IntelliSense</option>
+                    
+                    <option value="/docs/editing/ai-powered-suggestions">&nbsp;&nbsp;&nbsp;&nbsp;Inline Suggestions</option>
+                    
+                    <option value="/docs/editing/copilot-smart-actions">&nbsp;&nbsp;&nbsp;&nbsp;Smart Actions</option>
+                    
+                    <option value="/docs/editing/editingevolved">&nbsp;&nbsp;&nbsp;&nbsp;Code Navigation</option>
+                    
+                    <option value="/docs/editing/refactoring">&nbsp;&nbsp;&nbsp;&nbsp;Refactoring</option>
+                    
+                    <option value="/docs/editing/userdefinedsnippets">&nbsp;&nbsp;&nbsp;&nbsp;Snippets</option>
+                    
+                    <option disabled="">&nbsp;&nbsp;&nbsp;&nbsp;Workspaces</option>
+            
+                    <option value="/docs/editing/workspaces/workspaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Overview</option>
+                    
+                    <option value="/docs/editing/workspaces/multi-root-workspaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Multi-Root Workspaces</option>
+                    
+                    <option value="/docs/editing/workspaces/workspace-trust">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Workspace Trust</option>
+                    
+                    <option disabled="">Configure the editor</option>
+            
+                    <option value="/docs/configure/locales">&nbsp;&nbsp;&nbsp;&nbsp;Display Language</option>
+                    
+                    <option value="/docs/configure/custom-layout">&nbsp;&nbsp;&nbsp;&nbsp;Layout</option>
+                    
+                    <option value="/docs/configure/keybindings">&nbsp;&nbsp;&nbsp;&nbsp;Keyboard Shortcuts</option>
+                    
+                    <option value="/docs/configure/settings">&nbsp;&nbsp;&nbsp;&nbsp;Settings</option>
+                    
+                    <option value="/docs/configure/settings-sync">&nbsp;&nbsp;&nbsp;&nbsp;Settings Sync</option>
+                    
+                    <option disabled="">&nbsp;&nbsp;&nbsp;&nbsp;Extensions</option>
+            
+                    <option value="/docs/configure/extensions/extensions">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Overview</option>
+                    
+                    <option value="/docs/configure/extensions/extension-marketplace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extension Marketplace</option>
+                    
+                    <option value="/docs/configure/extensions/extension-runtime-security">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extension Runtime Security</option>
+                    
+                    <option value="/docs/configure/themes">&nbsp;&nbsp;&nbsp;&nbsp;Themes</option>
+                    
+                    <option value="/docs/configure/profiles">&nbsp;&nbsp;&nbsp;&nbsp;Profiles</option>
+                    
+                    <option disabled="">&nbsp;&nbsp;&nbsp;&nbsp;Accessibility</option>
+            
+                    <option value="/docs/configure/accessibility/accessibility">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Overview</option>
+                    
+                    <option value="/docs/configure/accessibility/voice">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Voice Interactions</option>
+                    
+                    <option value="/docs/configure/command-line">&nbsp;&nbsp;&nbsp;&nbsp;Command Line Interface</option>
+                    
+                    <option value="/docs/configure/telemetry">&nbsp;&nbsp;&nbsp;&nbsp;Telemetry</option>
+                    
+                    <option disabled="">Reference</option>
+            
+                    <option value="/docs/reference/default-keybindings">&nbsp;&nbsp;&nbsp;&nbsp;Default Keyboard Shortcuts</option>
+                    
+                    <option value="/docs/reference/default-settings">&nbsp;&nbsp;&nbsp;&nbsp;Default Settings</option>
+                    
+                    <option value="/docs/reference/variables-reference">&nbsp;&nbsp;&nbsp;&nbsp;Substitution Variables</option>
+                    
+                    <option value="/docs/reference/tasks-appendix">&nbsp;&nbsp;&nbsp;&nbsp;Tasks Schema</option>
+                    
+              </optgroup>
+              
               <optgroup label="Source Control">
             
                     <option value="/docs/sourcecontrol/overview">Overview</option>
@@ -1224,20 +1542,20 @@
             
             <!-- Main article content -->
             <main class="docs-main-content body">
-                <h1>Trust and safety</h1>
+                <h1>Understand trust and safety for AI agents</h1>
 <p>AI-generated output requires review. Visual Studio Code includes multiple mechanisms to keep you in control of what changes reach your codebase. This article explains the control mechanisms, AI limitations, and security considerations you should be aware of.</p>
 
 <h2 id="_stay-in-control" data-needslink="_stay-in-control"><a class="hash-link" href="https://code.visualstudio.com/docs/agents/concepts/trust-and-safety#_stay-in-control">Stay in control</a></h2>
 <p>Agents can read files, edit code, run terminal commands, and call external services. VS Code's trust model layers several control mechanisms so you remain in charge of what reaches your codebase:</p>
 <ul>
-<li><strong>Review before applying.</strong> All file changes surface in a diff view for keep/undo decisions, and <a href="https://code.visualstudio.com/docs/agents/run/review-code-edits#_edit-requests-and-restore-checkpoints">checkpoints</a> let you roll back a session.</li>
-<li><strong>Approve before acting.</strong> Tools with side effects and terminal commands prompt for approval, with per-session, per-workspace, or per-user scoping.</li>
+<li><strong>Review before integrating.</strong> Agents can save edits directly in the session folder or worktree. Inspect the changes in a diff before you commit, merge, or create a pull request. For supported sessions, <a href="https://code.visualstudio.com/docs/agents/run/review-code-edits#_edit-requests-and-restore-checkpoints">checkpoints</a> restore affected workspace files and chat to an earlier point.</li>
+<li><strong>Approve sensitive actions.</strong> With <a href="https://code.visualstudio.com/docs/agents/run/approvals#_permission-levels">Manual permissions</a> in Agent Host sessions, actions that aren't covered by your approval settings require confirmation. File edits might be auto-approved. Configure <a href="https://code.visualstudio.com/docs/agents/run/review-code-edits#_edit-sensitive-files">sensitive-file approval</a> when an edit must require confirmation before it is applied.</li>
 <li><strong>Constrain autonomy.</strong> <a href="https://code.visualstudio.com/docs/agents/run/approvals#_permission-levels">Permission levels</a> decide how much the agent runs on its own, from per-call approvals to broad auto-approval, up to fully autonomous operation with Autopilot.</li>
 <li><strong>Enforce boundaries at the OS level.</strong> <a href="https://code.visualstudio.com/docs/agents/concepts/trust-and-safety#_agent-sandboxing">Agent sandboxing</a> restricts file system and network access for terminal commands so auto-approved actions cannot escape a defined scope.</li>
 <li><strong>Trust boundaries.</strong> VS Code prompts you before granting trust to workspaces, extensions, MCP servers, and network domains.</li>
 </ul>
 <p>For step-by-step configuration of these controls — approval rules, sensitive-file protection, sandboxing setup, organization policies — see <a href="https://code.visualstudio.com/docs/agents/run/security">AI security in VS Code</a>.</p>
-<p>Always review AI-generated code before committing. Verify that it handles edge cases, follows your project's conventions, and doesn't introduce security issues.</p>
+<p>Always review AI-generated code before committing. Verify that it handles edge cases, follows your project's conventions, and doesn't introduce security issues. Stopping a request or restoring workspace files doesn't reverse completed terminal commands, network requests, deployments, or changes to external services.</p>
 <h2 id="_trust-boundaries" data-needslink="_trust-boundaries"><a class="hash-link" href="https://code.visualstudio.com/docs/agents/concepts/trust-and-safety#_trust-boundaries">Trust boundaries</a></h2>
 <p>VS Code's security model uses trust boundaries to limit the potential impact of untrusted code. Each trust boundary requires explicit consent before it is considered trusted:</p>
 <ul>
@@ -1270,10 +1588,10 @@
           </path>
         </svg>
         Note
-      </span><p>Agent sandboxing is currently in preview and might further evolve.</p>
+      </span><p>Agent sandboxing is in Preview on macOS, Linux, and WSL2, and Experimental on Windows.</p>
 </div><p>Agent sandboxing uses operating system-level isolation to restrict what agents can access on your machine. Instead of relying solely on approval prompts before each action, sandboxing defines strict boundaries for file system and network access that are enforced by the OS itself.</p>
-<p>VS Code applies sandboxing to terminal commands (<code>runInTerminal</code> agent tool) that are executed during an agent session, including Copilot agent-host sessions that use the VS Code agent terminal integration. Learn how to <a href="https://code.visualstudio.com/docs/agents/run/approvals#_sandbox-agent-commands">configure agent sandboxing</a>.</p>
-<p>When sandboxing is enabled, VS Code automatically approves terminal commands that run in the sandbox without a confirmation prompt because they already run in a controlled environment.</p>
+<p>VS Code applies sandboxing to terminal commands (<code>runInTerminal</code> agent tool) that are executed during an agent session, including Copilot Agent Host sessions. Learn how to <a href="https://code.visualstudio.com/docs/agents/run/agent-sandboxing">configure agent terminal sandboxing</a>.</p>
+<p>By default, VS Code automatically approves terminal commands that run in the sandbox without a confirmation prompt because they already run in a controlled environment.</p>
 <h3 id="_why-sandboxing-matters" data-needslink="_why-sandboxing-matters"><a class="hash-link" href="https://code.visualstudio.com/docs/agents/concepts/trust-and-safety#_why-sandboxing-matters">Why sandboxing matters</a></h3>
 <p>Approval-based security requires you to confirm each terminal command or tool call before it runs. While this provides control, it has practical limits:</p>
 <ul>
@@ -1292,137 +1610,12 @@
 </ul>
 <p>Sandboxing addresses these challenges by enforcing boundaries at the OS level. The sandbox prevents auto-approved commands from accessing files or network resources outside the permitted scope. If additional permissions are required, VS Code prompts you to run the command outside the sandbox. You can configure VS Code to try the command inside the sandbox before showing that elevation prompt.</p>
 <h3 id="_how-sandboxing-works" data-needslink="_how-sandboxing-works"><a class="hash-link" href="https://code.visualstudio.com/docs/agents/concepts/trust-and-safety#_how-sandboxing-works">How sandboxing works</a></h3>
-<p>Sandboxing enforces two types of isolation: <strong>file system access</strong> and <strong>network access</strong>. Both are applied at the OS level and can't be bypassed by the commands running inside the sandbox.</p>
-<h4 id="_file-system-isolation" data-needslink="_file-system-isolation"><a class="hash-link" href="https://code.visualstudio.com/docs/agents/concepts/trust-and-safety#_file-system-isolation">File system isolation</a></h4>
-<p>Without file system isolation, a compromised command could modify files anywhere on your machine, for example, injecting malicious code into your shell configuration (<code>~/.bashrc</code>, <code>~/.zshrc</code>) or reading SSH keys from <code>~/.ssh/</code>. File system isolation prevents this by restricting access to explicitly permitted paths.</p>
+<p>Sandboxing enforces two types of isolation:</p>
 <ul>
-<li>
-<p><strong>Default behavior.</strong> Read access is allowed for workspace folders and the sandbox runtime temp folder. Reads from your home directory (<code>$HOME</code>) are denied by default to protect sensitive files such as SSH keys, shell configuration, and credentials. Write access is limited to the current working directory and its subdirectories. When a request is made that requires additional permissions, VS Code prompts you to allow running the command outside the sandbox.</p>
-<p><img src="./3. Concepts_10. Trust &amp; Safety_files/sandbox-prompt.png" alt="Screenshot of a VS Code prompt asking the user to allow a command to run outside the sandbox for additional permissions." loading="lazy"></p>
-</li>
-<li>
-<p><strong>Per-command read paths.</strong> Before a command runs, VS Code parses it and grants read access to the specific paths the command needs. This covers common developer workflows such as <code>git</code>, <code>node</code>, <code>npm</code>, <code>dotnet</code>, Java, and Rust. For example, running a <code>node</code> command automatically allows reads from the Node version manager directory, and running a <code>git</code> command allows reads from <code>~/.gitconfig</code>.</p>
-</li>
-<li>
-<p><strong>Configurable rules.</strong> You can grant read or write access to additional paths, or deny read or write access to specific paths. Deny rules always take precedence over allow rules.</p>
-</li>
-<li>
-<p><strong>Inherited restrictions.</strong> All child processes spawned by a sandboxed command inherit the same file system boundaries. This means tools like <code>npm</code>, <code>pip</code>, or build scripts are also restricted.</p>
-</li>
+<li><strong>File system isolation</strong> limits read and write access to configured paths. It protects sensitive locations, such as SSH keys and shell configuration, and applies to child processes such as package managers and build scripts.</li>
+<li><strong>Network isolation</strong> limits outbound connections to configured domains. It reduces the risk of data exfiltration and unintended actions on external services.</li>
 </ul>
-<h4 id="_network-isolation" data-needslink="_network-isolation"><a class="hash-link" href="https://code.visualstudio.com/docs/agents/concepts/trust-and-safety#_network-isolation">Network isolation</a></h4>
-<p>Without network isolation, a compromised command could exfiltrate sensitive data or could perform unintended actions on external services. Network isolation prevents this by blocking all outbound connections by default.</p>
-<p>Sandbox enablement and unrestricted network access are separate controls. When sandboxing is enabled and <span class="setting"><span class="setting-dropdown" data-setting-id="chat.agent.sandbox.allowNetwork">
-    <span class="setting-link-main">
-      <span class="codicon codicon-settings-gear dynamic-setting-icon"></span>
-      chat.agent.sandbox.allowNetwork
-      <span class="setting-policy-info codicon codicon-info" data-tooltip="This setting can be configured by an organization policy." role="note" tabindex="0" aria-label="This setting can be configured by an organization policy."></span>
-    </span>
-    <button type="button" class="setting-dropdown-trigger" aria-haspopup="menu" aria-expanded="false" aria-label="Open setting in VS Code">
-        <svg class="setting-dropdown-chevron" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-        <path d="M7.976 10.072l4.357-4.357.62.618L8.284 11h-.618L3 6.333l.619-.618 4.357 4.357z"></path>
-        </svg>
-    </button>
-    <span class="setting-dropdown-menu" role="menu" aria-label="Open setting">
-      <span role="menuitem" class="setting-action-item" data-version="stable" tabindex="0">Open in VS Code</span>
-      <span role="menuitem" class="setting-action-item" data-version="insiders" tabindex="-1">Open in VS Code Insiders</span>
-    </span>
-  </span></span> is off, all outbound network access is blocked unless you explicitly allow specific domains. When <span class="setting"><span class="setting-dropdown" data-setting-id="chat.agent.sandbox.allowNetwork">
-    <span class="setting-link-main">
-      <span class="codicon codicon-settings-gear dynamic-setting-icon"></span>
-      chat.agent.sandbox.allowNetwork
-      <span class="setting-policy-info codicon codicon-info" data-tooltip="This setting can be configured by an organization policy." role="note" tabindex="0" aria-label="This setting can be configured by an organization policy."></span>
-    </span>
-    <button type="button" class="setting-dropdown-trigger" aria-haspopup="menu" aria-expanded="false" aria-label="Open setting in VS Code">
-        <svg class="setting-dropdown-chevron" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-        <path d="M7.976 10.072l4.357-4.357.62.618L8.284 11h-.618L3 6.333l.619-.618 4.357 4.357z"></path>
-        </svg>
-    </button>
-    <span class="setting-dropdown-menu" role="menu" aria-label="Open setting">
-      <span role="menuitem" class="setting-action-item" data-version="stable" tabindex="0">Open in VS Code</span>
-      <span role="menuitem" class="setting-action-item" data-version="insiders" tabindex="-1">Open in VS Code Insiders</span>
-    </span>
-  </span></span> is on, commands can reach external services freely while file system restrictions still apply. On macOS and Linux, <span class="setting"><span class="setting-dropdown" data-setting-id="chat.agent.sandbox.enabled">
-    <span class="setting-link-main">
-      <span class="codicon codicon-settings-gear dynamic-setting-icon"></span>
-      chat.agent.sandbox.enabled
-      <span class="setting-policy-info codicon codicon-info" data-tooltip="This setting can be configured by an organization policy." role="note" tabindex="0" aria-label="This setting can be configured by an organization policy."></span>
-    </span>
-    <button type="button" class="setting-dropdown-trigger" aria-haspopup="menu" aria-expanded="false" aria-label="Open setting in VS Code">
-        <svg class="setting-dropdown-chevron" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-        <path d="M7.976 10.072l4.357-4.357.62.618L8.284 11h-.618L3 6.333l.619-.618 4.357 4.357z"></path>
-        </svg>
-    </button>
-    <span class="setting-dropdown-menu" role="menu" aria-label="Open setting">
-      <span role="menuitem" class="setting-action-item" data-version="stable" tabindex="0">Open in VS Code</span>
-      <span role="menuitem" class="setting-action-item" data-version="insiders" tabindex="-1">Open in VS Code Insiders</span>
-    </span>
-  </span></span> controls sandbox enablement and accepts <code>off</code> (default) or <code>on</code>.</p>
-<p>VS Code provides network domain filtering that applies to both agent tools (fetch tool, integrated browser) and sandboxed terminal commands. Enable <span class="setting"><span class="setting-dropdown" data-setting-id="chat.agent.networkFilter">
-    <span class="setting-link-main">
-      <span class="codicon codicon-settings-gear dynamic-setting-icon"></span>
-      chat.agent.networkFilter
-      <span class="setting-policy-info codicon codicon-info" data-tooltip="This setting can be configured by an organization policy." role="note" tabindex="0" aria-label="This setting can be configured by an organization policy."></span>
-    </span>
-    <button type="button" class="setting-dropdown-trigger" aria-haspopup="menu" aria-expanded="false" aria-label="Open setting in VS Code">
-        <svg class="setting-dropdown-chevron" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-        <path d="M7.976 10.072l4.357-4.357.62.618L8.284 11h-.618L3 6.333l.619-.618 4.357 4.357z"></path>
-        </svg>
-    </button>
-    <span class="setting-dropdown-menu" role="menu" aria-label="Open setting">
-      <span role="menuitem" class="setting-action-item" data-version="stable" tabindex="0">Open in VS Code</span>
-      <span role="menuitem" class="setting-action-item" data-version="insiders" tabindex="-1">Open in VS Code Insiders</span>
-    </span>
-  </span></span> to activate network filtering. Use <span class="setting"><span class="setting-dropdown" data-setting-id="chat.agent.allowedNetworkDomains">
-    <span class="setting-link-main">
-      <span class="codicon codicon-settings-gear dynamic-setting-icon"></span>
-      chat.agent.allowedNetworkDomains
-      <span class="setting-policy-info codicon codicon-info" data-tooltip="This setting can be configured by an organization policy." role="note" tabindex="0" aria-label="This setting can be configured by an organization policy."></span>
-    </span>
-    <button type="button" class="setting-dropdown-trigger" aria-haspopup="menu" aria-expanded="false" aria-label="Open setting in VS Code">
-        <svg class="setting-dropdown-chevron" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-        <path d="M7.976 10.072l4.357-4.357.62.618L8.284 11h-.618L3 6.333l.619-.618 4.357 4.357z"></path>
-        </svg>
-    </button>
-    <span class="setting-dropdown-menu" role="menu" aria-label="Open setting">
-      <span role="menuitem" class="setting-action-item" data-version="stable" tabindex="0">Open in VS Code</span>
-      <span role="menuitem" class="setting-action-item" data-version="insiders" tabindex="-1">Open in VS Code Insiders</span>
-    </span>
-  </span></span> and <span class="setting"><span class="setting-dropdown" data-setting-id="chat.agent.deniedNetworkDomains">
-    <span class="setting-link-main">
-      <span class="codicon codicon-settings-gear dynamic-setting-icon"></span>
-      chat.agent.deniedNetworkDomains
-      <span class="setting-policy-info codicon codicon-info" data-tooltip="This setting can be configured by an organization policy." role="note" tabindex="0" aria-label="This setting can be configured by an organization policy."></span>
-    </span>
-    <button type="button" class="setting-dropdown-trigger" aria-haspopup="menu" aria-expanded="false" aria-label="Open setting in VS Code">
-        <svg class="setting-dropdown-chevron" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-        <path d="M7.976 10.072l4.357-4.357.62.618L8.284 11h-.618L3 6.333l.619-.618 4.357 4.357z"></path>
-        </svg>
-    </button>
-    <span class="setting-dropdown-menu" role="menu" aria-label="Open setting">
-      <span role="menuitem" class="setting-action-item" data-version="stable" tabindex="0">Open in VS Code</span>
-      <span role="menuitem" class="setting-action-item" data-version="insiders" tabindex="-1">Open in VS Code Insiders</span>
-    </span>
-  </span></span> to control which domains the agent can access. Learn how to <a href="https://code.visualstudio.com/docs/agents/run/approvals#_configure-network-access">configure network access</a>.</p>
-<ul>
-<li>
-<p><strong>Retry with network access.</strong> When a sandboxed command is blocked by network restrictions, the agent first asks for confirmation to retry inside the sandbox with unrestricted network access before falling back to running the command outside the sandbox.</p>
-</li>
-<li>
-<p><strong>Domain allowlist.</strong> You can explicitly permit access to specific domains.</p>
-<div class="markdown-alert caution" dir="auto">
-      <span>
-        <svg class="markdown-alert-icon" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true">
-          <path d="M4.47.22A.749.749 0 0 1 5 0h6c.199 0 .389.079.53.22l4.25 4.25c.141.14.22.331.22.53v6a.749.749 0 0 1-.22.53l-4.25 4.25A.749.749 0 0 1 11 16H5a.749.749 0 0 1-.53-.22L.22 11.53A.749.749 0 0 1 0 11V5c0-.199.079-.389.22-.53Zm.84 1.28L1.5 5.31v5.38l3.81 3.81h5.38l3.81-3.81V5.31L10.69 1.5ZM8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z">
-          </path>
-        </svg>
-        Caution
-      </span><p>The agent can perform actions on allowed domains on your behalf, not just read data. For example, allowing <code>api.github.com</code> means the agent could create pull requests or modify repository settings. Allowing a cloud service API domain could lead to cloud resource modifications. Only configure this setting if absolutely required. This configuration is specified in a setting and applies to all agent tools and sandboxed commands, not only the current task.</p>
-</div></li>
-<li>
-<p><strong>Inherited restrictions.</strong> All child processes inherit the same network restrictions, so scripts or tools that spawn subprocesses cannot bypass the network rules.</p>
-</li>
-</ul>
+<p>Both boundaries are applied at the operating system level and inherited by child processes. You can configure file system and network access separately. For default behavior and configuration steps, see <a href="https://code.visualstudio.com/docs/agents/run/agent-sandboxing">Sandbox agent terminal commands</a>.</p>
 <h3 id="_os-level-enforcement" data-needslink="_os-level-enforcement"><a class="hash-link" href="https://code.visualstudio.com/docs/agents/concepts/trust-and-safety#_os-level-enforcement">OS-level enforcement</a></h3>
 <p>Agent sandboxing relies on OS-level security primitives to enforce file system and network restrictions. Because the enforcement happens at the kernel level, sandboxed processes and all of their child processes cannot bypass these boundaries, even if a command is crafted to attempt it.</p>
 <div class="table-expand-container"><button class="table-expand-button">
@@ -1443,8 +1636,13 @@
 </tr>
 <tr>
 <td>Linux and WSL2</td>
-<td><a href="https://github.com/containers/bubblewrap" class="external-link" target="_blank">bubblewrap</a> for file system isolation and <code>socat</code> for network proxying.</td>
+<td><a href="https://github.com/containers/bubblewrap" class="external-link" target="_blank">bubblewrap<span class="codicon codicon-link-external external-link-icon" aria-hidden="true"></span></a> for file system isolation and <code>socat</code> for network proxying.</td>
 <td>Install required packages: <code>sudo apt-get install bubblewrap socat</code> (Debian and Ubuntu) or <code>sudo dnf install bubblewrap socat</code> (Fedora).</td>
+</tr>
+<tr>
+<td>Windows</td>
+<td>Microsoft MXC process containers apply file system and network policies to the command process.</td>
+<td>Install the applicable Windows security update. Windows support is Experimental.</td>
 </tr>
 </tbody>
 </table></div></div>
@@ -1476,7 +1674,7 @@
   </span></span> setting provides network domain filtering for agent tools like the fetch tool and integrated browser, independently of sandboxing. When both sandboxing and network filtering are enabled, network rules apply to all agent tools and terminal commands.</p>
 </div><p>Use the <a href="https://code.visualstudio.com/docs/agents/run/review-code-edits">review flow</a> and <a href="https://code.visualstudio.com/docs/agents/run/review-code-edits#_edit-sensitive-files">sensitive file protection</a> to control these operations.</p>
 <p>For full environment isolation, pair sandboxing with a <a href="https://code.visualstudio.com/docs/devcontainers/containers">dev container</a>. Dev containers provide a complete boundary around the entire development environment, including all tools, file access, and network access.</p>
-<p>Agent sandboxing is currently in preview and continues to evolve to cover more tools and scenarios.</p>
+<p>Agent sandboxing continues to evolve to cover more tools and scenarios.</p>
 <h2 id="_ai-limitations-to-watch-for" data-needslink="_ai-limitations-to-watch-for"><a class="hash-link" href="https://code.visualstudio.com/docs/agents/concepts/trust-and-safety#_ai-limitations-to-watch-for">AI limitations to watch for</a></h2>
 <p><strong>Incorrect output.</strong> Models can generate code that looks correct but contains bugs, uses deprecated APIs, or doesn't handle edge cases. Always test AI-generated code, especially for logic that affects security, data integrity, or critical flows.</p>
 <p><strong>Prompt injection.</strong> Malicious content in files, tool outputs, or web pages can attempt to redirect the agent's behavior. This is why VS Code includes tool approval gates and trust boundaries. Learn more about <a href="https://code.visualstudio.com/docs/agents/run/security">AI security</a>.</p>
@@ -1484,15 +1682,13 @@
 <h2 id="_related-resources" data-needslink="_related-resources"><a class="hash-link" href="https://code.visualstudio.com/docs/agents/concepts/trust-and-safety#_related-resources">Related resources</a></h2>
 <ul>
 <li><a href="https://code.visualstudio.com/docs/agents/run/security">AI security considerations</a></li>
-<li><a href="https://code.visualstudio.com/docs/agents/run/approvals#_sandbox-agent-commands">Terminal sandbox configuration</a></li>
+<li><a href="https://code.visualstudio.com/docs/agents/run/agent-sandboxing">Terminal sandbox configuration</a></li>
 <li><a href="https://code.visualstudio.com/docs/agents/run/review-code-edits">Reviewing code edits</a></li>
-<li><a href="https://code.visualstudio.com/docs/agents/run/review-code-edits#_edit-requests-and-restore-checkpoints">Checkpoints</a></li>
-<li><a href="https://code.visualstudio.com/docs/agents/run/approvals#_tool-approval">Tool approval</a></li>
 </ul>
 
                 <div class="feedback" data-edit-url="https://vscode.dev/github/microsoft/vscode-docs/blob/main/docs/agents/concepts/trust-and-safety.md"><section class="feedback-section" aria-labelledby="feedback-heading"><h2 id="feedback-heading" class="sr-only">Help and support</h2><div class="feedback-container"><div class="feedback-left"><div class="widget"><form aria-label="Feedback"><div class="buttons"><h3 class="feedback-header">Was this page helpful?</h3><br><button value="1">Yes<span class="sr-only"> , this page was helpful</span></button><button value="0">No<span class="sr-only"> , this page was not helpful</span></button></div></form></div></div><div class="feedback-middle"><h3>Still need help?</h3><ul class="support-links"><li><a href="https://stackoverflow.com/questions/tagged/vscode" target="_blank" rel="noopener noreferrer"><img alt="" src="./3. Concepts_10. Trust &amp; Safety_files/stackoverflow.svg" aria-hidden="true">Ask the community</a></li><li><a href="https://github.com/microsoft/vscode/issues/new/choose" target="_blank" rel="noopener noreferrer"><img alt="" src="./3. Concepts_10. Trust &amp; Safety_files/github.svg" aria-hidden="true">Request features</a></li><li><a href="https://www.github.com/Microsoft/vscode/issues" target="_blank" rel="noopener noreferrer"><img alt="" src="./3. Concepts_10. Trust &amp; Safety_files/issue.svg" aria-hidden="true">Report issues</a></li></ul></div><div class="feedback-right"><h3>Help us improve</h3><div class="buttons"><button type="button">Edit this page</button></div></div></div></section></div>
                 
-                <div class="body-footer">8/26/2026</div>
+                <div class="body-footer">9/16/2026</div>
                 
             </main>
         </div>
@@ -1574,10 +1770,10 @@
 			</div>
 			<div class="footer-row">
 				<ul class="links">
-					<li><a id="footer-support-link" href="https://support.serviceshub.microsoft.com/supportforbusiness/create?sapId=d66407ed-3967-b000-4cfb-2c318cad363d" target="_blank" rel="noopener" title="Get support for VS Code" aria-label="Get support for VS Code (opens in new tab)">Support</a></li>
-					<li><a id="footer-privacy-link" href="https://go.microsoft.com/fwlink/?LinkId=521839" target="_blank" rel="noopener" title="View the Microsoft privacy statement" aria-label="Microsoft privacy statement (opens in new tab)">Privacy</a></li>
+					<li><a id="footer-support-link" href="https://support.serviceshub.microsoft.com/supportforbusiness/create?sapId=d66407ed-3967-b000-4cfb-2c318cad363d" target="_blank" rel="noopener" title="Get support for VS Code" aria-label="Get support for VS Code (opens in new tab)">Support<span class="codicon codicon-link-external external-link-icon" aria-hidden="true"></span></a></li>
+					<li><a id="footer-privacy-link" href="https://go.microsoft.com/fwlink/?LinkId=521839" target="_blank" rel="noopener" title="View the Microsoft privacy statement" aria-label="Microsoft privacy statement (opens in new tab)">Privacy<span class="codicon codicon-link-external external-link-icon" aria-hidden="true"></span></a></li>
 					<li style="display: none;"><a id="footer-cookie-link" style="cursor: pointer;" onclick="manageConsent()" target="_blank" rel="noopener">Manage Cookies</a></li>
-					<li><a id="footer-terms-link" href="https://www.microsoft.com/legal/terms-of-use" target="_blank" rel="noopener" title="View the Microsoft Terms of Use" aria-label="Microsoft Terms of Use (opens in new tab)">Terms of Use</a></li>
+					<li><a id="footer-terms-link" href="https://www.microsoft.com/legal/terms-of-use" target="_blank" rel="noopener" title="View the Microsoft Terms of Use" aria-label="Microsoft Terms of Use (opens in new tab)">Terms of Use<span class="codicon codicon-link-external external-link-icon" aria-hidden="true"></span></a></li>
 					<li><a id="footer-license-link" href="https://code.visualstudio.com/License" target="_blank" rel="noopener" title="View the Visual Studio Code license" aria-label="Visual Studio Code license (opens in new tab)">License</a></li>
 				</ul>
 			</div>
@@ -1591,8 +1787,8 @@
 							<path d="M24.6 4c.2.2.2.6 0 .8L22.5 7l2.2 2.2c.2.2.2.6 0 .8-.2.2-.6.2-.8 0l-2.2-2.2-2.2 2.2c-.2.2-.6.2-.8 0-.2-.2-.2-.6 0-.8L20.8 7l-2.2-2.2c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0l2.2 2.2L23.8 4c.2-.2.6-.2.8 0z" style="fill:#fff"></path>
 							<path d="M12.7 4.1c.2.2.3.6.1.8L8.6 9.8c-.1.1-.2.2-.3.2-.2.1-.5.1-.7-.1L5.4 7.7c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0L8 8.6l3.8-4.5c.2-.2.6-.2.9 0z" style="fill:#06f"></path>
 						</svg>
-						<a id="footer-privacy-choices-link" href="https://aka.ms/YourCaliforniaPrivacyChoices" target="_blank" rel="noopener" title="View Your Privacy Choices" aria-label="Your Privacy Choices (opens in new tab)">Your Privacy Choices</a></li>
-					<li><a id="footer-consumer-health-privacy-link" href="https://go.microsoft.com/fwlink/?linkid=2259814" target="_blank" rel="noopener" title="View the Microsoft Consumer Health Privacy policy" aria-label="Microsoft Consumer Health Privacy policy (opens in new tab)">Consumer Health Privacy</a></li>
+						<a id="footer-privacy-choices-link" href="https://aka.ms/YourCaliforniaPrivacyChoices" target="_blank" rel="noopener" title="View Your Privacy Choices" aria-label="Your Privacy Choices (opens in new tab)">Your Privacy Choices<span class="codicon codicon-link-external external-link-icon" aria-hidden="true"></span></a></li>
+					<li><a id="footer-consumer-health-privacy-link" href="https://go.microsoft.com/fwlink/?linkid=2259814" target="_blank" rel="noopener" title="View the Microsoft Consumer Health Privacy policy" aria-label="Microsoft Consumer Health Privacy policy (opens in new tab)">Consumer Health Privacy<span class="codicon codicon-link-external external-link-icon" aria-hidden="true"></span></a></li>
 				</ul>
 			</div>
 		</div>
@@ -1620,7 +1816,7 @@
 			"@context" : "http://schema.org",
 			"@type" : "SoftwareApplication",
 			"name" : "Visual Studio Code",
-			"softwareVersion": "1.135",
+			"softwareVersion": "1.138",
 			"offers": {
 				"@type": "Offer",
 				"price": "0",

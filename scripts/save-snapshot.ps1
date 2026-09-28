@@ -5,7 +5,11 @@ param(
 
     [string] $SnapshotDate = (Get-Date -Format 'yyyy-MM-dd'),
 
-    [string] $OutputRoot = (Join-Path (Split-Path $PSScriptRoot -Parent) 'snapshots')
+    [string] $OutputRoot = (Join-Path (Split-Path $PSScriptRoot -Parent) 'snapshots'),
+
+    [switch] $MarkdownOnly,
+
+    [int] $MaxUrls = 0
 )
 
 $ErrorActionPreference = 'Stop'
@@ -20,6 +24,10 @@ New-Item -ItemType Directory -Path $snapshotDirectory -Force | Out-Null
 $urls = [regex]::Matches((Get-Content -LiteralPath $IndexFile -Raw), 'https?://[^\s>)]+') |
     ForEach-Object { $_.Value.TrimEnd('.', ',', ')') } |
     Select-Object -Unique
+
+if ($MaxUrls -gt 0) {
+    $urls = @($urls | Select-Object -First $MaxUrls)
+}
 
 if ($urls.Count -eq 0) {
     throw "No URLs found in index file: $IndexFile"
@@ -56,12 +64,22 @@ foreach ($url in $urls) {
     $textPath = Join-Path $snapshotDirectory "$name.md"
 
     try {
-            $response = Invoke-WebRequest -Uri $url @webRequestParams
-            $html = $response.Content
-            [System.IO.File]::WriteAllText($htmlPath, $html, [Text.UTF8Encoding]::new($false))
-            [System.IO.File]::WriteAllText($textPath, (ConvertTo-ReadableText $html), [Text.UTF8Encoding]::new($false))
-            $title = [regex]::Match($html, '(?is)<title[^>]*>(.*?)</title>').Groups[1].Value.Trim()
-            $manifest.Add([pscustomobject]@{ url = $url; title = $title; html = "$name.html"; text = "$name.md"; savedAt = (Get-Date).ToString('o'); status = 'ok' })
+            $uri = [Uri] $url
+            if ($MarkdownOnly) {
+                $markdownUrl = "https://code.visualstudio.com/raw$($uri.AbsolutePath).md"
+                $markdown = (Invoke-WebRequest -Uri $markdownUrl @webRequestParams).Content
+                [System.IO.File]::WriteAllText($textPath, $markdown, [Text.UTF8Encoding]::new($false))
+                $title = ($markdown -split "`r?`n" | Where-Object { $_ -match '^# ' } | Select-Object -First 1) -replace '^# ', ''
+                $manifest.Add([pscustomobject]@{ url = $url; rawUrl = $markdownUrl; title = $title; html = ''; text = "$name.md"; savedAt = (Get-Date).ToString('o'); status = 'ok' })
+            }
+            else {
+                $response = Invoke-WebRequest -Uri $url @webRequestParams
+                $html = $response.Content
+                [System.IO.File]::WriteAllText($htmlPath, $html, [Text.UTF8Encoding]::new($false))
+                [System.IO.File]::WriteAllText($textPath, (ConvertTo-ReadableText $html), [Text.UTF8Encoding]::new($false))
+                $title = [regex]::Match($html, '(?is)<title[^>]*>(.*?)</title>').Groups[1].Value.Trim()
+                $manifest.Add([pscustomobject]@{ url = $url; title = $title; html = "$name.html"; text = "$name.md"; savedAt = (Get-Date).ToString('o'); status = 'ok' })
+            }
             Write-Host "Saved: $url"
     }
     catch {
