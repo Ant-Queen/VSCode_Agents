@@ -66,7 +66,7 @@ foreach ($url in $urls) {
     try {
             $uri = [Uri] $url
             if ($MarkdownOnly) {
-                $markdownUrl = "https://code.visualstudio.com/raw$($uri.AbsolutePath).md"
+                $markdownUrl = "$($url.TrimEnd('/')).md"
                 $markdown = (Invoke-WebRequest -Uri $markdownUrl @webRequestParams).Content
                 [System.IO.File]::WriteAllText($textPath, $markdown, [Text.UTF8Encoding]::new($false))
                 $title = ($markdown -split "`r?`n" | Where-Object { $_ -match '^# ' } | Select-Object -First 1) -replace '^# ', ''

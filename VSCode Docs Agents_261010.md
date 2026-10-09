@@ -49,7 +49,7 @@
 	- https://code.visualstudio.com/docs/agents/run/agents-window-configuration
 - 05. Chat Interaction Controls (채팅 상호작용 컨트롤)
 	- https://code.visualstudio.com/docs/chat/chat-overview
-- Plan and Run Tasks (작업 계획 및 실행)
+- 06. Plan and Run Tasks (작업 계획 및 실행)
 	- 01. Plan Work (작업 계획)
 		- https://code.visualstudio.com/docs/agents/run/planning
 	- 02. Use Tools (도구 사용)
@@ -60,7 +60,7 @@
 		- https://code.visualstudio.com/docs/agents/run/subagents
 	- 05. Automations (자동화)
 		- https://code.visualstudio.com/docs/agents/run/automations
-- Sessions and Results (세션 및 결과)
+- 07. Sessions and Results (세션 및 결과)
 	- 01. Manage Sessions (세션 관리)
 		- https://code.visualstudio.com/docs/agents/run/sessions/manage-sessions
 	- 02. Session History (세션 기록)
@@ -73,7 +73,7 @@
 		- https://code.visualstudio.com/docs/agents/run/review-code-edits
 	- 06. Artifacts (아티팩트)
 		- https://code.visualstudio.com/docs/agents/run/artifacts
-- Permissions and Security (권한 및 보안)
+- 08. Permissions and Security (권한 및 보안)
 	- 01. Approvals & Permissions (승인 및 권한)
 		- https://code.visualstudio.com/docs/agents/run/approvals
 	- 02. Agent Sandboxing (에이전트 샌드박싱)
