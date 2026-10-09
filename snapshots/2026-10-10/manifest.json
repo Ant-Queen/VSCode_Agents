@@ -1,10 +1,10 @@
-﻿[
+[
     {
         "url":  "https://code.visualstudio.com/docs/agents/overview",
         "rawUrl":  "https://code.visualstudio.com/docs/agents/overview.md",
         "title":  "Build with AI in VS Code",
         "html":  "",
-        "text":  "docs-agents-overview.md",
+        "text":  "1. AI Overview_01. AI Overview.md",
         "savedAt":  "2026-10-10T05:26:50.1743545+09:00",
         "status":  "ok"
     },
@@ -13,7 +13,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/quickstart.md",
         "title":  "Quickstart: Complete your first task with an agent",
         "html":  "",
-        "text":  "docs-agents-quickstart.md",
+        "text":  "2. Get started_01. Agents Quickstart.md",
         "savedAt":  "2026-10-10T05:26:50.5206268+09:00",
         "status":  "ok"
     },
@@ -22,7 +22,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/guides/overview.md",
         "title":  "Agent tutorials and guides",
         "html":  "",
-        "text":  "docs-agents-guides-overview.md",
+        "text":  "2. Get started_02. Find a Guide.md",
         "savedAt":  "2026-10-10T05:26:51.4803618+09:00",
         "status":  "ok"
     },
@@ -31,7 +31,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/setup/copilot.md",
         "title":  "Set up GitHub Copilot in VS Code",
         "html":  "",
-        "text":  "docs-setup-copilot.md",
+        "text":  "2. Get started_03. Set Up GitHub Copilot.md",
         "savedAt":  "2026-10-10T05:26:52.0093406+09:00",
         "status":  "ok"
     },
@@ -40,7 +40,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/agents-tutorial.md",
         "title":  "Tutorial: Agentic coding in VS Code",
         "html":  "",
-        "text":  "docs-agents-agents-tutorial.md",
+        "text":  "2. Get started_04. Agents Tutorial.md",
         "savedAt":  "2026-10-10T05:26:53.5600024+09:00",
         "status":  "ok"
     },
@@ -49,7 +49,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/best-practices.md",
         "title":  "Best practices for using AI in VS Code",
         "html":  "",
-        "text":  "docs-agents-best-practices.md",
+        "text":  "2. Get started_05. Best Practices.md",
         "savedAt":  "2026-10-10T05:26:54.0922865+09:00",
         "status":  "ok"
     },
@@ -58,7 +58,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/concepts/agents.md",
         "title":  "Understand AI agents",
         "html":  "",
-        "text":  "docs-agents-concepts-agents.md",
+        "text":  "3. Concepts_01. Agents.md",
         "savedAt":  "2026-10-10T05:26:55.3412630+09:00",
         "status":  "ok"
     },
@@ -67,7 +67,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/concepts/language-models.md",
         "title":  "Understand language models",
         "html":  "",
-        "text":  "docs-agents-concepts-language-models.md",
+        "text":  "3. Concepts_02. How Models Work.md",
         "savedAt":  "2026-10-10T05:26:55.9876820+09:00",
         "status":  "ok"
     },
@@ -76,7 +76,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/concepts/context.md",
         "title":  "Understand context in AI agents",
         "html":  "",
-        "text":  "docs-agents-concepts-context.md",
+        "text":  "3. Concepts_03. Context.md",
         "savedAt":  "2026-10-10T05:26:56.5360896+09:00",
         "status":  "ok"
     },
@@ -85,7 +85,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/concepts/tools.md",
         "title":  "Understand tools in AI agents",
         "html":  "",
-        "text":  "docs-agents-concepts-tools.md",
+        "text":  "3. Concepts_04. Tools.md",
         "savedAt":  "2026-10-10T05:26:57.0811062+09:00",
         "status":  "ok"
     },
@@ -94,7 +94,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/concepts/sessions.md",
         "title":  "Understand sessions and chats",
         "html":  "",
-        "text":  "docs-agents-concepts-sessions.md",
+        "text":  "3. Concepts_05. Sessions and Chats.md",
         "savedAt":  "2026-10-10T05:26:57.6179713+09:00",
         "status":  "ok"
     },
@@ -103,7 +103,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/concepts/trust-and-safety.md",
         "title":  "Understand trust and safety for AI agents",
         "html":  "",
-        "text":  "docs-agents-concepts-trust-and-safety.md",
+        "text":  "3. Concepts_06. Trust \u0026 Safety.md",
         "savedAt":  "2026-10-10T05:27:01.7098470+09:00",
         "status":  "ok"
     },
@@ -112,7 +112,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/concepts/customization.md",
         "title":  "Understand agent customization",
         "html":  "",
-        "text":  "docs-agents-concepts-customization.md",
+        "text":  "3. Concepts_07. Agent Customization.md",
         "savedAt":  "2026-10-10T05:27:02.2481521+09:00",
         "status":  "ok"
     },
@@ -121,7 +121,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/concepts/agent-harnesses.md",
         "title":  "Understand agent harnesses",
         "html":  "",
-        "text":  "docs-agents-concepts-agent-harnesses.md",
+        "text":  "3. Concepts_08. Agent Harnesses.md",
         "savedAt":  "2026-10-10T05:27:02.7880046+09:00",
         "status":  "ok"
     },
@@ -130,7 +130,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/reference/workspace-context.md",
         "title":  "How Copilot understands your workspace",
         "html":  "",
-        "text":  "docs-agents-reference-workspace-context.md",
+        "text":  "3. Concepts_09. Workspace Context.md",
         "savedAt":  "2026-10-10T05:27:08.1195999+09:00",
         "status":  "ok"
     },
@@ -139,7 +139,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/concepts/agent-host.md",
         "title":  "Understand the VS Code Agent Host",
         "html":  "",
-        "text":  "docs-agents-concepts-agent-host.md",
+        "text":  "3. Concepts_10. Agent Host Architecture.md",
         "savedAt":  "2026-10-10T05:27:08.7151814+09:00",
         "status":  "ok"
     },
@@ -148,7 +148,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/run/chat-view.md",
         "title":  "Use the Chat view",
         "html":  "",
-        "text":  "docs-agents-run-chat-view.md",
+        "text":  "4. Use Agents_01. Chat View and Layout.md",
         "savedAt":  "2026-10-10T05:27:09.3387901+09:00",
         "status":  "ok"
     },
@@ -157,7 +157,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/run/agents-window.md",
         "title":  "Use the Agents window",
         "html":  "",
-        "text":  "docs-agents-run-agents-window.md",
+        "text":  "4. Use Agents_02. Agents Window.md",
         "savedAt":  "2026-10-10T05:27:10.0036375+09:00",
         "status":  "ok"
     },
@@ -166,7 +166,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/run/agent-harnesses.md",
         "title":  "Choose and use an agent harness",
         "html":  "",
-        "text":  "docs-agents-run-agent-harnesses.md",
+        "text":  "4. Use Agents_03. Choose an Agent Harness.md",
         "savedAt":  "2026-10-10T05:27:11.4724577+09:00",
         "status":  "ok"
     },
@@ -175,7 +175,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/run/agents-window-configuration.md",
         "title":  "Configure the Agents window",
         "html":  "",
-        "text":  "docs-agents-run-agents-window-configuration.md",
+        "text":  "4. Use Agents_04. Configure the Agents Window.md",
         "savedAt":  "2026-10-10T05:27:12.0046066+09:00",
         "status":  "ok"
     },
@@ -184,7 +184,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/chat/chat-overview.md",
         "title":  "Use chat in VS Code",
         "html":  "",
-        "text":  "docs-chat-chat-overview.md",
+        "text":  "4. Use Agents_05. Chat Interaction Controls.md",
         "savedAt":  "2026-10-10T05:27:13.8962369+09:00",
         "status":  "ok"
     },
@@ -193,7 +193,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/run/planning.md",
         "title":  "Plan work with agents in VS Code",
         "html":  "",
-        "text":  "docs-agents-run-planning.md",
+        "text":  "4. Use Agents_06-01. Plan Work.md",
         "savedAt":  "2026-10-10T05:27:14.4529427+09:00",
         "status":  "ok"
     },
@@ -202,7 +202,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/run/tools.md",
         "title":  "Use tools with agents",
         "html":  "",
-        "text":  "docs-agents-run-tools.md",
+        "text":  "4. Use Agents_06-02. Use Tools.md",
         "savedAt":  "2026-10-10T05:27:15.0104286+09:00",
         "status":  "ok"
     },
@@ -211,7 +211,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/run/browser-tools.md",
         "title":  "Use browser tools with agents",
         "html":  "",
-        "text":  "docs-agents-run-browser-tools.md",
+        "text":  "4. Use Agents_06-03. Browser Tools.md",
         "savedAt":  "2026-10-10T05:27:16.4073574+09:00",
         "status":  "ok"
     },
@@ -220,7 +220,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/run/subagents.md",
         "title":  "Use subagents in Visual Studio Code",
         "html":  "",
-        "text":  "docs-agents-run-subagents.md",
+        "text":  "4. Use Agents_06-04. Subagents.md",
         "savedAt":  "2026-10-10T05:27:16.9733089+09:00",
         "status":  "ok"
     },
@@ -229,7 +229,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/run/automations.md",
         "title":  "Create and manage agent automations",
         "html":  "",
-        "text":  "docs-agents-run-automations.md",
+        "text":  "4. Use Agents_06-05. Automations.md",
         "savedAt":  "2026-10-10T05:27:18.7478579+09:00",
         "status":  "ok"
     },
@@ -238,7 +238,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/run/sessions/manage-sessions.md",
         "title":  "Manage agent sessions in VS Code",
         "html":  "",
-        "text":  "docs-agents-run-sessions-manage-sessions.md",
+        "text":  "4. Use Agents_07-01. Manage Sessions.md",
         "savedAt":  "2026-10-10T05:27:20.0600724+09:00",
         "status":  "ok"
     },
@@ -247,7 +247,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/run/sessions/session-history.md",
         "title":  "Sync and query session history",
         "html":  "",
-        "text":  "docs-agents-run-sessions-session-history.md",
+        "text":  "4. Use Agents_07-02. Session History.md",
         "savedAt":  "2026-10-10T05:27:20.5861329+09:00",
         "status":  "ok"
     },
@@ -256,7 +256,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/run/remote-agent-sessions.md",
         "title":  "Run and manage remote agent sessions",
         "html":  "",
-        "text":  "docs-agents-run-remote-agent-sessions.md",
+        "text":  "4. Use Agents_07-03. Remote Agent Sessions.md",
         "savedAt":  "2026-10-10T05:27:21.1238463+09:00",
         "status":  "ok"
     },
@@ -265,7 +265,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/run/memory.md",
         "title":  "Use memory with agents in VS Code",
         "html":  "",
-        "text":  "docs-agents-run-memory.md",
+        "text":  "4. Use Agents_07-04. Memory.md",
         "savedAt":  "2026-10-10T05:27:22.3754165+09:00",
         "status":  "ok"
     },
@@ -274,7 +274,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/run/review-code-edits.md",
         "title":  "Review and revert agent changes",
         "html":  "",
-        "text":  "docs-agents-run-review-code-edits.md",
+        "text":  "4. Use Agents_07-05. Review \u0026 Revert Changes.md",
         "savedAt":  "2026-10-10T05:27:22.9466429+09:00",
         "status":  "ok"
     },
@@ -283,7 +283,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/run/artifacts.md",
         "title":  "Use artifacts in agent sessions",
         "html":  "",
-        "text":  "docs-agents-run-artifacts.md",
+        "text":  "4. Use Agents_07-06. Artifacts.md",
         "savedAt":  "2026-10-10T05:27:23.4753756+09:00",
         "status":  "ok"
     },
@@ -292,7 +292,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/run/approvals.md",
         "title":  "Manage approvals and permissions",
         "html":  "",
-        "text":  "docs-agents-run-approvals.md",
+        "text":  "4. Use Agents_08-01. Approvals \u0026 Permissions.md",
         "savedAt":  "2026-10-10T05:27:24.0317660+09:00",
         "status":  "ok"
     },
@@ -301,7 +301,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/run/agent-sandboxing.md",
         "title":  "Sandbox Copilot Agent Host sessions",
         "html":  "",
-        "text":  "docs-agents-run-agent-sandboxing.md",
+        "text":  "4. Use Agents_08-02. Agent Sandboxing.md",
         "savedAt":  "2026-10-10T05:27:24.7791568+09:00",
         "status":  "ok"
     },
@@ -310,7 +310,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/run/security.md",
         "title":  "Secure AI-assisted development in VS Code",
         "html":  "",
-        "text":  "docs-agents-run-security.md",
+        "text":  "4. Use Agents_08-03. AI Security.md",
         "savedAt":  "2026-10-10T05:27:25.3683187+09:00",
         "status":  "ok"
     },
@@ -319,7 +319,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agent-customization/overview.md",
         "title":  "Create and manage agent customizations",
         "html":  "",
-        "text":  "docs-agent-customization-overview.md",
+        "text":  "5. Customize agents_01. Create and Manage.md",
         "savedAt":  "2026-10-10T05:27:25.5885207+09:00",
         "status":  "ok"
     },
@@ -328,7 +328,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agent-customization/custom-instructions.md",
         "title":  "Use custom instructions in VS Code",
         "html":  "",
-        "text":  "docs-agent-customization-custom-instructions.md",
+        "text":  "5. Customize agents_02. Instructions.md",
         "savedAt":  "2026-10-10T05:27:26.1730268+09:00",
         "status":  "ok"
     },
@@ -337,7 +337,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agent-customization/agent-skills.md",
         "title":  "Use Agent Skills in VS Code",
         "html":  "",
-        "text":  "docs-agent-customization-agent-skills.md",
+        "text":  "5. Customize agents_03. Agent Skills.md",
         "savedAt":  "2026-10-10T05:27:26.8163932+09:00",
         "status":  "ok"
     },
@@ -346,7 +346,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agent-customization/custom-agents.md",
         "title":  "Custom agents in VS Code",
         "html":  "",
-        "text":  "docs-agent-customization-custom-agents.md",
+        "text":  "5. Customize agents_04. Custom Agents.md",
         "savedAt":  "2026-10-10T05:27:29.4806160+09:00",
         "status":  "ok"
     },
@@ -355,7 +355,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agent-customization/language-models.md",
         "title":  "AI language models in VS Code",
         "html":  "",
-        "text":  "docs-agent-customization-language-models.md",
+        "text":  "5. Customize agents_05. Choose and Configure Models.md",
         "savedAt":  "2026-10-10T05:27:30.2690245+09:00",
         "status":  "ok"
     },
@@ -364,7 +364,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agent-customization/mcp-servers.md",
         "title":  "Add and manage MCP servers in VS Code",
         "html":  "",
-        "text":  "docs-agent-customization-mcp-servers.md",
+        "text":  "5. Customize agents_06. MCP.md",
         "savedAt":  "2026-10-10T05:27:32.4680988+09:00",
         "status":  "ok"
     },
@@ -373,7 +373,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agent-customization/hooks.md",
         "title":  "Configure agent hooks in Visual Studio Code (Preview)",
         "html":  "",
-        "text":  "docs-agent-customization-hooks.md",
+        "text":  "5. Customize agents_07. Hooks.md",
         "savedAt":  "2026-10-10T05:27:33.0336951+09:00",
         "status":  "ok"
     },
@@ -382,7 +382,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agent-customization/agent-plugins.md",
         "title":  "Agent plugins in VS Code",
         "html":  "",
-        "text":  "docs-agent-customization-agent-plugins.md",
+        "text":  "5. Customize agents_08. Plugins.md",
         "savedAt":  "2026-10-10T05:27:33.7149893+09:00",
         "status":  "ok"
     },
@@ -391,7 +391,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agent-customization/prompt-files.md",
         "title":  "Use prompt files in VS Code",
         "html":  "",
-        "text":  "docs-agent-customization-prompt-files.md",
+        "text":  "5. Customize agents_09. Prompt Files.md",
         "savedAt":  "2026-10-10T05:27:34.2671454+09:00",
         "status":  "ok"
     },
@@ -400,7 +400,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agent-customization/migrate-customizations.md",
         "title":  "Migrate Copilot customizations in VS Code",
         "html":  "",
-        "text":  "docs-agent-customization-migrate-customizations.md",
+        "text":  "5. Customize agents_10. Migrate Existing Customizations.md",
         "savedAt":  "2026-10-10T05:27:34.8434409+09:00",
         "status":  "ok"
     },
@@ -409,7 +409,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/guides/explore-a-codebase.md",
         "title":  "Explore a codebase with an agent",
         "html":  "",
-        "text":  "docs-agents-guides-explore-a-codebase.md",
+        "text":  "6. Tutorials \u0026 guides_01. Explore a Codebase.md",
         "savedAt":  "2026-10-10T05:27:35.4325187+09:00",
         "status":  "ok"
     },
@@ -418,7 +418,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/guides/add-a-feature.md",
         "title":  "Add a feature to an existing project",
         "html":  "",
-        "text":  "docs-agents-guides-add-a-feature.md",
+        "text":  "6. Tutorials \u0026 guides_02. Add a Feature.md",
         "savedAt":  "2026-10-10T05:27:36.5986715+09:00",
         "status":  "ok"
     },
@@ -427,7 +427,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/guides/fix-a-bug-with-agents.md",
         "title":  "Tutorial: Fix an API bug with an agent",
         "html":  "",
-        "text":  "docs-agents-guides-fix-a-bug-with-agents.md",
+        "text":  "6. Tutorials \u0026 guides_03. Fix a Bug.md",
         "savedAt":  "2026-10-10T05:27:37.4809175+09:00",
         "status":  "ok"
     },
@@ -436,7 +436,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/guides/refactor-safely.md",
         "title":  "Refactor code without changing behavior",
         "html":  "",
-        "text":  "docs-agents-guides-refactor-safely.md",
+        "text":  "6. Tutorials \u0026 guides_04. Refactor Safely.md",
         "savedAt":  "2026-10-10T05:27:38.0206996+09:00",
         "status":  "ok"
     },
@@ -445,7 +445,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/guides/test-code-with-ai.md",
         "title":  "Test existing code with AI",
         "html":  "",
-        "text":  "docs-agents-guides-test-code-with-ai.md",
+        "text":  "6. Tutorials \u0026 guides_05. Add Tests.md",
         "savedAt":  "2026-10-10T05:27:38.5779627+09:00",
         "status":  "ok"
     },
@@ -454,7 +454,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/guides/browser-agent-testing-guide.md",
         "title":  "Build and validate a web app with browser tools",
         "html":  "",
-        "text":  "docs-agents-guides-browser-agent-testing-guide.md",
+        "text":  "6. Tutorials \u0026 guides_06. Test Web Apps.md",
         "savedAt":  "2026-10-10T05:27:39.1603235+09:00",
         "status":  "ok"
     },
@@ -463,7 +463,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/guides/delegate-two-tasks.md",
         "title":  "Delegate two tasks without mixing their changes",
         "html":  "",
-        "text":  "docs-agents-guides-delegate-two-tasks.md",
+        "text":  "6. Tutorials \u0026 guides_07. Run Parallel Tasks.md",
         "savedAt":  "2026-10-10T05:27:39.7411444+09:00",
         "status":  "ok"
     },
@@ -472,7 +472,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/guides/get-agent-back-on-track.md",
         "title":  "Get an agent back on track",
         "html":  "",
-        "text":  "docs-agents-guides-get-agent-back-on-track.md",
+        "text":  "6. Tutorials \u0026 guides_08. Get Back on Track.md",
         "savedAt":  "2026-10-10T05:27:40.7514979+09:00",
         "status":  "ok"
     },
@@ -481,7 +481,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/guides/customize-copilot-guide.md",
         "title":  "Configure AI for your codebase",
         "html":  "",
-        "text":  "docs-agents-guides-customize-copilot-guide.md",
+        "text":  "6. Tutorials \u0026 guides_09. Adapt Agents to Your Project.md",
         "savedAt":  "2026-10-10T05:27:41.3565646+09:00",
         "status":  "ok"
     },
@@ -490,7 +490,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/guides/context-engineering-guide.md",
         "title":  "Set up a context engineering flow in VS Code",
         "html":  "",
-        "text":  "docs-agents-guides-context-engineering-guide.md",
+        "text":  "6. Tutorials \u0026 guides_10. Context Engineering.md",
         "savedAt":  "2026-10-10T05:27:41.9389468+09:00",
         "status":  "ok"
     },
@@ -499,7 +499,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/guides/test-driven-development-guide.md",
         "title":  "Set up a test-driven development flow in VS Code",
         "html":  "",
-        "text":  "docs-agents-guides-test-driven-development-guide.md",
+        "text":  "6. Tutorials \u0026 guides_11. Test-Driven Development.md",
         "savedAt":  "2026-10-10T05:27:42.5249679+09:00",
         "status":  "ok"
     },
@@ -508,7 +508,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/guides/notebooks-with-ai.md",
         "title":  "Work with Jupyter notebooks using AI in VS Code",
         "html":  "",
-        "text":  "docs-agents-guides-notebooks-with-ai.md",
+        "text":  "6. Tutorials \u0026 guides_12. Jupyter Notebooks.md",
         "savedAt":  "2026-10-10T05:27:43.1137369+09:00",
         "status":  "ok"
     },
@@ -517,7 +517,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/guides/optimize-usage.md",
         "title":  "Optimize AI credit usage in VS Code",
         "html":  "",
-        "text":  "docs-agents-guides-optimize-usage.md",
+        "text":  "6. Tutorials \u0026 guides_13. Reduce Credit Usage.md",
         "savedAt":  "2026-10-10T05:27:43.6711288+09:00",
         "status":  "ok"
     },
@@ -526,7 +526,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/guides/prompt-examples.md",
         "title":  "Prompt examples",
         "html":  "",
-        "text":  "docs-agents-guides-prompt-examples.md",
+        "text":  "6. Tutorials \u0026 guides_14. Prompt Examples.md",
         "savedAt":  "2026-10-10T05:27:44.3406767+09:00",
         "status":  "ok"
     },
@@ -535,7 +535,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/reference/ai-features-cheat-sheet.md",
         "title":  "AI features cheat sheet",
         "html":  "",
-        "text":  "docs-agents-reference-ai-features-cheat-sheet.md",
+        "text":  "7. Reference_01. Cheat Sheet.md",
         "savedAt":  "2026-10-10T05:27:44.5645597+09:00",
         "status":  "ok"
     },
@@ -544,7 +544,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/reference/tools-reference.md",
         "title":  "Tools and context reference",
         "html":  "",
-        "text":  "docs-agents-reference-tools-reference.md",
+        "text":  "7. Reference_02. Tools and Context.md",
         "savedAt":  "2026-10-10T05:27:45.0973440+09:00",
         "status":  "ok"
     },
@@ -553,7 +553,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/reference/ai-settings.md",
         "title":  "AI settings reference",
         "html":  "",
-        "text":  "docs-agents-reference-ai-settings.md",
+        "text":  "7. Reference_03. Settings Reference.md",
         "savedAt":  "2026-10-10T05:27:45.9830582+09:00",
         "status":  "ok"
     },
@@ -562,7 +562,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/reference/chat-pet.md",
         "title":  "VS Code pet interactions and reactions",
         "html":  "",
-        "text":  "docs-agents-reference-chat-pet.md",
+        "text":  "7. Reference_04. VS Code Pet.md",
         "savedAt":  "2026-10-10T05:27:46.5372058+09:00",
         "status":  "ok"
     },
@@ -571,7 +571,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/reference/mcp-configuration.md",
         "title":  "MCP configuration reference",
         "html":  "",
-        "text":  "docs-agents-reference-mcp-configuration.md",
+        "text":  "7. Reference_05. MCP Configuration.md",
         "savedAt":  "2026-10-10T05:27:47.1125480+09:00",
         "status":  "ok"
     },
@@ -580,7 +580,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/reference/hooks-reference.md",
         "title":  "Local hooks reference",
         "html":  "",
-        "text":  "docs-agents-reference-hooks-reference.md",
+        "text":  "7. Reference_06. Hooks Reference.md",
         "savedAt":  "2026-10-10T05:27:47.6696063+09:00",
         "status":  "ok"
     },
@@ -589,7 +589,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/guides/monitoring-agents.md",
         "title":  "Monitor agent usage with OpenTelemetry",
         "html":  "",
-        "text":  "docs-agents-guides-monitoring-agents.md",
+        "text":  "7. Reference_07. OpenTelemetry Monitoring.md",
         "savedAt":  "2026-10-10T05:27:48.3365038+09:00",
         "status":  "ok"
     },
@@ -598,7 +598,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/agent-troubleshooting/troubleshooting.md",
         "title":  "Troubleshoot AI in Visual Studio Code",
         "html":  "",
-        "text":  "docs-agents-agent-troubleshooting-troubleshooting.md",
+        "text":  "8. Troubleshooting_01. Troubleshooting.md",
         "savedAt":  "2026-10-10T05:27:49.7666697+09:00",
         "status":  "ok"
     },
@@ -607,7 +607,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/agent-troubleshooting/chat-debug-view.md",
         "title":  "Debug chat interactions",
         "html":  "",
-        "text":  "docs-agents-agent-troubleshooting-chat-debug-view.md",
+        "text":  "8. Troubleshooting_02. Debug Chat Interactions.md",
         "savedAt":  "2026-10-10T05:27:51.3572239+09:00",
         "status":  "ok"
     },
@@ -616,7 +616,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/agent-troubleshooting/cache-explorer.md",
         "title":  "Diagnose prompt caching with the Cache Explorer",
         "html":  "",
-        "text":  "docs-agents-agent-troubleshooting-cache-explorer.md",
+        "text":  "8. Troubleshooting_03. Diagnose Prompt Caching.md",
         "savedAt":  "2026-10-10T05:27:51.9409825+09:00",
         "status":  "ok"
     },
@@ -625,7 +625,7 @@
         "rawUrl":  "https://code.visualstudio.com/docs/agents/agent-troubleshooting/faq.md",
         "title":  "GitHub Copilot frequently asked questions",
         "html":  "",
-        "text":  "docs-agents-agent-troubleshooting-faq.md",
+        "text":  "8. Troubleshooting_04. FAQ.md",
         "savedAt":  "2026-10-10T05:27:52.5168452+09:00",
         "status":  "ok"
     }
