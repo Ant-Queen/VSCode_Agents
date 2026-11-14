@@ -1,0 +1,198 @@
+# VS Code AGENTS 카테고리 목록
+
+## 1. AI in VS Code (VS Code의 AI)
+- 01. Overview (개요)
+	- https://code.visualstudio.com/docs/agents/overview
+
+## 2. Get Started (시작하기)
+- 01. Find a Guide (가이드 찾기)
+	- https://code.visualstudio.com/docs/agents/guides/overview
+- 02. Choose an AI Feature (AI 기능 선택)
+	- https://code.visualstudio.com/docs/agents/reference/ai-features-cheat-sheet
+- 03. Set Up GitHub Copilot (GitHub Copilot 설정)
+	- https://code.visualstudio.com/docs/setup/copilot
+- 04. Agents Quickstart (에이전트 퀵스타트)
+	- https://code.visualstudio.com/docs/agents/quickstart
+- 05. Agents Tutorial (에이전트 튜토리얼)
+	- https://code.visualstudio.com/docs/agents/agents-tutorial
+- 06. Best Practices (모범 사례)
+	- https://code.visualstudio.com/docs/agents/best-practices
+
+## 3. Work with AI (AI와 함께 작업)
+- 01. Inline Suggestions (인라인 제안)
+	- https://code.visualstudio.com/docs/editing/ai-powered-suggestions
+- 02. Smart Actions (스마트 작업)
+	- https://code.visualstudio.com/docs/editing/copilot-smart-actions
+- 03. Chat View and Layout (채팅 뷰 및 레이아웃)
+	- https://code.visualstudio.com/docs/agents/run/chat-view
+- 04. Agents Window (에이전트 창)
+	- https://code.visualstudio.com/docs/agents/run/agents-window
+- 05. Inline Chat & Quick Chat (인라인 채팅 및 빠른 채팅)
+	- https://code.visualstudio.com/docs/chat/inline-chat
+- 06. Chat Interactions (채팅 상호작용)
+	- https://code.visualstudio.com/docs/chat/chat-overview
+- 07. Canvases (캔버스)
+	- https://code.visualstudio.com/docs/agents/run/canvases
+- 08. Add Prompt Context (프롬프트 컨텍스트 추가)
+	- https://code.visualstudio.com/docs/chat/copilot-chat-context
+- 09. Review & Revert Changes (변경 사항 검토 및 되돌리기)
+	- https://code.visualstudio.com/docs/agents/run/review-code-edits
+- 10. Configure the Agents Window (에이전트 창 구성)
+	- https://code.visualstudio.com/docs/agents/run/agents-window-configuration
+- 11. Plan and Run Tasks (작업 계획 및 실행)
+	- 01. Plan Work (작업 계획)
+		- https://code.visualstudio.com/docs/agents/run/planning
+	- 02. Use Tools (도구 사용)
+		- https://code.visualstudio.com/docs/agents/run/tools
+	- 03. Browser Tools (브라우저 도구)
+		- https://code.visualstudio.com/docs/agents/run/browser-tools
+	- 04. Subagents (서브에이전트)
+		- https://code.visualstudio.com/docs/agents/run/subagents
+	- 05. Automations (자동화)
+		- https://code.visualstudio.com/docs/agents/run/automations
+- 12. Sessions (세션)
+	- 01. Manage Sessions (세션 관리)
+		- https://code.visualstudio.com/docs/agents/run/sessions/manage-sessions
+	- 02. Organize & Triage Sessions (세션 정리 및 분류)
+		- https://code.visualstudio.com/docs/agents/run/sessions/organize-sessions
+	- 03. Memory (메모리)
+		- https://code.visualstudio.com/docs/agents/run/memory
+	- 04. Artifacts (아티팩트)
+		- https://code.visualstudio.com/docs/agents/run/artifacts
+- 13. Permissions and Security (권한 및 보안)
+	- 01. Approvals & Permissions (승인 및 권한)
+		- https://code.visualstudio.com/docs/agents/run/approvals
+	- 02. Agent Sandboxing (에이전트 샌드박싱)
+		- https://code.visualstudio.com/docs/agents/run/agent-sandboxing
+	- 03. AI Security (AI 보안)
+		- https://code.visualstudio.com/docs/agents/run/security
+
+## 4. Choose Models and Agents (모델 및 에이전트 선택)
+- 01. Choose and Configure Models (모델 선택 및 구성)
+	- https://code.visualstudio.com/docs/agent-customization/language-models
+- 02. Choose an Agent Harness (에이전트 하니스 선택)
+	- https://code.visualstudio.com/docs/agents/run/agent-harnesses
+- 03. Move from Local to Copilot (로컬에서 Copilot으로 이동)
+	- https://code.visualstudio.com/docs/agents/run/move-to-copilot
+- 04. Compare Model Results (모델 결과 비교)
+	- https://code.visualstudio.com/docs/agents/run/compare-models
+
+## 5. Customize and Extend (사용자 지정 및 확장)
+- 01. Overview (개요)
+	- https://code.visualstudio.com/docs/agent-customization/overview
+- 02. Plugins (플러그인)
+	- https://code.visualstudio.com/docs/agent-customization/agent-plugins
+- 03. Agent Skills (에이전트 스킬)
+	- https://code.visualstudio.com/docs/agent-customization/agent-skills
+- 04. Instructions (지침)
+	- https://code.visualstudio.com/docs/agent-customization/custom-instructions
+- 05. Custom Agents (사용자 지정 에이전트)
+	- https://code.visualstudio.com/docs/agent-customization/custom-agents
+- 06. Copilot Connectors (Copilot 커넥터)
+	- https://code.visualstudio.com/docs/agent-customization/copilot-connectors
+- 07. Add and Use MCP Servers (MCP 서버 추가 및 사용)
+	- https://code.visualstudio.com/docs/agent-customization/mcp-servers
+- 08. Manage MCP Servers (MCP 서버 관리)
+	- https://code.visualstudio.com/docs/agents/run/manage-mcp-servers
+- 09. Hooks (후크)
+	- https://code.visualstudio.com/docs/agent-customization/hooks
+- 10. Prompt Files (프롬프트 파일)
+	- https://code.visualstudio.com/docs/agent-customization/prompt-files
+- 11. Migrate Existing Customizations (기존 사용자 지정 마이그레이션)
+	- https://code.visualstudio.com/docs/agent-customization/migrate-customizations
+
+## 6. Work Across Apps and Machines (앱 및 장치 간 작업)
+- 01. Cloud Continuity Tutorial (클라우드 연속성 튜토리얼)
+	- https://code.visualstudio.com/docs/agents/cloud-continuity-tutorial
+- 02. Remote Agent Sessions (원격 에이전트 세션)
+	- https://code.visualstudio.com/docs/agents/run/remote-agent-sessions
+- 03. Cloud Sessions (클라우드 세션)
+	- https://code.visualstudio.com/docs/agents/run/cloud-sandbox-sessions
+- 04. Session History (세션 기록)
+	- https://code.visualstudio.com/docs/agents/run/sessions/session-history
+
+## 7. Tutorials & Guides (튜토리얼 및 가이드)
+- 01. Find a Guide (가이드 찾기)
+	- https://code.visualstudio.com/docs/agents/guides/overview
+- 02. Explore a Codebase (코드베이스 탐색)
+	- https://code.visualstudio.com/docs/agents/guides/explore-a-codebase
+- 03. Add a Feature (기능 추가)
+	- https://code.visualstudio.com/docs/agents/guides/add-a-feature
+- 04. Fix a Bug (버그 수정)
+	- https://code.visualstudio.com/docs/agents/guides/fix-a-bug-with-agents
+- 05. Refactor Safely (안전한 리팩터링)
+	- https://code.visualstudio.com/docs/agents/guides/refactor-safely
+- 06. Add Tests (테스트 추가)
+	- https://code.visualstudio.com/docs/agents/guides/test-code-with-ai
+- 07. Test Web Apps (웹 앱 테스트)
+	- https://code.visualstudio.com/docs/agents/guides/browser-agent-testing-guide
+- 08. Run Parallel Tasks (병렬 작업 실행)
+	- https://code.visualstudio.com/docs/agents/guides/delegate-two-tasks
+- 09. Get Back on Track (다시 정상 궤도로 돌아가기)
+	- https://code.visualstudio.com/docs/agents/guides/get-agent-back-on-track
+- 10. Adapt Agents to Your Project (프로젝트에 맞게 에이전트 조정)
+	- https://code.visualstudio.com/docs/agents/guides/customize-copilot-guide
+- 11. Context Engineering (컨텍스트 엔지니어링)
+	- https://code.visualstudio.com/docs/agents/guides/context-engineering-guide
+- 12. Test-Driven Development (테스트 주도 개발)
+	- https://code.visualstudio.com/docs/agents/guides/test-driven-development-guide
+- 13. Jupyter Notebooks (Jupyter 노트북)
+	- https://code.visualstudio.com/docs/agents/guides/notebooks-with-ai
+- 14. Reduce Credit Usage (크레딧 사용량 줄이기)
+	- https://code.visualstudio.com/docs/agents/guides/optimize-usage
+- 15. Prompt Examples (프롬프트 예시)
+	- https://code.visualstudio.com/docs/agents/guides/prompt-examples
+
+## 8. Concepts (개념)
+- 01. Agents (에이전트)
+	- https://code.visualstudio.com/docs/agents/concepts/agents
+- 02. How Models Work (모델 작동 방식)
+	- https://code.visualstudio.com/docs/agents/concepts/language-models
+- 03. Context (컨텍스트)
+	- https://code.visualstudio.com/docs/agents/concepts/context
+- 04. Tools (도구)
+	- https://code.visualstudio.com/docs/agents/concepts/tools
+- 05. Sessions and Chats (세션 및 채팅)
+	- https://code.visualstudio.com/docs/agents/concepts/sessions
+- 06. Trust & Safety (신뢰 및 안전)
+	- https://code.visualstudio.com/docs/agents/concepts/trust-and-safety
+- 07. Agent Harnesses (에이전트 하니스)
+	- https://code.visualstudio.com/docs/agents/concepts/agent-harnesses
+- 08. Agent Customization (에이전트 사용자 지정)
+	- https://code.visualstudio.com/docs/agents/concepts/customization
+
+## 9. Reference and Help (참조 및 도움말)
+- 01. Reference (참조)
+	- 01. Cheat Sheet (치트 시트)
+		- https://code.visualstudio.com/docs/agents/reference/ai-features-cheat-sheet
+	- 02. Tools and Context (도구 및 컨텍스트)
+		- https://code.visualstudio.com/docs/agents/reference/tools-reference
+	- 03. Workspace Context (작업 영역 컨텍스트)
+		- https://code.visualstudio.com/docs/agents/reference/workspace-context
+	- 04. Settings Reference (설정 참조)
+		- https://code.visualstudio.com/docs/agents/reference/ai-settings
+	- 05. VS Code Pet (VS Code Pet)
+		- https://code.visualstudio.com/docs/agents/reference/chat-pet
+	- 06. Custom Agent File Reference (사용자 지정 에이전트 파일 참조)
+		- https://code.visualstudio.com/docs/agents/reference/custom-agent-file-reference
+	- 07. Custom Instructions Reference (사용자 지정 지침 참조)
+		- https://code.visualstudio.com/docs/agents/reference/custom-instructions-reference
+	- 08. Agent Plugin Authoring Reference (에이전트 플러그인 작성 참조)
+		- https://code.visualstudio.com/docs/agents/reference/agent-plugin-reference
+	- 09. MCP Configuration (MCP 구성)
+		- https://code.visualstudio.com/docs/agents/reference/mcp-configuration
+	- 10. Hooks Reference (후크 참조)
+		- https://code.visualstudio.com/docs/agents/reference/hooks-reference
+	- 11. OpenTelemetry Monitoring (OpenTelemetry 모니터링)
+		- https://code.visualstudio.com/docs/agents/guides/monitoring-agents
+	- 12. Agent Host Architecture (에이전트 호스트 아키텍처)
+		- https://code.visualstudio.com/docs/agents/concepts/agent-host
+- 02. Troubleshooting (문제 해결)
+	- 01. Troubleshooting (문제 해결)
+		- https://code.visualstudio.com/docs/agents/agent-troubleshooting/troubleshooting
+	- 02. Debug Chat Interactions (채팅 상호작용 디버깅)
+		- https://code.visualstudio.com/docs/agents/agent-troubleshooting/chat-debug-view
+	- 03. Diagnose Prompt Caching (프롬프트 캐싱 진단)
+		- https://code.visualstudio.com/docs/agents/agent-troubleshooting/cache-explorer
+	- 04. FAQ (자주 묻는 질문)
+		- https://code.visualstudio.com/docs/agents/agent-troubleshooting/faq
